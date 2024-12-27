@@ -23,7 +23,7 @@ export default function Header() {
             </li>
           </ul>
         </nav>
-        <button className="btn btn-primary">Dashboard</button>
+        <Link href="panel-de-administracion" className="btn btn-primary">Dashboard</Link>
       </div>
     </header>
   );

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import "./globals.scss";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
+import "../globals.scss";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 
 export const metadata: Metadata = {
   title: "Blog",
@@ -13,14 +13,15 @@ export default function RootLayout({
   }: Readonly<{
     children: React.ReactNode;
   }>) {
-const isDashboard = true;
 
   return (
-    <html lang="en">
+    <html lang="es">
       <body>
-        {isDashboard && <Header />}
-        {children}
-        {isDashboard && <Footer />}
+        <main>
+          <Header />
+          {children}
+          <Footer />
+        </main>
       </body>
     </html>
   );
