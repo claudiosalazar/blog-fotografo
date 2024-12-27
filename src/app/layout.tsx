@@ -13,7 +13,7 @@ export default function RootLayout({
   }: Readonly<{
     children: React.ReactNode;
   }>) {
-const isDashboard = false;
+const isDashboard = true;
 
   return (
     <html lang="en">

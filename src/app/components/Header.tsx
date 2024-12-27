@@ -13,13 +13,13 @@ export default function Header() {
               <Link href="/" className="hover:text-gray-400">Inicio</Link>
             </li>
             <li>
-              <Link href="/about" className="hover:text-gray-400">Biografía</Link>
+              <Link href="/biografia" className="hover:text-gray-400">Biografía</Link>
             </li>
             <li>
-              <Link href="/portfolio" className="hover:text-gray-400">Galería</Link>
+              <Link href="/galeria" className="hover:text-gray-400">Galería</Link>
             </li>
             <li>
-              <Link href="/contact" className="hover:text-gray-400">Publicaciones</Link>
+              <Link href="/publicaciones" className="hover:text-gray-400">Publicaciones</Link>
             </li>
           </ul>
         </nav>
