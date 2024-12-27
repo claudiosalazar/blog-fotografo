@@ -2,8 +2,37 @@
 @use "tailwindcss/components";
 @use "tailwindcss/utilities";
 @use "./scss/variables" as *;
+@use "./scss/components/icons" as *;
+@use "./scss/components/footer" as *;
+@use "./scss/components/header" as *;
+
+// Tipografias
+@import url('https://fonts.googleapis.com/css2?family=Prompt:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900');
 
 body {
+  font-family: "Prompt", serif !important;
   color: $blanco;
   background-color: $negro;
+
+  .logo-nk {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='42' height='24'%3E%3Cg fill='%23DF0' fill-rule='nonzero'%3E%3Cpath d='M.006 24H7.96V12.926L16.875 24h7.131V0h-7.954v10.594L7.515 0H.006z'/%3E%3Cpath d='M17.006 24h8.24v-5.109l2.112-2.502L32.182 24h9.824l-8.768-13.577L41.83 0h-9.578l-7.007 8.983V0h-8.239z'/%3E%3C/g%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    width: 42px;
+    height: 24px;
+  }
+
+  hr {
+    width: 278px;
+    height: 24px;
+    margin: 0 auto;
+    border: 0;
+    opacity: .5;
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='386' height='21' fill='none'%3E%3Cpath fill='%234E4F47' fill-rule='evenodd' d='M181.238 21h-6.97V0h6.58l7.481 9.27V0H196.385v7.86l6.14-7.86h8.393l-7.529 9.12L211.072 21h-8.608l-4.228-6.66-1.85 2.19V21h-7.336l-7.812-9.69V21Z' clip-rule='evenodd'/%3E%3Cpath stroke='%234E4F47' d='M151 10.5H0M386 10.5H235'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  section {
+    margin: 36px auto;
+  }
 }

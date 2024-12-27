@@ -1,8 +1,8 @@
 export default function Inicio() {
     return (
       
-      <main>
+      <section>
         <h1>Inicio</h1>
-      </main>
+      </section>
     );
   }

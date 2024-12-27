@@ -1,0 +1,56 @@
+@use '../components/icons' as *;
+
+footer {
+    height: fit-content;
+    text-align: center;
+    border-top: 1px solid rgb(255, 255, 255, .2);
+    margin-top: 65px;
+    background-color: hsl(0, 0%, 0%);
+    background-image: radial-gradient(ellipse farthest-side at center bottom, rgb(62, 69, 18, .5) 0%, rgb(0, 0, 0) 100%);
+    background-size: 40%;
+    background-repeat: no-repeat;
+    background-position: center bottom;
+    @media (min-width: 768px) {
+        height: 137px;
+        margin-top: 0;
+    }
+
+    small {
+        display: block;
+        margin-top: 34px;
+    }
+
+    ul {
+        padding: 0;
+        list-style: none;
+        margin-top: 24px;
+        padding-bottom: 24px;
+        display: flex;
+        justify-content: center;
+        @media (min-width: 768px) {
+            padding-bottom: 0;
+        }
+        
+        li {
+            margin-left: 8px;
+            margin-right: 8px;
+            a {
+                display: block;
+                width: 20px;
+                height: 20px;
+                opacity: .4;
+                transition: opacity .3s;
+                &:hover {
+                    opacity: 1;
+                }
+            }
+        }
+    }
+
+    &.force-bottom {
+        position: absolute;
+        bottom: 0;
+    }
+}
+
+
