@@ -5,6 +5,44 @@ button {
   transition: all 0.5s ease !important;
 }
 
+.link {
+  color: $link;
+  text-decoration: none;
+  transition: all 0.2s ease-in;
+  &:hover {
+    color: $verde;
+  }
+
+  &.more {
+    color: $verde;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    display: flex;
+    opacity: 0.5;
+    .ico-more {
+      margin-top: 3px;
+      margin-left: 8px;
+      background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='9' height='9' fill='none'%3E%3Cpath stroke='%23DF0' d='M4.591 0v9M9 4.591H0'/%3E%3C/svg%3E");
+      background-position: center;
+      background-size: 11px;
+      width: 11px;
+      height: 11px;
+    }
+    .ico-share {
+      margin-top: 3px;
+      margin-left: 8px;
+      background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='11' fill='none'%3E%3Cg clip-path='url(%23a)'%3E%3Cpath fill='%23DF0' d='M8.282 11a1.5 1.5 0 0 1-1.104-.455 1.505 1.505 0 0 1-.453-1.104c0-.058.02-.198.06-.422L2.668 6.596a1.555 1.555 0 0 1-1.114.463c-.432 0-.799-.152-1.101-.457A1.508 1.508 0 0 1 0 5.5c0-.43.151-.798.453-1.102a1.492 1.492 0 0 1 1.1-.457c.22 0 .425.041.617.123.192.082.358.196.498.34l4.117-2.418a1.15 1.15 0 0 1-.047-.21 1.772 1.772 0 0 1-.013-.217c0-.433.151-.801.455-1.104A1.505 1.505 0 0 1 8.285 0a1.5 1.5 0 0 1 1.103.455c.303.303.454.672.454 1.105 0 .433-.151.801-.455 1.104a1.505 1.505 0 0 1-1.104.453c-.22 0-.425-.042-.615-.125a1.547 1.547 0 0 1-.494-.343L3.057 5.072c.023.072.039.142.048.21a1.772 1.772 0 0 1 0 .436 1.152 1.152 0 0 1-.048.21L7.174 8.35c.14-.144.305-.259.494-.343.19-.083.395-.125.615-.125.433 0 .801.151 1.104.455.304.303.455.671.455 1.105a1.5 1.5 0 0 1-.455 1.103A1.506 1.506 0 0 1 8.282 11Zm.001-.868c.196 0 .36-.067.492-.199a.668.668 0 0 0 .199-.492.668.668 0 0 0-.199-.491.668.668 0 0 0-.492-.2.668.668 0 0 0-.491.2.668.668 0 0 0-.199.491c0 .196.066.36.199.492a.668.668 0 0 0 .491.199ZM1.553 6.19a.676.676 0 0 0 .496-.198.665.665 0 0 0 .2-.492.665.665 0 0 0-.2-.492.676.676 0 0 0-.496-.198.66.66 0 0 0-.488.198.67.67 0 0 0-.197.492c0 .196.066.36.197.492a.66.66 0 0 0 .488.198Zm6.73-3.94c.196 0 .36-.067.492-.2a.668.668 0 0 0 .199-.491.668.668 0 0 0-.199-.492.668.668 0 0 0-.492-.199.668.668 0 0 0-.491.199.668.668 0 0 0-.199.492c0 .195.066.36.199.491a.668.668 0 0 0 .491.2Z'/%3E%3C/g%3E%3Cdefs%3E%3CclipPath id='a'%3E%3Cpath fill='%23fff' d='M0 0h9.842v11H0z'/%3E%3C/clipPath%3E%3C/defs%3E%3C/svg%3E");
+      background-position: center;
+      background-size: 10px 11px;
+      width: 10px;
+      height: 11px;
+    }
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
+
 // Botones sitio publico
 .btn {
   color: $negro;
@@ -22,6 +60,34 @@ button {
   transform: translateZ(0);
   transition: transform all 0.18s ease;
   width: fit-content;
+
+  &.primario, &.secundario, &.eliminar {
+    margin: 42px 0 0 0;
+    padding: 10px 24px;
+
+    &:hover, &:focus, &:active {
+      span {
+        transform: translateY(-0.8rem) translateZ(0);
+      }
+    }
+
+    div {
+      display: flex;
+      overflow: hidden;
+      text-shadow: 0 1.2rem 0 $verde-sombra;
+      @media (min-width: 992px) {
+        font-size: 0.8rem;
+        line-height: 0.8rem;
+        text-shadow: 0 .8rem 0 $verde-sombra;
+      }
+      span {
+        display: block;
+        backface-visibility: hidden;
+        transition: transform 0.18s ease;
+        transform: translateY(0) translateZ(0);
+      }
+    }
+  }
 
   &.primario {
     color: #ddff00 !important;

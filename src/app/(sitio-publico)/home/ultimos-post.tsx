@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -62,43 +62,48 @@ export default function UltimosPost() {
   };
 
   return (
-    <div className="row">
-      <div className="col-10 ring-offset-1">
-        <h2>Ultimas publicaciones</h2>
+    <>
+      <div className="grid grid-cols-1">
+        <h2>Últimas publicaciones</h2>
       </div>
+
       {error && (
-        <div className="col-12">
+        <div className="w-full px-4">
           <p className="text-red-500">{error}</p>
         </div>
       )}
-      {posts.map((post) => (
-        <div key={post.id} className="col-10 offset-1 col-md-4 offset-md-0">
-          <div className="post-inicio">
-            <Link href={`/post/${post.id}/${formatTitle(post.tituloPost)}`}>
-              <img
-                src={getImageUrl(post.imgPost)}
-                alt={post.alt || "Imagen de la publicación"}
-                className="img-fluid"
-              />
-              <span className="fecha-post-home">{formatDate(post.fecha)}</span>
-              <h3>{post.tituloPost}</h3>
-              <p>{post.contenido}</p>
-            </Link>
-            <Link
-              href={`/post/${post.id}/${formatTitle(post.tituloPost)}`}
-              className="link more"
-            >
-              <span className="d-block">Leer más</span>
-              <span className="d-block ico-more"></span>
-            </Link>
+
+      <div className="grid grid-cols-1 gap-1 md:grid-cols-3 md:gap-6">
+        {posts.map((post) => (
+          <div key={post.id}>
+            <div className="post-inicio shadow-md rounded-lg overflow-hidden">
+              <Link href={`/post/${post.id}/${formatTitle(post.tituloPost)}`}>
+                <img src={getImageUrl(post.imgPost)} alt={post.alt || "Imagen de la publicación"} className="w-full h-48 object-cover" />
+                <span className="block text-gray-500 text-sm mt-2">
+                  {formatDate(post.fecha)}
+                </span>
+                <h3 className="text-lg font-semibold mt-2">
+                  {post.tituloPost}
+                </h3>
+                <p className="text-gray-700 mt-2">{post.contenido}</p>
+              </Link>
+              <Link
+                href={`/post/${post.id}/${formatTitle(post.tituloPost)}`}
+                className="link more"
+              >
+                <span className="d-block">Leer más</span>
+                <span className="d-block ico-more"></span>
+              </Link>
+            </div>
           </div>
-        </div>
-      ))}
-      <div className="col-12 d-flex justify-content-center">
-        <Link href="/post" className="btn">
-          Ver mas
+        ))}
+      </div>
+
+      <div className="w-full px-4 flex justify-center">
+        <Link href="/post" className="btn primario ">
+          Ver más
         </Link>
       </div>
-    </div>
+    </>
   );
 }

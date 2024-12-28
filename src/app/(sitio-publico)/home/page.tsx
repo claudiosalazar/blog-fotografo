@@ -5,17 +5,19 @@ import UltimosPost from "./ultimos-post";
 export default function Inicio() {
   return (
     <>
-      <section className="container-fluid m-0">
-        <Carousel />
-      </section>
+      <main className="relative mx-auto">
+        <div className="container p-0">
+          <Carousel />
+        </div>
 
-      <section className="container">
-        <GaleriaHome />
-      </section>
+        <section className="container inicio">
+          <GaleriaHome />
+        </section>
 
-      <section className="container">
-        <UltimosPost />
-      </section>
+        <section className="container inicio">
+          <UltimosPost />
+        </section>
+      </main>
     </>
   );
 }

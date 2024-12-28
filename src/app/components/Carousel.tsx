@@ -5,8 +5,8 @@ import { StaticImage } from '../ui/Images';
 
 const slides = [
   { id: 1, content: 'Slide 1', image: StaticImage.ejemplo },
-  { id: 2, content: 'Slide 2', image: StaticImage.camera1 },
-  { id: 3, content: 'Slide 3', image: StaticImage.camera2 },
+  { id: 2, content: 'Slide 2', image: StaticImage.ejemplo },
+  { id: 3, content: 'Slide 3', image: StaticImage.ejemplo },
 ];
 
 export default function Carousel() {
@@ -26,7 +26,7 @@ export default function Carousel() {
   }, []);
 
   return (
-    <div className="carousel relative w-full mx-auto">
+    <div className="carousel">
       <div className="relative overflow-hidden carousel-contenido">
         {slides.map((slide, index) => (
           <div key={slide.id} className={`absolute inset-0 transition-opacity duration-1000 ${index === currentSlide ? 'opacity-100' : 'opacity-0'}`}>

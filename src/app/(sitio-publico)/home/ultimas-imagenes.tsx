@@ -73,12 +73,12 @@ export default function GaleriaHome() {
 
   return (
     <div className="row">
-      <div className="col-12">
+      <div className="column-10 px-4">
         <h2>Ultimas fotografías</h2>
       </div>
 
       {error && (
-        <div className="col-12">
+        <div className="col-10">
           <p className="text-red-500">{error}</p>
         </div>
       )}
@@ -117,8 +117,8 @@ export default function GaleriaHome() {
         })}
       </div>
 
-      <div className="col-12 d-flex justify-content-center">
-        <Link href="/galeria" className="btn">
+      <div className="w-full px-4 flex justify-center">
+        <Link href="/galeria" className="btn primario">
           Ir a galeria
         </Link>
       </div>
