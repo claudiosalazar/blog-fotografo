@@ -10,7 +10,7 @@ export default function Galeria() {
         <div className="grid grid-cols-1 gap-1">
           <h1 className="text-center">Galeria</h1>
         </div>
-        <div className="grid grid-cols-1 gap-1 mx-12">
+        <div className="grid grid-cols-1 gap-1 mx-12 ">
           <ul className="d-flex flex-wrap justify-content-center">
             <li className="btn-galeria">
               <Link href="/galeria/paisajes" className="link-galeria-inicio">

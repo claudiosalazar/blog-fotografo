@@ -23,7 +23,7 @@ function ImageGallery({ images }: ImageGalleryProps) {
 
     return (
         <>
-            <ul className="grid grid-cols-1 gap-0 md:grid-cols-4">
+            <ul className="grid grid-cols-1 gap-0 md:grid-cols-4 ">
                 {images.map((item) => (
                     <li key={item.id}>
                         <Link href="#" onClick={() => handleImageClick(item.foto)} className='image-link'>
@@ -33,9 +33,7 @@ function ImageGallery({ images }: ImageGalleryProps) {
                                     <span className='texto'>Ver imagen</span>
                                 </span>
                             </span>
-                            <div className="position-relative" style={{ width: '100%', height: '100%' }}>
-                                <img src={item.foto} alt={item.alt} className="img-fluid" style={{objectFit:"cover"}} />
-                            </div>
+                            <img src={item.foto} alt={item.alt} />
                         </Link>
                     </li>
                 ))}

@@ -130,51 +130,56 @@
     }
   }
 
-  .image-link {
-    position: relative !important;
-    aspect-ratio: 1/1;
-    display: block;
-    max-height: fit-content;
-    width: 100% !important;
-    .hover {
-      position: absolute;
-      top: 0;
-      left: 0;
-      background-color: black;
-      display: block;
-      aspect-ratio: 1/1;
-      opacity: 0;
-      z-index: 9000;
-      width: 100%;
-      transition: all 0.8s ease;
-
-      span {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        color: $blanco;
-        height: 100%;
-        text-transform: uppercase;
-
-        &.texto {
-          font-size: 0.9rem;
-          font-weight: 200;
-          margin-top: 4px;
-          color: $verde;
+  ul {
+    li {
+      .image-link {
+        position: relative !important;
+        aspect-ratio: 1/1;
+        display: block;
+        max-height: fit-content;
+        width: 100% !important;
+        .hover {
+          position: absolute;
+          top: 0;
+          left: 0;
+          background-color: black;
+          display: block;
+          aspect-ratio: 1/1;
+          opacity: 0;
+          z-index: 9000;
+          width: 100%;
+          transition: all 0.8s ease;
+    
+          span {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: $blanco;
+            height: 100%;
+            text-transform: uppercase;
+    
+            &.texto {
+              font-size: 0.9rem;
+              font-weight: 200;
+              margin-top: 4px;
+              color: $verde;
+            }
+          }
+    
+          &:hover {
+            opacity: 1;
+            background-color: rgb(0, 0, 0, 0.5);
+          }
         }
       }
-
-      &:hover {
-        opacity: 1;
-        background-color: rgb(0, 0, 0, 0.5);
+    
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        aspect-ratio: 1/1;
       }
+      
     }
-  }
-
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    aspect-ratio: 1/1;
   }
 }
