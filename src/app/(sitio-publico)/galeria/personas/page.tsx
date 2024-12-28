@@ -11,7 +11,7 @@ interface GaleriaData {
   alt: string;
 }
 
-function GaleriaPersonas() {
+export default function GaleriaPersonas() {
   const [galeria, setGaleria] = useState<GaleriaData[]>([]);
   const [error, setError] = useState<string | null>(null);
 
@@ -70,4 +70,3 @@ function GaleriaPersonas() {
   );
 }
 
-export default GaleriaPersonas;
