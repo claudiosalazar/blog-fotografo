@@ -1,0 +1,31 @@
+h1, h2, h3, h4, h5, h6, p {
+  margin: 0 !important;
+  letter-spacing: inherit;
+}
+
+h1 {
+  color: #7E8F14;
+}
+
+h2 {
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  padding-bottom: 24px;
+  color: #97998B;
+  .titulo-seccion {
+      margin-top: 4px;
+  }
+}
+
+h3 {
+  font-size: 1.05rem;
+  text-transform: uppercase;
+  padding-bottom: 24px;
+  color: #97998B;
+  span {
+      margin-right: 10px;
+  }
+  a {
+      color: #7E8F14;
+  }
+}

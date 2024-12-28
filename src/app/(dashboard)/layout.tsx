@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "../globals.scss";
+import Menu from "../components/dashboard/menu";
 
 export const metadata: Metadata = {
   title: "Dashboard",
@@ -8,14 +9,17 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-  }: Readonly<{
-    children: React.ReactNode;
-  }>) {
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
   return (
     <html lang="es">
       <body>
-        <main>
-          {children}
+        <main className="container-fluid p-6 flex">
+          <Menu />
+          <div className="fondo-panel rounded-xl w-10/12 grid grid-cols-1 gap-4 py-4 px-7">
+            {children}
+          </div>
         </main>
       </body>
     </html>
