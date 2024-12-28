@@ -92,7 +92,10 @@ export default function NuevasImagenes() {
 
   return (
     <div className="grid grid-cols-1 card">
-      <h2>Últimas imágenes publicadas</h2>
+      <h2 className="flex items-center">
+        <span className='ico-tit-gallery'></span>
+        <span className='titulo-seccion'>Últimas imágenes publicadas</span>
+      </h2>
 
       <div className="card gris mb-5">
         <h3>

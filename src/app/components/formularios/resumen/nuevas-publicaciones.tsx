@@ -65,7 +65,10 @@ export default function NuevasPublicaciones() {
   return (
     <>
       <div className="grid grid-cols-1 card ">
-        <h2>Últimas publicaciones</h2>
+        <h2 className="flex items-center">
+          <span className='ico-tit-txt'></span>
+          <span className='titulo-seccion'>Últimas publicaciones</span>
+        </h2>
 
         <div className="grid grid-cols-3 gap-4 ">
           {posts.slice(0, 3).map((post) => (
