@@ -1,4 +1,4 @@
-
+@use "../variables" as *;
 
 .menu-dashboard {
   color: #ffffff;
@@ -52,6 +52,29 @@
       background-repeat: no-repeat;
       background-position: center right, center left;
       transition: transform 0.3s ease; /* Transición suave */
+    }
+  }
+
+  .btn-logout {
+    margin-top: 60px;
+    display: flex;
+    text-transform: uppercase;
+    color: $verde-sombra;
+    font-weight: 300;
+    span {
+      display: block;
+    }
+
+    .ico-logout {
+      transition: all 0.3s ease;
+      margin-left: 8px;
+    }
+
+    &:hover {
+      color: $verde;
+      .ico-logout {
+        margin-left: 12px;
+      }
     }
   }
 }

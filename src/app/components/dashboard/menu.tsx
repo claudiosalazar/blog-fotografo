@@ -65,8 +65,9 @@ function MenuDashboard() {
         <div className="bg-active" style={{ transform: `translateY(${activePosition}px)`, transition: "transform 0.3s ease" }}></div>
       </div>
 
-      <Link className={normalizePath(pathname) === normalizePath("/") ? "active" : ""} href="/" onClick={handleLogoutClick}>
-        Salir
+      <Link href="/" className="btn-logout" onClick={handleLogoutClick}>
+        <span>Salir</span>
+        <span className="ico-logout"></span>
       </Link>
     </div>
   );
