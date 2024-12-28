@@ -1,3 +1,4 @@
+@use '../variables' as *;
 
 .dashboard {
   h1, h2, h3, h4, h5, h6, p {
@@ -8,6 +9,9 @@
   
   h1 {
     color: #7E8F14;
+    text-transform: inherit;
+    font-weight: 500;
+    font-size: 2.8rem;
   }
   
   h2 {
@@ -19,6 +23,11 @@
     padding-bottom: 12px;
     .titulo-seccion {
         margin-top: 4px;
+    }
+
+    &.resumen-pregunta {
+      font-size: 1.4rem;
+      color: #7E8F14;
     }
   }
   
@@ -35,4 +44,18 @@
         color: #7E8F14;
     }
   } 
+
+  h5 {
+    &.resumen-post {
+      height: 35px;
+    }
+  }
+
+  .bajada-saludo {
+    color: #7E8F14;
+    text-transform: inherit;
+    font-weight: 500;
+    font-size: 1.8rem;
+    line-height: 1rem;
+  }
 }

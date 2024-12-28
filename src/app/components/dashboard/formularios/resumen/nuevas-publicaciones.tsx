@@ -86,7 +86,7 @@ export default function NuevasPublicaciones() {
                 </div>
                 <div className="card-body">
                   <small>Publicado el {post.fecha}</small>
-                  <h5>{post.tituloPost}</h5>
+                  <h5 className="resumen-post">{post.tituloPost}</h5>
                   <p>{post.contenido}</p>
                 </div>
               </div>

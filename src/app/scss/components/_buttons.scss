@@ -123,6 +123,21 @@ a.nav-link {
   //   }
   // }
 
+  &.primario-resumen {
+    color: #ddff00 !important;
+    background-color: #7c8a26 !important;
+    margin: 0;
+    padding: 10px 24px;
+    text-align: center;
+    line-height: 1.2rem;
+
+    &:hover {
+      span {
+        @include animacionBotonHover;
+      }
+    }
+  }
+
   
 
   &.dashboard-header {
