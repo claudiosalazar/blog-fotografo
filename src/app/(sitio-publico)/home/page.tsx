@@ -1,6 +1,6 @@
-import Carousel from "@/app/components/Carousel";
-import GaleriaHome from "./ultimas-imagenes";
-import UltimosPost from "./ultimos-post";
+import Carousel from "@/app/components/inicio/Carousel";
+import GaleriaHome from "../../components/inicio/ultimas-imagenes";
+import UltimosPost from "../../components/inicio/ultimos-post";
 
 export default function Inicio() {
   return (

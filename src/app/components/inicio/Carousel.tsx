@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from "react";
-import TextoBienvenida from "../(sitio-publico)/home/texto-bienvenida";
+import TextoBienvenida from "./texto-bienvenida";
 
 interface CarouselData {
   imgCarousel1: string;

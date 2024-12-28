@@ -1,0 +1,184 @@
+@use "../variables" as *;
+@use "../components/icons" as *;
+
+h2.tit-bio {
+  text-transform: uppercase;
+}
+
+.vitrina-bio {
+  position: relative;
+  margin-top: -71px;
+  width: 100vw;
+
+  img {
+    aspect-ratio: 9/16;
+    object-fit: cover;
+    @media (min-width: $md) {
+      aspect-ratio: 16/7;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .texto-bio {
+    position: absolute;
+    bottom: 54px;
+    left: 42px;
+    z-index: 100;
+    @media (min-width: $md) {
+      bottom: 42px;
+    }
+
+    .logo-bio {
+      background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='42' height='24'%3E%3Cg fill='%23DF0' fill-rule='nonzero'%3E%3Cpath d='M.006 24H7.96V12.926L16.875 24h7.131V0h-7.954v10.594L7.515 0H.006z'/%3E%3Cpath d='M17.006 24h8.24v-5.109l2.112-2.502L32.182 24h9.824l-8.768-13.577L41.83 0h-9.578l-7.007 8.983V0h-8.239z'/%3E%3C/g%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-size: 84px 48px;
+      width: 84px;
+      height: 66px;
+      margin-bottom: 16px;
+      border-bottom: 1px solid rgb(255, 255, 255, 0.5);
+      @media (min-width: $md) {
+        height: 48px;
+        border-bottom: 0;
+        margin-right: 16px;
+        border-left: 1px solid rgb(255, 255, 255, 0.5);
+      }
+    }
+
+    .nombre-bio {
+      padding-left: 0;
+      color: $blanco;
+      height: 48px;
+      @media (min-width: $md) {
+        padding-left: 15px;
+        border-left: 1px solid rgb(255, 255, 255, 0.5);
+      }
+
+      .presentacion {
+        font-size: 1.2rem;
+        font-weight: 300;
+        line-height: 0.8;
+      }
+      .nombre {
+        font-size: 1.8rem;
+        font-weight: 600;
+        line-height: 1.7;
+      }
+    }
+
+    p {
+      width: 100%;
+      @media (min-width: $md) {
+        width: 50%;
+        color: $blanco;
+      }
+    }
+  }
+}
+
+.sobre-mi {
+  position: relative;
+  z-index: 1;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("../../../../public/images/bg-camera-1.png");
+    background-repeat: no-repeat;
+    background-position: right center;
+    background-size: 40%;
+    opacity: 0.5; // Ajusta la opacidad aquí
+    z-index: -1; // Asegúrate de que la imagen de fondo esté detrás del contenido
+  }
+
+  @media (min-width: $md) {
+    &::before {
+      background-size: auto;
+      opacity: 1;
+    }
+  }
+
+  p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    margin-bottom: 36px;
+  }
+}
+
+.proyectos {
+  h4 {
+    padding: 10px 0 16px 0;
+    color: $link;
+    font-size: 1.05rem;
+    line-height: 1.3rem;
+    text-transform: uppercase;
+    color: $verde;
+    font-weight: 600;
+  }
+
+  h5 {
+    color: $link;
+    font-weight: 300;
+  }
+  p.txt-proyecto {
+    font-size: 0.9rem;
+    margin-bottom: 36px;
+  }
+
+  img.camera {
+    width: 60%;
+    height: auto;
+    padding-top: 42px;
+    object-fit: cover;
+    position: inherit !important;
+    @media (min-width: $md) {
+      margin: 0 auto;
+      width: 70% !important;
+      height: fit-content !important;
+    }
+  }
+}
+
+.hablemos {
+  ul {
+    padding: 0;
+    list-style: none;
+    li {
+      margin-bottom: 36px;
+      a {
+        font-size: 1rem;
+        transition: all 0.2s;
+        @media (min-width: $md) {
+          font-size: 1.2rem;
+        }
+
+        .icono {
+          display: block;
+          width: 20px;
+          height: 20px;
+          margin-right: 18px;
+          background-size: 20px 20px;
+          opacity: 0.4;
+          @media (min-width: $md) {
+            width: 28px;
+            height: 28px;
+            background-size: 28px 28px;
+          }
+        }
+        span {
+          border-left: 1px solid rgb(255, 255, 255, 0.2);
+          padding-left: 16px;
+        }
+        &:hover {
+          .icono {
+            opacity: 1;
+          }
+        }
+      }
+    }
+  }
+}

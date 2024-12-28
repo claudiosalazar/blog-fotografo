@@ -7,8 +7,8 @@ import { usePathname } from "next/navigation";
 export default function Header() {
   const links = [
     { href: "/", label: "Inicio" },
-    { href: "/biografia/", label: "Biografía" },
-    { href: "/galeria/", label: "Galería" },
+    { href: "/biografia/", label: "Biografia" },
+    { href: "/galeria/", label: "Galeria" },
     { href: "/publicaciones/", label: "Publicaciones" },
   ];
 
