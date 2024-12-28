@@ -78,6 +78,28 @@ img {
   }
 }
 
+.contenedor-imagenes-dashboard {
+  &.formato-1 {
+    aspect-ratio: 16/9;
+    width: 100%;
+    min-height: 100%;
+    object-fit: cover;
+    padding: 0;
+    position: relative;
+    display: block;
+    z-index: 101;
+  }
+
+  &.card-img-top {
+    height: 106px;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 4px 4px 0 0;
+    margin-bottom: 12px;
+    position: relative;
+  }
+}
+
 .contenedor-nueva-img-post {
   width: 104px;
   height: auto;

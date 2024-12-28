@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-// import { useRouter } from 'next/navigation';
 import Link from "next/link";
+import Loading from "../../../components/Loading";
 
 interface AlbumPaisajes {
   id: number;
@@ -25,10 +25,11 @@ interface AlbumAnimales {
   alt: string;
 }
 
-export default function NuevasImagenes() {
+const NuevasImagenes = () => {
   const [paisajes, setPaisajes] = useState<AlbumPaisajes[]>([]);
   const [personas, setPersonas] = useState<AlbumPersonas[]>([]);
   const [animales, setAnimales] = useState<AlbumAnimales[]>([]);
+  const [imagesLoaded, setImagesLoaded] = useState<{ [key: number]: boolean }>({});
 
   useEffect(() => {
     const fetchGaleriaPaisajes = async () => {
@@ -85,68 +86,99 @@ export default function NuevasImagenes() {
       }
     };
 
-    fetchGaleriaPaisajes();
-    fetchGaleriaPersonas();
-    fetchGaleriaAnimales();
+    const fetchData = async () => {
+      await Promise.all([
+        fetchGaleriaPaisajes(),
+        fetchGaleriaPersonas(),
+        fetchGaleriaAnimales(),
+      ]);
+    };
+
+    fetchData();
   }, []);
 
+  const handleImageLoad = (id: number) => {
+    setImagesLoaded((prev) => ({ ...prev, [id]: true }));
+  };
+
   return (
-    <div className="grid grid-cols-1 card">
-      <h2 className="flex items-center">
-        <span className='ico-tit-gallery'></span>
-        <span className='titulo-seccion'>Últimas imágenes publicadas</span>
-      </h2>
-
-      <div className="card gris mb-5">
-        <h3>
-          <span>Album Paisajes</span>
-          <span>|</span>
-          <Link href="#">Ver album</Link>
-        </h3>
-        <div className="grid grid-cols-4 gap-4">
-          {paisajes.map((item) => (
-            <div key={item.id}>
-              <img src={item.foto} className="rounded-md formato-1" alt={item.alt} />
+    <>
+      <div className="grid grid-cols-1 card relative">
+        <h2 className="flex items-center">
+          <span className="ico-tit-gallery"></span>
+          <span className="titulo-seccion">Últimas imágenes publicadas</span>
+        </h2>
+        <div className="card gris mb-5">
+            <h3>
+              <span>Album Paisajes</span>
+              <span>|</span>
+              <Link href="#">Ver album</Link>
+            </h3>
+            <div className="grid grid-cols-4 gap-4">
+              {paisajes.map((item) => (
+                <div key={item.id} className="relative contenedor-imagenes-dashboard formato-1">
+                  {!imagesLoaded[item.id] && <Loading isLoading={true} onLoaded={() => {}} />}
+                  <img
+                    src={item.foto}
+                    className={`rounded-md formato-1 ${!imagesLoaded[item.id] ? 'hidden' : ''}`}
+                    alt={item.alt}
+                    onLoad={() => handleImageLoad(item.id)}
+                  />
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
-      </div>
+          </div>
 
-      <div className="card gris mb-5">
-        <h3>
-          <span>Album Personas</span>
-          <span>|</span>
-          <Link href="#">Ver album</Link>
-        </h3>
-        <div className="grid grid-cols-4 gap-4">
-          {personas.map((item) => (
-            <div key={item.id}>
-              <img src={item.foto} className="rounded-md formato-1" alt={item.alt} />
+          <div className="card gris mb-5">
+            <h3>
+              <span>Album Personas</span>
+              <span>|</span>
+              <Link href="#">Ver album</Link>
+            </h3>
+            <div className="grid grid-cols-4 gap-4">
+              {personas.map((item) => (
+                <div key={item.id} className="relative contenedor-imagenes-dashboard formato-1">
+                  {!imagesLoaded[item.id] && <Loading isLoading={true} onLoaded={() => {}} />}
+                  <img
+                    src={item.foto}
+                    className={`rounded-md formato-1 ${!imagesLoaded[item.id] ? 'hidden' : ''}`}
+                    alt={item.alt}
+                    onLoad={() => handleImageLoad(item.id)}
+                  />
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
-      </div>
+          </div>
 
-      <div className="card gris">
-        <h3>
-          <span>Album Animales</span>
-          <span>|</span>
-          <Link href="#">Ver album</Link>
-        </h3>
-        <div className="grid grid-cols-4 gap-4">
-          {animales.map((item) => (
-            <div key={item.id}>
-              <img src={item.foto} className="rounded-md formato-1" alt={item.alt} />
+          <div className="card gris">
+            <h3>
+              <span>Album Animales</span>
+              <span>|</span>
+              <Link href="#">Ver album</Link>
+            </h3>
+            <div className="grid grid-cols-4 gap-4">
+              {animales.map((item) => (
+                <div key={item.id} className="relative contenedor-imagenes-dashboard formato-1">
+                  {!imagesLoaded[item.id] && <Loading isLoading={true} onLoaded={() => {}} />}
+                  <img
+                    src={item.foto}
+                    className={`rounded-md formato-1 ${!imagesLoaded[item.id] ? 'hidden' : ''}`}
+                    alt={item.alt}
+                    onLoad={() => handleImageLoad(item.id)}
+                  />
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
-      </div>
+          </div>
 
-      <div className="flex justify-end botonera">
-          <Link href="/publicaciones" className="btn primario dashboard">
-            Ver todas las imágenes
-          </Link>
-        </div>
-    </div>
+          <div className="flex justify-end botonera">
+            <Link href="/publicaciones" className="btn primario dashboard">
+              Ver todas las imágenes
+            </Link>
+          </div>
+      </div>
+    </>
   );
-}
+};
+
+export default NuevasImagenes;

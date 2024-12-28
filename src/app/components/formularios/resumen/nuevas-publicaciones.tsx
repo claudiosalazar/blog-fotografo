@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import Loading from "../../../components/Loading";
 
 interface PostData {
   id: string;
@@ -16,6 +17,7 @@ interface PostData {
 export default function NuevasPublicaciones() {
   const router = useRouter();
   const [posts, setPosts] = useState<PostData[]>([]);
+  const [imagesLoaded, setImagesLoaded] = useState<{ [key: string]: boolean }>({});
 
   const BASE_URL = "http://localhost:3001";
 
@@ -62,19 +64,26 @@ export default function NuevasPublicaciones() {
     }
   };
 
+  const handleImageLoad = (id: string) => {
+    setImagesLoaded((prev) => ({ ...prev, [id]: true }));
+  };
+
   return (
     <>
-      <div className="grid grid-cols-1 card ">
+      <div className="grid grid-cols-1 card">
         <h2 className="flex items-center">
-          <span className='ico-tit-txt'></span>
-          <span className='titulo-seccion'>Últimas publicaciones</span>
+          <span className="ico-tit-txt"></span>
+          <span className="titulo-seccion">Últimas publicaciones</span>
         </h2>
 
-        <div className="grid grid-cols-3 gap-4 ">
+        <div className="grid grid-cols-3 gap-4">
           {posts.slice(0, 3).map((post) => (
             <div key={post.id} className="h-fit">
               <div className="card-post-resumen">
-                <img src={post.imgPost ? `${BASE_URL}${post.imgPost}` : ""} alt={post.alt || "Imagen de la publicación"} className="card-img-top" />
+                <div className="contenedor-imagenes-dashboard card-img-top">
+                  {!imagesLoaded[post.id] && <Loading isLoading={true} onLoaded={() => {}} />}
+                  <img src={post.imgPost ? `${BASE_URL}${post.imgPost}` : ""} alt={post.alt || "Imagen de la publicación"} className={`card-img-top ${!imagesLoaded[post.id] ? 'hidden' : ''}`} onLoad={() => handleImageLoad(post.id)} />
+                </div>
                 <div className="card-body">
                   <small>Publicado el {post.fecha}</small>
                   <h5>{post.tituloPost}</h5>

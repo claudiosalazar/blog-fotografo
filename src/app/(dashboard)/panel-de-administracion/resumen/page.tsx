@@ -16,9 +16,7 @@ export default function Resumen() {
       </div>
 
       <DatosResumen />
-
       <NuevasImagenes />
-
       <NuevasPublicaciones />
     </>
   );
