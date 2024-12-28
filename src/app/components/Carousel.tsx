@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { StaticImage } from '../ui/Images';
+import TextoBienvenida from '../(sitio-publico)/home/texto-bienvenida';
 
 const slides = [
   { id: 1, content: 'Slide 1', image: StaticImage.ejemplo },
@@ -27,12 +28,7 @@ export default function Carousel() {
 
   return (
     <div className="carousel">
-      <div className='texto-bienvenida'>
-        {/* <h1>{info.titulo}</h1>
-        <p>{info.parrafo}</p> */}
-        <h1>Titulo</h1>
-        <p>Parrafo</p>
-      </div>
+      <TextoBienvenida />
       <div className="relative overflow-hidden carousel-contenido">
         {slides.map((slide, index) => (
           <div key={slide.id} className={`absolute inset-0 transition-opacity duration-1000 ${index === currentSlide ? 'opacity-100' : 'opacity-0'}`}>
