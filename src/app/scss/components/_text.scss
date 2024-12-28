@@ -1,0 +1,74 @@
+@use '../variables' as *;
+
+* {
+  text-decoration: none !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0 !important;
+}
+
+h1 {
+  color: $verde;
+  font-weight: 100;
+  text-transform: uppercase;
+  font-size: 1.8rem;
+  letter-spacing: 2px;
+  @media (min-width: $md) {
+    font-size: 3rem;
+    letter-spacing: 6px;
+  }
+}
+
+h2 {
+  color: $verde;
+  font-weight: 200;
+  letter-spacing: 2px;
+  padding-bottom: 36px;
+  font-size: 1.5rem;
+  text-align: center;
+  @media (min-width: $md) {
+    font-size: 1.85rem;
+    letter-spacing: 3px;
+    text-align: inherit;
+  }
+}
+
+h3 {
+  font-size: 1.4rem;
+  font-weight: 200;
+  color: $verde;
+  margin-bottom: 16px;
+}
+
+h4 {
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: $verde;
+}
+
+p {
+  font-size: .9rem;
+  color: $gris-parrafo;
+  @media (min-width: $md) {
+    font-size: 1rem;
+  }
+
+  &.biografia {
+    font-size: 1.3rem;
+  }
+}
+
+.blog a {
+  color: #fff;
+  &:hover {
+    color: rgb(177, 86, 86);
+  }
+}
+
+.dashboard a {
+  color: #000;
+  &:hover {
+    color: rgb(177, 86, 86);
+  }
+}

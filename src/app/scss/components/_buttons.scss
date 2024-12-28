@@ -1,0 +1,93 @@
+@use "../variables" as *;
+
+a,
+button {
+  transition: all 0.5s ease !important;
+}
+
+// Botones sitio publico
+.btn {
+  color: $negro;
+  background-color: $verde;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  // margin: 42px 0 0 0;
+  // padding: 10px 24px;
+  font-weight: 600;
+  line-height: 0.8rem;
+  border-radius: 4px;
+  display: block;
+  letter-spacing: 0.5px;
+  transform: translateZ(0);
+  transition: transform all 0.18s ease;
+  width: fit-content;
+
+  &.primario {
+    color: #ddff00 !important;
+    background-color: #7c8a26 !important;
+  }
+  &.secundario {
+    color: #ffffff !important;
+    background-color: #9c9d92 !important;
+  }
+  &.eliminar {
+    color: $rojo !important;
+    background-color: $blanco !important;
+    border: 1px solid $rojo;
+    opacity: 0.5;
+    &:hover {
+      color: $blanco !important;
+      background-color: $rojo !important;
+      border: 1px solid $rojo;
+      opacity: 1;
+    }
+  }
+
+  &.dashboard-header {
+    color: $link;
+    background-color: #313227;
+    font-size: 0.7rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    padding: 10px 16px;
+    font-weight: 400;
+    line-height: 0.7rem;
+    border-radius: 4px;
+    display: block;
+    transform: translateZ(0);
+    transition: transform 0.18s ease;
+    width: fit-content;
+    letter-spacing: 1px;
+
+    div {
+      margin: 0 auto;
+      display: flex;
+      overflow: hidden;
+      text-shadow: 0 0.8rem 0 $negro;
+      span {
+        display: block;
+        backface-visibility: hidden;
+        transition: transform 0.18s ease;
+        transform: translateY(0) translateZ(0);
+      }
+    }
+
+    &:hover,
+    &:focus,
+    &:active {
+      background-color: $verde;
+      span {
+        transform: translateY(-0.8rem) translateZ(0);
+      }
+    }
+
+    @media (min-width: 768px) {
+      display: none !important;
+    }
+
+    @media (min-width: 992px) {
+      display: block !important;
+    }
+  }
+}

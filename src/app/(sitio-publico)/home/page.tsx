@@ -1,4 +1,6 @@
 import Carousel from "@/app/components/Carousel";
+import GaleriaHome from "./ultimas-imagenes";
+import UltimosPost from "./ultimos-post";
 
 export default function Inicio() {
   return (
@@ -8,19 +10,11 @@ export default function Inicio() {
       </section>
 
       <section className="container">
-        <div className="row">
-          <div className="col-12">
-            <h2>Ultimas fotografías</h2>
-          </div>
-        </div>
+        <GaleriaHome />
       </section>
 
       <section className="container">
-        <div className="row">
-          <div className="col-12">
-            <h2>Ultimas publicaciones</h2>
-          </div>
-        </div>
+        <UltimosPost />
       </section>
     </>
   );
