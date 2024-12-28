@@ -15,6 +15,7 @@
 @use "./scss/layout/carousel" as *;
 @use "./scss/layout/galeria" as *;
 @use "./scss/layout/inicio" as *;
+@use "./scss/layout/login" as *;
 @use "./scss/layout/post" as *;
 
 // Tipografias
@@ -30,9 +31,12 @@ body {
   font-family: "Prompt", serif !important;
   color: $blanco;
   background-color: $negro;
-  background-image: linear-gradient(159.056deg, #535833 0%, #000000 60%);
-  background-size: auto 800px;
-  background-repeat: no-repeat;
+
+  &.bg-sitio-publico {
+    background-image: linear-gradient(159.056deg, #535833 0%, #000000 60%);
+    background-size: auto 800px;
+    background-repeat: no-repeat;
+  }
 
   .logo-nk {
     background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='42' height='24'%3E%3Cg fill='%23DF0' fill-rule='nonzero'%3E%3Cpath d='M.006 24H7.96V12.926L16.875 24h7.131V0h-7.954v10.594L7.515 0H.006z'/%3E%3Cpath d='M17.006 24h8.24v-5.109l2.112-2.502L32.182 24h9.824l-8.768-13.577L41.83 0h-9.578l-7.007 8.983V0h-8.239z'/%3E%3C/g%3E%3C/svg%3E");

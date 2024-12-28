@@ -95,7 +95,7 @@ export default function Header() {
           ))}
         </div>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          <Link href="/panel-de-administracion" className="btn dashboard-header">
+          <Link href="/login" className="btn dashboard-header">
             Dashboard
           </Link>
         </div>
