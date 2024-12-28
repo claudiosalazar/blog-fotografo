@@ -1,0 +1,180 @@
+@use "../variables" as *;
+
+.galeria-secciones {
+  margin-bottom: 0;
+  @media (min-width: $md) {
+    margin-bottom: 66px !important;
+    margin-top: 0;
+  }
+
+  h1 {
+    padding-top: 32px;
+    padding-bottom: 32px;
+    @media (min-width: $md) {
+      padding-top: 66px;
+      padding-bottom: 66px;
+    }
+  }
+
+  ul {
+    padding: 0;
+    list-style: none;
+    display: flex;
+
+    li.btn-galeria {
+      width: 100%;
+      height: 140px;
+      @media (min-width: $md) {
+        width: 33.333333%;
+        aspect-ratio: 1/1;
+        height: fit-content;
+      }
+
+      .link-galeria-inicio {
+        aspect-ratio: 16/9;
+        display: flex;
+        position: relative;
+        align-items: center !important;
+
+        img {
+          position: absolute !important;
+          left: 0;
+          top: 0 !important;
+          width: 100%;
+          z-index: 1000;
+          height: 140px !important;
+          filter: grayscale(100%);
+          opacity: 0.5;
+          transition: all 0.4s ease-in;
+          @media (min-width: $md) {
+            width: 100%;
+            height: auto !important;
+            aspect-ratio: 1/1 !important;
+            object-fit: cover;
+          }
+
+          &.paisajes {
+            border-radius: 8px 8px 0 0;
+            @media (min-width: $md) {
+              border-radius: 8px 0 0 8px;
+            }
+          }
+
+          &.animales {
+            border-radius: 0 0 8px 8px;
+            @media (min-width: $md) {
+              border-radius: 0 8px 8px 0;
+            }
+          }
+        }
+
+        span {
+          position: absolute !important;
+          left: 0;
+          top: 0;
+          width: 100%;
+          height: 140px;
+          z-index: 9000;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          text-transform: uppercase;
+          font-size: 2rem;
+          font-weight: 200;
+          letter-spacing: 5px;
+          color: $blanco;
+          transition: all 0.2s ease-in;
+          @media (min-width: $md) {
+            width: 100%;
+            height: auto !important;
+            aspect-ratio: 1/1 !important;
+          }
+        }
+
+        &:hover {
+          img {
+            filter: grayscale(0%);
+          }
+          span {
+            letter-spacing: 8px;
+            color: $verde;
+          }
+        }
+      }
+    }
+  }
+}
+
+.galeria-seccion {
+  margin-bottom: 0 !important;
+  @media (min-width: $md) {
+    margin-bottom: 66px !important;
+    margin-top: 0;
+  }
+  h1 {
+    padding-top: 32px;
+    padding-bottom: 32px;
+    color: $blanco;
+    @media (min-width: $md) {
+      padding-top: 66px;
+      padding-bottom: 66px;
+    }
+    a {
+      color: $verde;
+      opacity: 0.5;
+      transition: all 0.2s ease-in;
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+
+  .image-link {
+    position: relative !important;
+    aspect-ratio: 1/1;
+    display: block;
+    max-height: fit-content;
+    width: 100% !important;
+    .hover {
+      position: absolute;
+      top: 0;
+      left: 0;
+      background-color: black;
+      display: block;
+      aspect-ratio: 1/1;
+      opacity: 0;
+      z-index: 9000;
+      width: 100%;
+      transition: all 0.8s ease;
+
+      span {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: $blanco;
+        height: 100%;
+        text-transform: uppercase;
+
+        &.texto {
+          font-size: 0.9rem;
+          font-weight: 200;
+          margin-top: 4px;
+          color: $verde;
+        }
+      }
+
+      &:hover {
+        opacity: 1;
+        background-color: rgb(0, 0, 0, 0.5);
+      }
+    }
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    aspect-ratio: 1/1;
+  }
+}

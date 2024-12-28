@@ -1,0 +1,75 @@
+@use '../variables' as *;
+@use '../mixins' as *;
+
+.backdrop-gallery {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(4px) !important;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1050;
+  opacity: 1;
+  animation: fade-in .5s ease forwards;
+  z-index: 9999;
+
+  &.fade-out {
+    animation: fade-out .5s ease forwards;
+  }
+}
+
+.modal-gallery {
+  background: white;
+  border-radius: 9px;
+  text-align: left;
+  opacity: 1;
+  position: relative;
+  width: auto;
+  height: auto;
+  padding: 0;
+  min-width: 80vw; 
+  display: flex;
+  align-items: center;
+
+  .close {
+    color: #fff;
+    font-size: 1.5rem;
+    opacity: 1;
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    z-index: 9000;
+    width: 50px;
+    height: 50px;
+    background-color: transparent;
+    border: 0;
+
+    .icono {
+      background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' height='50px' viewBox='0 -960 960 960' width='50px' fill='%235f6368'%3E%3Cpath d='M256-213.85 213.85-256l224-224-224-224L256-746.15l224 224 224-224L746.15-704l-224 224 224 224L704-213.85l-224-224-224 224Z'/%3E%3C/svg%3E");
+      background-size: 50px 50px;
+      background-position: center;
+      width: 50px;
+      height: 50px;
+      border-radius: 6px;
+      transition: all 0.3s ease;
+      background-color: rgb($blanco, 0.5);
+      &:hover {
+        background-color: rgb($blanco, 1);
+        background-size: 55px 55px;
+      }
+    }
+  }
+
+  .image-gallery {
+    border-radius: 8px;
+    border: 0 !important;
+    aspect-ratio: 16/9;
+  }
+}
+
+@include fadeIn;
+@include fadeOut;
