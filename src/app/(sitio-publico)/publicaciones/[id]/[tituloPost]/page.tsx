@@ -95,6 +95,9 @@ export default function PostDetalle() {
       <section className="post-detalle w-4/5">
         <div className="grid grid-cols-1">
           <div className="post-header">
+            <Link href="/publicaciones" className="post-header-volver">
+              <div className="icono"></div>
+            </Link>
             <div className="post-header-datos">
               <small>{formatDate(post.fecha)}</small>
               <h2>{post.tituloPost}</h2>
@@ -104,10 +107,7 @@ export default function PostDetalle() {
               </Link>
             </div>
             <div className="post-header-image">
-              <img
-                src={post.imgPost ? `${BASE_URL}${post.imgPost}` : ""}
-                alt={post.alt || "Imagen de la publicación"}
-              />
+              <img src={post.imgPost ? `${BASE_URL}${post.imgPost}` : ""} alt={post.alt || "Imagen de la publicación"} />
             </div>
           </div>
           <div className="post-body">
@@ -122,12 +122,7 @@ export default function PostDetalle() {
             <div className="flex justify-between">
               {prevPost ? (
                 <div className="post-anterior">
-                  <Link
-                    href={`/post/${prevPost.id}/${formatTitle(
-                      prevPost.tituloPost
-                    )}`}
-                    className="link"
-                  >
+                  <Link href={`/publicaciones/${prevPost.id}/${formatTitle( prevPost.tituloPost )}`} className="link" >
                     <div className="flex flex-row">
                     <img src={prevPostImg} />
                       <div className="info-post-siguiente">
@@ -145,12 +140,7 @@ export default function PostDetalle() {
               )}
               {nextPost ? (
                 <div className="post-siguiente">
-                  <Link
-                    href={`/post/${nextPost.id}/${formatTitle(
-                      nextPost.tituloPost
-                    )}`}
-                    className="link"
-                  >
+                  <Link href={`/publicaciones/${nextPost.id}/${formatTitle( nextPost.tituloPost )}`} className="link" >
                     <div className="flex flex-row-reverse">
                       <img src={nextPostImg} />
                       <div className="info-post-siguiente">

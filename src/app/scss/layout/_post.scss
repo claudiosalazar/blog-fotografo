@@ -40,6 +40,34 @@
     margin-bottom: 42px;
     bottom: 0;
 
+    .post-header-volver {
+      color: #fff;
+      font-size: 1.5rem;
+      opacity: 1;
+      position: absolute;
+      top: 66px;
+      left: 36px;
+      z-index: 5;
+      width: 42px;
+      height: 42px;
+      border: 0;
+
+      .icono {
+        background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='15' height='15'%3E%3Cpath fill='%235F6368' fill-rule='nonzero' d='m2.873 8.25 5.696 5.696L7.5 15 0 7.5 7.5 0l1.069 1.054L2.873 6.75H15v1.5z'/%3E%3C/svg%3E");
+        background-size: 24px 24px;
+        background-position: center;
+        background-repeat: no-repeat;
+        width: 42px;
+        height: 42px;
+        border-radius: 6px;
+        transition: all 0.3s ease;
+        background-color: rgb($blanco, 0.7);
+        &:hover {
+          background-color: rgb($blanco, 1);
+        }
+      }
+    }
+
     .post-header-datos {
       position: absolute;
       z-index: 1;
