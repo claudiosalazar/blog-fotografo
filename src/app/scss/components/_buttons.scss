@@ -89,6 +89,10 @@ a.nav-link {
     background-color: #7c8a26 !important;
     margin: 42px 0 0 0;
     padding: 14px 24px;
+
+    &.dashboard {
+      margin-top: 0;
+    }
     &:hover {
       span {
         @include animacionBotonHover;

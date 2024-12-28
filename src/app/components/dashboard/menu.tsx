@@ -28,7 +28,7 @@ function MenuDashboard() {
   };
 
   return (
-    <div className="menu w-2/12">
+    <div className="menu w-2/12 pt-8">
       <div className="logo-nk"></div>
 
       <ul>
