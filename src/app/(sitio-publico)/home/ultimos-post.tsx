@@ -101,7 +101,7 @@ export default function UltimosPost() {
 
       <div className="w-full px-4 flex justify-center">
         <Link href="/post" className="btn primario ">
-          Ver más
+          Ver mas
         </Link>
       </div>
     </>

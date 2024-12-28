@@ -27,6 +27,12 @@ export default function Carousel() {
 
   return (
     <div className="carousel">
+      <div className='texto-bienvenida'>
+        {/* <h1>{info.titulo}</h1>
+        <p>{info.parrafo}</p> */}
+        <h1>Titulo</h1>
+        <p>Parrafo</p>
+      </div>
       <div className="relative overflow-hidden carousel-contenido">
         {slides.map((slide, index) => (
           <div key={slide.id} className={`absolute inset-0 transition-opacity duration-1000 ${index === currentSlide ? 'opacity-100' : 'opacity-0'}`}>
@@ -37,10 +43,10 @@ export default function Carousel() {
           </div>
         ))}
       </div>
-      <button className="absolute top-1/2 left-0 transform -translate-y-1/2 p-2" onClick={prevSlide}>
+      <button className="absolute top-1/2 left-0 transform -translate-y-1/2 p-2 ms-4" onClick={prevSlide}>
         <div className='ico-anterior-carousel d-block'></div>
       </button>
-      <button className="absolute top-1/2 right-0 transform -translate-y-1/2 p-2" onClick={nextSlide}>
+      <button className="absolute top-1/2 right-0 transform -translate-y-1/2 p-2 me-4" onClick={nextSlide}>
         <div className='ico-siguiente-carousel d-block'></div>
       </button>
     </div>

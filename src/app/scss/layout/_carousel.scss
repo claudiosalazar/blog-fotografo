@@ -1,8 +1,11 @@
+@use '../variables' as *;
+
 .carousel {
   position: relative;
   margin-top: -68px;
   min-height: fit-content;
   z-index: 2000;
+  width: 100vw;
   left: 0;
   top: 0;
 
@@ -20,4 +23,39 @@
       position: inherit !important;
     }
   }
+
+  button {
+    opacity: 0.5;
+    transition: 0.3s;
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  .texto-bienvenida {
+    position: absolute;
+    bottom: 42px;
+    left: 42px;
+    z-index: 100;
+
+    h1 {
+        max-width: calc(100% - 36px);
+        @media (min-width: $md) {
+            max-width: inherit;
+        }
+    }
+
+    p {
+        max-width: calc(100% - 36px);
+        color: $blanco;
+        padding-top: 24px;
+        line-height: 1.1rem;
+        font-weight: 300;
+        @media (min-width: $md) {
+            max-width: 70%;
+            font-size: 1.1rem;
+            line-height: 1.4rem;
+        }
+    }
+}
 }
