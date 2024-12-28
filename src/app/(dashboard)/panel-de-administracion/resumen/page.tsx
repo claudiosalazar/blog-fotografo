@@ -1,3 +1,4 @@
+import DatosResumen from "@/app/components/formularios/resumen/datos";
 import NuevasImagenes from "@/app/components/formularios/resumen/nuevas-imagenes";
 import NuevasPublicaciones from "@/app/components/formularios/resumen/nuevas-publicaciones";
 
@@ -13,6 +14,8 @@ export default function Resumen() {
         </div>
         <div className="card mt-3 mb-2 h-auto">asad</div>
       </div>
+
+      <DatosResumen />
 
       <NuevasImagenes />
 
