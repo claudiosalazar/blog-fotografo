@@ -1,5 +1,6 @@
 @use "../variables" as *;
 @use "../components/icons" as *;
+@use '../mixins' as *;
 
 h2.tit-bio {
   text-transform: uppercase;

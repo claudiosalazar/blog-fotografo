@@ -1,5 +1,6 @@
 'use client';
 
+import Link from "next/link";
 import { StaticImage } from "../../ui/Images";
 import { useEffect, useState } from 'react';
 
@@ -34,7 +35,8 @@ export default function Proyectos() {
     fetchProyectos();
   }, []);
 
-  const handleShowMore = () => {
+  const handleShowMore = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
     setVisibleProyectos(proyectos.length); // Mostrar todos los proyectos
   };
 
@@ -54,9 +56,9 @@ export default function Proyectos() {
           </div>
         ))}
         {visibleProyectos < proyectos.length && (
-          <button className='mt-5 btn primario' onClick={handleShowMore}>
-            Ver más
-          </button>
+          <Link href="proyectos" className='btn primario' onClick={handleShowMore}>
+            Ver mas
+          </Link>
         )}
       </div>
     </div>

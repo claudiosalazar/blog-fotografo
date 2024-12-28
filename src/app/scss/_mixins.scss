@@ -1,3 +1,5 @@
+@use 'variables' as *;
+
 @mixin ellipsis($lines: 3) {
   display: -webkit-box;
   -webkit-box-orient: vertical;
@@ -49,4 +51,27 @@
       0% { transform: rotate(0deg); }
       100% { transform: rotate(360deg); }
   }
+}
+
+@mixin animacionBoton {
+  div {
+    display: flex;
+    overflow: hidden;
+    text-shadow: 0 1.2rem 0 $verde-sombra;
+    @media (min-width: 992px) {
+      font-size: 0.8rem;
+      line-height: 0.8rem;
+      text-shadow: 0 .8rem 0 $verde-sombra;
+    }
+    span {
+      display: block;
+      backface-visibility: hidden;
+      transition: transform 0.18s ease;
+      transform: translateY(0) translateZ(0);
+    }
+  }
+}
+
+@mixin animacionBotonHover {
+  transform: translateY(-0.8rem) translateZ(0);
 }

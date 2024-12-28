@@ -1,7 +1,7 @@
 {
     "workbench.colorCustomizations": {
-        "folderPathColor.custom1": "#DDFF00",
-        "folderPathColor.custom2": "#d6981d",
+        "folderPathColor.custom1": "#c15ad8",
+        "folderPathColor.custom2": "#d66d1d",
     },
     "folder-path-color.folders": [
         { "path": "src/app/(sitio-publico)", "symbol": "SR", "tooltip": "Archivos para sitio publico", "color": "custom1" },

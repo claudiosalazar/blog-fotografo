@@ -63,7 +63,7 @@ export default function Header() {
     splitLinkText();
     splitButtonText();
     splitDashboardButtonText();
-  }, [])
+  }, [isMenuOpen, pathname]); // Añadido isMenuOpen y pathname como dependencias
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
