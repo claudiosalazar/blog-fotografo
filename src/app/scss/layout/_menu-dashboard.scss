@@ -1,7 +1,8 @@
 
 
-.menu {
+.menu-dashboard {
   color: #ffffff;
+  position: relative;
 
   .logo-nk {
     background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='42' height='24'%3E%3Cg fill='%23DF0' fill-rule='nonzero'%3E%3Cpath d='M.006 24H7.96V12.926L16.875 24h7.131V0h-7.954v10.594L7.515 0H.006z'/%3E%3Cpath d='M17.006 24h8.24v-5.109l2.112-2.502L32.182 24h9.824l-8.768-13.577L41.83 0h-9.578l-7.007 8.983V0h-8.239z'/%3E%3C/g%3E%3C/svg%3E");
@@ -14,35 +15,43 @@
     margin-bottom: 36px;
   }
 
-  
+  .contenedor-menu {
+    position: relative;
 
-  ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+    a {
+      display: flex;
+      align-items: center;
+      padding: 10px 0;
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      font-weight: 300;
+      border-radius: 8px 0 0 8px;
+      height: 60px;
+      position: relative;
+      z-index: 100;
 
-    li {
-      padding: 10px 0 10px 0;
-      width: 100%;
-
-      a {
-        color: #ffffff;
-        text-decoration: none;
-        display: block;
-        font-size: .9rem;
-        text-transform: uppercase;
-        font-weight: 300;
-    
-        &.active {
-          font-weight: 600 !important;
-          background-color: #F2F3EC !important;
-          padding: 12px 0 12px 18px;
-          border-radius: 8px 0 0 8px;
-          color: #9EAD3B;
-        }
+      &.active {
+        font-weight: 600 !important;
+        padding: 12px 0 12px 18px;
+        border-radius: 8px 0 0 8px;
+        color: #9EAD3B;
       }
+    }
 
-      
+    .bg-active {
+      position: absolute;
+      width: 100%;
+      left: 0;
+      top: 0;
+      height: 60px;
+      z-index: 90;
+      border-radius: 8px 0 0 8px;
+      background-image: url("data:image/svg+xml;charset=utf8,%3Csvg width='163' height='60' viewBox='0 0 163 60' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M156 6.93811V7H8C3.58172 7 0 10.5817 0 15V45C0 49.4183 3.58173 53 8 53H156V53.0619C159.619 53.5131 162.487 56.3813 162.938 60H163V53V47V12V7V0H162.938C162.487 3.61872 159.619 6.48686 156 6.93811Z' fill='%23F2F3EC'/%3E%3C/svg%3E"), url("data:image/svg+xml;charset=utf8,%3Csvg width='295' height='46' viewBox='0 0 295 46' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 8C0 3.58172 3.58172 0 8 0H294.5V46H8C3.58173 46 0 42.4183 0 38V8Z' fill='%23F2F3EC'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: center right, center left;
+      transition: transform 0.3s ease; /* Transición suave */
     }
   }
 }
