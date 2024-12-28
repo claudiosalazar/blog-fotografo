@@ -6,7 +6,7 @@ import { useEffect, useState, useRef } from "react";
 
 const normalizePath = (path: string) => {
   // Asegura que la URL no termine con una barra, excepto si es solo "/"
-  const trimmedPath = path === "/dashboard/" ? path : path.replace(/\/$/, "");
+  const trimmedPath = path === "/panel-de-administracion/" ? path : path.replace(/\/$/, "");
   // Retorna la URL en minúsculas
   return trimmedPath.toLowerCase();
 };
@@ -22,7 +22,7 @@ function MenuDashboard() {
 
   useEffect(() => {
     const positions: { [key: string]: number } = {
-      "/panel-de-administracion/resumen": resumenRef.current?.offsetTop || 0,
+      "/panel-de-administracion": resumenRef.current?.offsetTop || 0,
       "/panel-de-administracion/inicio": inicioRef.current?.offsetTop || 0,
       "/panel-de-administracion/biografia": biografiaRef.current?.offsetTop || 0,
       "/panel-de-administracion/galeria": galeriaRef.current?.offsetTop || 0,
@@ -47,16 +47,16 @@ function MenuDashboard() {
       <div className="logo-nk"></div>
 
       <div className="contenedor-menu relative">
-        <Link ref={resumenRef} className={normalizePath(pathname) === normalizePath("/panel-de-administracion/resumen") ? "active" : ""} href="/panel-de-administracion/resumen">
+        <Link ref={resumenRef} className={normalizePath(pathname) === normalizePath("/panel-de-administracion") ? "active" : ""} href="/panel-de-administracion">
           Resumen
         </Link>
-        <Link ref={inicioRef} className={normalizePath(pathname) === normalizePath("/panel-de-administracion/inicio/") ? "active" : ""} href="/panel-de-administracion/inicio/">
+        <Link ref={inicioRef} className={normalizePath(pathname) === normalizePath("/panel-de-administracion/inicio") ? "active" : ""} href="/panel-de-administracion/inicio">
           Inicio
         </Link>
-        <Link ref={biografiaRef} className={normalizePath(pathname) === normalizePath("/panel-de-administracion/biografia/") ? "active" : ""} href="/panel-de-administracion/biografia/">
+        <Link ref={biografiaRef} className={normalizePath(pathname) === normalizePath("/panel-de-administracion/biografia") ? "active" : ""} href="/panel-de-administracion/biografia">
           Biografia
         </Link>
-        <Link ref={galeriaRef} className={normalizePath(pathname) === normalizePath("/panel-de-administracion/galeria/") ? "active" : ""} href="/panel-de-administracion/galeria/">
+        <Link ref={galeriaRef} className={normalizePath(pathname) === normalizePath("/panel-de-administracion/galeria") ? "active" : ""} href="/panel-de-administracion/galeria">
           Galeria
         </Link>
         <Link ref={publicacionesRef} className={normalizePath(pathname) === normalizePath("/panel-de-administracion/publicaciones") ? "active" : ""} href="/panel-de-administracion/publicaciones">

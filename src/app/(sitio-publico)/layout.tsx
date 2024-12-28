@@ -15,7 +15,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es">
-      <body className="bg-sitio-publico">
+      <body className="sitio-publico">
         <Header />
         {children}
         <Footer />

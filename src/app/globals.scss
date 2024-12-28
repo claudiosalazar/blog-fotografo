@@ -39,13 +39,13 @@ body {
   color: $blanco;
   background-color: $negro;
 
-  &.bg-sitio-publico {
+  &.sitio-publico {
     background-image: linear-gradient(159.056deg, #535833 0%, #000000 60%);
     background-size: auto 800px;
     background-repeat: no-repeat;
   }
 
-  &.bg-dashboard {
+  &.dashboard {
     background-color: $dashb-bg;
   }
 

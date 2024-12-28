@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import Loading from "../../../components/Loading";
+import Loading from "../../../Loading";
 
 interface AlbumPaisajes {
   id: number;

@@ -1,6 +1,6 @@
-import DatosResumen from "@/app/components/formularios/resumen/datos";
-import NuevasImagenes from "@/app/components/formularios/resumen/nuevas-imagenes";
-import NuevasPublicaciones from "@/app/components/formularios/resumen/nuevas-publicaciones";
+import DatosResumen from "@/app/components/dashboard/formularios/resumen/datos";
+import NuevasImagenes from "@/app/components/dashboard/formularios/resumen/nuevas-imagenes";
+import NuevasPublicaciones from "@/app/components/dashboard/formularios/resumen/nuevas-publicaciones";
 
 export default function Resumen() {
   return (

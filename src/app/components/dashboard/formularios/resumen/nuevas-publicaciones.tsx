@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import Loading from "../../../components/Loading";
+import Loading from "../../../Loading";
 
 interface PostData {
   id: string;

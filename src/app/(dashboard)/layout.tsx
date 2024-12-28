@@ -14,7 +14,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es">
-      <body className="bg-dashboard">
+      <body className="dashboard">
         <main className="container-fluid p-6 flex">
           <Menu />
           <div className="fondo-panel rounded-xl w-10/12 grid grid-cols-1 gap-4 py-4 px-7">
