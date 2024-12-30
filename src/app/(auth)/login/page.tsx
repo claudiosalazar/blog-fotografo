@@ -3,8 +3,9 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import BackLink from "@/app/utility/BackLink";
+import Title from "@/app/utility/title";
 
-export default function Login() {
+const Login = () => {
   const [userName, setUser] = useState("");
   const [password, setPass] = useState("");
   const [error, setError] = useState("");
@@ -34,7 +35,7 @@ export default function Login() {
         // Guardar el token en el almacenamiento local o en las cookies
         localStorage.setItem("token", data.token);
         // Redirigir al dashboard
-        router.push("/panel-de-administracion");
+        router.push("/panel-de-administracion/resumen");
       } else {
         setError(data.error || "Credenciales incorrectas");
       }
@@ -91,3 +92,5 @@ export default function Login() {
     </div>
   );
 }
+
+export default Title(Login);

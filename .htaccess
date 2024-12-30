@@ -10,4 +10,6 @@
   RewriteRule ^galeria/animales$ /galeria/animales.html [L]
   RewriteRule ^blog$ /blog.html [L]
   RewriteRule ^login$ /login.html [L]
+  RewriteRule ^panel-de-administracion/resumen$ panel-de-administracion/resumen.html [L]
+  RewriteRule ^panel-de-administracion/inicio$ /panel-de-administracion/inicio.html [L]
 </IfModule>
