@@ -88,7 +88,7 @@ const Blog = () => {
         <div className="grid grid-cols-1 gap-1">
           <h1 className="text-center">Blog</h1>
         </div>
-        <div className="grid grid-cols-3 gap-5 mx-12 ">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mx-8 md:mx-12 ">
 
           {posts.map((post) => (
             <div
