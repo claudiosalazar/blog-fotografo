@@ -1,8 +1,10 @@
-import type { NextConfig } from "next";
+/** @type {import('next').NextConfig} */
 
-const nextConfig: NextConfig = {
-  distDir: 'build', // Configura la carpeta de salida a 'prod'
-  /* otras opciones de configuración aquí */
+const nextConfig: import('next').NextConfig = {
+  output: 'export',
+  distDir: 'prod',
+  basePath: '',
+  assetPrefix: 'https://blog-fotografo.claudiosalazar.cl/',
 };
 
 export default nextConfig;

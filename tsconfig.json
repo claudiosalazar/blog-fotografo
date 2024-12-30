@@ -1,7 +1,11 @@
 {
   "compilerOptions": {
-    "target": "ES2017", // Puedes mantener ES2017 si es compatible con tu proyecto
-    "lib": ["dom", "dom.iterable", "esnext"],
+    // "target": "ES2017", // Puedes mantener ES2017 si es compatible con tu proyecto
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true, // Mantén strict como true para una configuración más estricta
@@ -20,15 +24,20 @@
       }
     ],
     "paths": {
-      "@/*": ["./src/*"]
-    }
+      "@/*": [
+        "./src/*"
+      ]
+    },
+    "target": "ES2017"
   },
   "include": [
-    "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "prod/types/**/*.ts" // Añade esta línea para incluir los tipos en la carpeta prod
+    "next-env.d.ts",
+    "prod/types/**/*.ts"
   ],
-  "exclude": ["node_modules"]
+  "exclude": [
+    "node_modules"
+  ]
 }

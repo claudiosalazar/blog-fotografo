@@ -24,13 +24,13 @@ export default function PostDetalle() {
   const router = useRouter();
   const { id } = params;
 
-  const BASE_URL = "http://localhost:3001";
+  const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
   useEffect(() => {
     const fetchPost = async (postId: number) => {
       try {
         const response = await fetch(
-          `${process.env.NEXT_PUBLIC_BACKEND_URL}post/${postId}`
+          `${BASE_URL}/post/${postId}`
         );
         if (response.ok) {
           const result = await response.json();
@@ -64,7 +64,7 @@ export default function PostDetalle() {
     };
 
     fetchData();
-  }, [id]);
+  }, [id, BASE_URL]);
 
   function formatDate(dateString: string): string {
     const options: Intl.DateTimeFormatOptions = {
@@ -119,7 +119,7 @@ export default function PostDetalle() {
             </div>
           </div>
           <div className="post-body">
-            {post?.contenido.split(".").map((paragraph, index) => (
+            {post.contenido.split(".").map((paragraph, index) => (
               <p key={index}>{paragraph.trim()}.</p>
             ))}
           </div>
