@@ -2,6 +2,7 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import BackLink from "@/app/utility/BackLink"; // Importa el nuevo componente
+import Link from "next/link";
 
 type PostData = {
   id: string;
@@ -102,6 +103,41 @@ export default async function PostPage(props: Props) {
           {post.contenido.split("\n").map((paragraph, index) => (
             <p key={index}>{paragraph}</p>
           ))}
+        </div>
+      </section>
+
+      <hr />
+
+      <section className="post-nav w-10/12 md:w-4/5">
+        <div className="flex justify-between">
+          <div className="post-anterior">
+            <Link href="#" className="link">
+              <div className="flex flex-row">
+                {/* <img src={prevPostImg} /> */}
+                <div className="info-post-siguiente">
+                  <span className="ico-anterior mb-2"></span>
+                  <span className="fecha-post-anterior">
+                    fecha
+                  </span>
+                  <p className="d-block">asdad</p>
+                </div>
+              </div>
+            </Link>
+          </div>
+          <div className="post-siguiente">
+            <Link href="#" className="link">
+              <div className="flex flex-row-reverse">
+                {/* <img src={nextPostImg} /> */}
+                <div className="info-post-siguiente">
+                  <span className="ico-siguiente mb-2"></span>
+                  <span className="fecha-post-siguiente">
+                    fecha
+                  </span>
+                  <p className="d-block">asdsa</p>
+                </div>
+              </div>
+            </Link>
+          </div>
         </div>
       </section>
     </>
