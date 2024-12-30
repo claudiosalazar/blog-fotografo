@@ -17,7 +17,7 @@ header {
   }
 
   .menu-mobile {
-    position: absolute;    
+    // position: absolute;    
     transition: all .65s ease;
     width: 100vw;
     height: 100vh;
@@ -46,6 +46,8 @@ header {
     &.close-menu-mobile {
       opacity: 0;
       z-index: -1;
+      height: 0;
+      position: absolute;
     }
   }
 }

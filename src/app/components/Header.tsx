@@ -132,9 +132,7 @@ export default function Header() {
       <header>
         <nav className={`mx-auto flex items-center justify-between ${ isInicioOrBiografia ? "bg-opacidad" : "" }`} aria-label="Global">
           <div className="flex lg:flex-1">
-            <div className="logo-nk">
-              <Link href="/" onClick={handleLinkClick}></Link>
-            </div>
+            <Link href="/" onClick={handleLinkClick} className="logo-nk"></Link>
           </div>
           <div className="flex lg:hidden">
             <button className="btn-menu-mobile" type="button" onClick={toggleMenu}>
@@ -163,28 +161,26 @@ export default function Header() {
 
         <div className={`lg:hidden menu-mobile ${menuClass}`} role="dialog" aria-modal="true">
           <div className="flex items-center justify-center">
-              <div className="logo-nk mb-4">
-                <Link href="/" onClick={handleLinkClick}></Link>
+            <Link href="/" onClick={handleLinkClick} className="logo-nk mb-4"></Link>
+          </div>
+          <div className="mt-6 flow-root">
+            <div className="-my-6 divide-y divide-gray-500/10">
+              <div className="space-y-2 py-6">
+                {links.map((link) => (
+                  <span key={link.label} className="flex justify-center">
+                    <Link className={`nav-link ${normalizePath(pathname) === normalizePath(link.href) ? "active" : "" }`} href={link.href} onClick={handleLinkClick}>
+                      {link.label}
+                    </Link>
+                  </span>
+                ))}
+              </div>
+              <div className="py-6 w-full px-4 flex justify-center">
+              <Link href="/login" className="btn dashboard-header" onClick={handleLinkClick}>
+                Dashboard
+              </Link>
               </div>
             </div>
-            <div className="mt-6 flow-root">
-              <div className="-my-6 divide-y divide-gray-500/10">
-                <div className="space-y-2 py-6">
-                  {links.map((link) => (
-                    <span key={link.label} className="flex justify-center">
-                      <Link className={`nav-link ${normalizePath(pathname) === normalizePath(link.href) ? "active" : "" }`} href={link.href} onClick={handleLinkClick}>
-                        {link.label}
-                      </Link>
-                    </span>
-                  ))}
-                </div>
-                <div className="py-6 w-full px-4 flex justify-center">
-                <Link href="/login" className="btn dashboard-header" onClick={handleLinkClick}>
-                  Dashboard
-                </Link>
-                </div>
-              </div>
-            </div>
+          </div>
         </div>
       </header>
     </>
