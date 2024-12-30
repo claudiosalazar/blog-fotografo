@@ -7,6 +7,7 @@ import { usePathname } from 'next/navigation';
 export default function Footer() {
   const pathname = usePathname();
   const [isForceBottom, setIsForceBottom] = useState(false);
+  const [initialTotalHeight, setInitialTotalHeight] = useState<number | null>(null);
 
   const logWindowHeight = () => {
     const windowHeight = window.innerHeight;
@@ -18,6 +19,9 @@ export default function Footer() {
     const windowHeight = logWindowHeight();
     if (storedTotalHeight) {
       const totalHeight = parseInt(storedTotalHeight, 10);
+      if (initialTotalHeight === null) {
+        setInitialTotalHeight(totalHeight);
+      }
       if (totalHeight <= windowHeight) {
         setIsForceBottom(false);
       } else {
@@ -81,6 +85,35 @@ export default function Footer() {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    const mainElement = document.querySelector('main');
+    if (mainElement) {
+      const resizeObserver = new ResizeObserver(() => {
+        logStoredTotalHeight();
+      });
+
+      resizeObserver.observe(mainElement);
+
+      return () => {
+        resizeObserver.disconnect();
+      };
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    if (initialTotalHeight !== null) {
+      const storedTotalHeight = localStorage.getItem('totalHeight');
+      if (storedTotalHeight) {
+        const totalHeight = parseInt(storedTotalHeight, 10);
+        if (totalHeight !== initialTotalHeight) {
+          logStoredTotalHeight();
+        }
+      }
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [initialTotalHeight]);
 
   return (
     <footer className={!isForceBottom ? 'force-bottom' : ''}>
