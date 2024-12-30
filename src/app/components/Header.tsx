@@ -14,6 +14,7 @@ export default function Header() {
 
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [menuClass, setMenuClass] = useState("close-menu-mobile");
 
   const normalizePath = (path: string) => {
     const trimmedPath = path === "/" ? path : path.replace(/\/$/, "");
@@ -65,7 +66,15 @@ export default function Header() {
   }, [isMenuOpen, pathname]);
 
   const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
+    if (isMenuOpen) {
+      setMenuClass("close-menu-mobile");
+      setTimeout(() => {
+        setIsMenuOpen(false);
+      }, 500); // Duration of fade-out animation
+    } else {
+      setIsMenuOpen(true);
+      setMenuClass("open-menu-mobile");
+    }
   };
 
   const calculateTotalHeight = () => {
@@ -113,23 +122,27 @@ export default function Header() {
 
   const handleLinkClick = () => {
     setTimeout(calculateTotalHeight, 0);
+    if (isMenuOpen) {
+      toggleMenu();
+    }
   };
 
   return (
     <>
       <header>
-        <nav className={`mx-auto flex items-center justify-between8 ${ isInicioOrBiografia ? "bg-opacidad" : "" }`} aria-label="Global">
+        <nav className={`mx-auto flex items-center justify-between ${ isInicioOrBiografia ? "bg-opacidad" : "" }`} aria-label="Global">
           <div className="flex lg:flex-1">
             <div className="logo-nk">
               <Link href="/" onClick={handleLinkClick}></Link>
             </div>
           </div>
           <div className="flex lg:hidden">
-            <button type="button" className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700" onClick={toggleMenu}>
-              <span className="sr-only">Open main menu</span>
-              <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" aria-hidden="true" >
-                <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-              </svg>
+            <button className="btn-menu-mobile" type="button" onClick={toggleMenu}>
+              <div className={`wrapper-menu ${isMenuOpen ? "open" : ""}`}>
+                <div className="line-menu half start"></div>
+                <div className="line-menu"></div>
+                <div className="line-menu half end"></div>
+              </div>
             </button>
           </div>
           <div className="hidden lg:flex lg:gap-x-12">
@@ -148,42 +161,31 @@ export default function Header() {
           </div>
         </nav>
 
-        {isMenuOpen && (
-          <div className="lg:hidden" role="dialog" aria-modal="true">
-            <div className="fixed inset-0 z-10"></div>
-            <div className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-black px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
-              <div className="flex items-center justify-between">
-                <div className="logo-nk">
-                  <Link href="/" onClick={handleLinkClick}></Link>
-                </div>
-                <button type="button" className="-m-2.5 rounded-md p-2.5 text-gray-700" onClick={toggleMenu}>
-                  <span className="sr-only">Close menu</span>
-                  <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" aria-hidden="true" >
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-                  </svg>
-                </button>
+        <div className={`lg:hidden menu-mobile ${menuClass}`} role="dialog" aria-modal="true">
+          <div className="flex items-center justify-center">
+              <div className="logo-nk mb-4">
+                <Link href="/" onClick={handleLinkClick}></Link>
               </div>
-              <div className="mt-6 flow-root">
-                <div className="-my-6 divide-y divide-gray-500/10">
-                  <div className="space-y-2 py-6">
-                    {links.map((link) => (
-                      <span key={link.label} className="flex justify-center">
-                        <Link className={`nav-link ${normalizePath(pathname) === normalizePath(link.href) ? "active" : "" }`} href={link.href} onClick={handleLinkClick}>
-                          {link.label}
-                        </Link>
-                      </span>
-                    ))}
-                  </div>
-                  <div className="py-6 w-full px-4 flex justify-center">
-                    <Link href="/panel-de-administracion" className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold  hover:bg-gray-50" onClick={handleLinkClick}>
-                      Dashboard
-                    </Link>
-                  </div>
+            </div>
+            <div className="mt-6 flow-root">
+              <div className="-my-6 divide-y divide-gray-500/10">
+                <div className="space-y-2 py-6">
+                  {links.map((link) => (
+                    <span key={link.label} className="flex justify-center">
+                      <Link className={`nav-link ${normalizePath(pathname) === normalizePath(link.href) ? "active" : "" }`} href={link.href} onClick={handleLinkClick}>
+                        {link.label}
+                      </Link>
+                    </span>
+                  ))}
+                </div>
+                <div className="py-6 w-full px-4 flex justify-center">
+                <Link href="/login" className="btn dashboard-header" onClick={handleLinkClick}>
+                  Dashboard
+                </Link>
                 </div>
               </div>
             </div>
-          </div>
-        )}
+        </div>
       </header>
     </>
   );
