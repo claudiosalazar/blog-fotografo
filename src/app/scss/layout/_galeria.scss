@@ -2,6 +2,7 @@
 
 .galeria-secciones {
   margin-bottom: 0;
+  margin-top: 0;
   @media (min-width: $md) {
     margin-bottom: 66px !important;
     margin-top: 0;
@@ -23,34 +24,40 @@
 
     li.btn-galeria {
       width: 100%;
-      height: 140px;
+      height: inherit;
+      aspect-ratio: 3/2;
+      position: relative;
       @media (min-width: $md) {
         width: 33.333333%;
-        aspect-ratio: 1/1;
+        aspect-ratio: 5/4;
         height: fit-content;
       }
 
       .link-galeria-inicio {
-        aspect-ratio: 16/9;
+        aspect-ratio: 3/2;
+        padding-top: 150px;
         display: flex;
         position: relative;
-        align-items: center !important;
+        align-items: center;
+        @media (min-width: $md) {
+          aspect-ratio: 5/4;
+        }
 
         img {
-          position: absolute !important;
-          left: 0;
-          top: 0 !important;
-          width: 100%;
-          z-index: 1000;
-          height: 140px !important;
+          position: absolute;
           filter: grayscale(100%);
-          opacity: 0.5;
-          transition: all 0.4s ease-in;
+          aspect-ratio: 3/2;
+          left: 0;
+          top: 0;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          opacity: 0.6;
+
           @media (min-width: $md) {
-            width: 100%;
-            height: auto !important;
-            aspect-ratio: 1/1 !important;
-            object-fit: cover;
+            transition: all 0.4s ease-in;
+            opacity: 1;
+            aspect-ratio: 5/4;
           }
 
           &.paisajes {
@@ -72,22 +79,31 @@
           position: absolute !important;
           left: 0;
           top: 0;
+          aspect-ratio: 3/2;
           width: 100%;
-          height: 140px;
+          height: auto;
           z-index: 2200;
-          display: flex;
-          align-items: center;
-          justify-content: center;
           text-transform: uppercase;
           font-size: 2rem;
           font-weight: 200;
           letter-spacing: 5px;
           color: $blanco;
-          transition: all 0.2s ease-in;
+          // width: 100%;
+          // height: 140px;
+          // z-index: 2200;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          // 
+          // 
+          // @media (min-width: $md) {
+          //   width: 100%;
+          //   height: inherit;
+            
+          // }
           @media (min-width: $md) {
-            width: 100%;
-            height: auto !important;
-            aspect-ratio: 1/1 !important;
+            transition: all 0.2s ease-in;
+            aspect-ratio: 5/4;
           }
         }
 
@@ -107,6 +123,7 @@
 
 .galeria-seccion {
   margin-bottom: 0 !important;
+  margin-top: 0;
   @media (min-width: $md) {
     margin-bottom: 66px !important;
     margin-top: 0;

@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 
 interface ImageGalleryProps {
@@ -10,7 +10,23 @@ function ImageGallery({ images }: ImageGalleryProps) {
     const [selectedImage, setSelectedImage] = useState<string | null>(null);
     const [isClosing, setIsClosing] = useState<boolean>(false);
 
-    const handleImageClick = (url: string) => {
+    useEffect(() => {
+        if (selectedImage) {
+            // Deshabilitar el scroll en el cuerpo del documento
+            document.body.style.overflow = 'hidden';
+        } else {
+            // Restaurar el scroll en el cuerpo del documento
+            document.body.style.overflow = '';
+        }
+
+        // Restaurar el scroll en el cuerpo del documento cuando el componente se desmonte
+        return () => {
+            document.body.style.overflow = '';
+        };
+    }, [selectedImage]);
+
+    const handleImageClick = (url: string, event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+        event.preventDefault();
         setSelectedImage(url);
     };
 
@@ -24,10 +40,10 @@ function ImageGallery({ images }: ImageGalleryProps) {
 
     return (
         <>
-            <ul className="grid grid-cols-1 gap-0 md:grid-cols-4 ">
+            <ul className="grid grid-cols-2 gap-0 md:grid-cols-4 ">
                 {images.map((item) => (
                     <li key={item.id}>
-                        <Link href="#" onClick={() => handleImageClick(item.foto)} className='image-link'>
+                        <Link href="" onClick={(e) => handleImageClick(item.foto, e)} className='image-link'>
                             <span className='hover'>
                                 <span>
                                     <span className='icono ico-tit-img'></span>
@@ -42,7 +58,7 @@ function ImageGallery({ images }: ImageGalleryProps) {
 
             {selectedImage && (
                 <div className={`backdrop-gallery ${isClosing ? 'fade-out' : ''}`} onClick={handleCloseModal}>
-                    <div className="modal-gallery mx-10" onClick={(e) => e.stopPropagation()}>
+                    <div className="modal-gallery mx-2 md:mx-10" onClick={(e) => e.stopPropagation()}>
                         <button type="button" className="close" onClick={handleCloseModal}>
                             <div className='icono'></div>
                         </button>

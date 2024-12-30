@@ -63,7 +63,7 @@ const GaleriaPaisajes = () => {
             <span> / Paisajes</span>
           </h1>
         </div>
-        <div className="mx-12">
+        <div className="mx-6 md:mx-12">
             <ImageGallery images={galeria} />
         </div>
       </section>
