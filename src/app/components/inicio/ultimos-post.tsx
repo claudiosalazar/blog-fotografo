@@ -88,7 +88,7 @@ export default function UltimosPost() {
         </div>
       )}
 
-      <div className="grid grid-cols-1 gap-1 md:grid-cols-3 md:gap-6">
+      <div className="grid grid-cols-1 gap-1 md:grid-cols-3 md:gap-6 mx-5 md:mx-0">
         {posts.map((post) => (
           <div key={post.id}>
             <div className="post-inicio shadow-md rounded-lg overflow-hidden">
@@ -102,7 +102,7 @@ export default function UltimosPost() {
                 </h3>
                 <p className="text-gray-700 mt-2">{post.contenido}</p>
               </Link>
-              <Link href={`/blog/${formatUrlTitle(post.tituloPost)}`} className="link more">
+              <Link href={`/blog/${formatUrlTitle(post.tituloPost)}`} className="link more mb-10 md:mb-0">
                 <span className="d-block">Leer más</span>
                 <span className="d-block ico-more"></span>
               </Link>

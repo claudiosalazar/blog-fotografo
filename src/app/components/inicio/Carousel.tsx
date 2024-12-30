@@ -85,10 +85,10 @@ export default function Carousel() {
           </div>
         ))}
       </div>
-      <button className="absolute top-1/2 left-0 transform -translate-y-1/2 p-2 ms-4" onClick={prevSlide} >
+      <button className="absolute top-1/2 left-0 transform -translate-y-1/2 p-2 ms-4 hidden md:block" onClick={prevSlide} >
         <div className="ico-anterior-carousel d-block"></div>
       </button>
-      <button className="absolute top-1/2 right-0 transform -translate-y-1/2 p-2 me-4" onClick={nextSlide} >
+      <button className="absolute top-1/2 right-0 transform -translate-y-1/2 p-2 me-4 hidden md:block" onClick={nextSlide} >
         <div className="ico-siguiente-carousel d-block"></div>
       </button>
     </div>

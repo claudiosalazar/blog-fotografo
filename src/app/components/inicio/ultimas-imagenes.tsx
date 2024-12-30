@@ -84,7 +84,7 @@ export default function GaleriaHome() {
         </div>
       )}
 
-      <div className="gallery">
+      <div className="gallery mx-5 md:mx-0">
         {galeria.slice(0, 6).map((item, index) => {
           let additionalClass = "";
           if (index === 0) {
