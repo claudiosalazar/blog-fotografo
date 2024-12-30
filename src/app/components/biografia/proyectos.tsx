@@ -42,12 +42,12 @@ export default function Proyectos() {
   };
 
   return (
-    <div className="grid grid-cols-2 gap-4">
-      <div className="w-full flex justify-center">
-        <img src={StaticImage.camera2} alt="conocimientos" className="camera" />
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="w-full flex justify-center ">
+        <img src={StaticImage.camera2} alt="conocimientos" className="camera hidden md:block" />
       </div>
 
-      <div className="w-9/12">
+      <div className="md:w-9/12 mx-5 md:mx-0">
         <h2 className="tit-bio">Proyectos</h2>
         {proyectos.slice(0, visibleProyectos).map((proyecto) => (
           <div key={proyecto.id}>

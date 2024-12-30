@@ -42,8 +42,8 @@ const Biografia = () => {
         <div className="row">
           <div className="">
             <div className="texto-bio">
-              <h1>Biografía</h1>
-              <div className="flex flex-row">
+              <h1 className="pb-10 md:pb-0">Biografía</h1>
+              <div className="flex flex-col md:flex-row">
                 <div className="logo-bio"></div>
                 <div className="nombre-bio flex flex-col">
                   <div className="presentacion">Mi nombre es</div>
@@ -60,17 +60,17 @@ const Biografia = () => {
         <SobreMi />
       </section>
 
-      <hr className="mb-24" />
+      <hr className="my-10 md:my-24" />
 
       <section className="container proyectos">
         <Proyectos />
       </section>
 
-      <hr className="my-24" />
+      <hr className="mb-10 mt-16 md:my-24" />
 
       <section className="container hablemos">
-        <div className="grid grid-cols-2 gap-4">
-          <div className="w-full flex justify-start">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-0 md:gap-4 mx-5 md:mx-0">
+          <div className="md:w-full flex justify-start">
             <ul>
               <li>
                 <Link href="#" target="blank" className="link flex">
@@ -99,7 +99,7 @@ const Biografia = () => {
             </ul>
           </div>
 
-          <div className="w-9/12">
+          <div className="md:w-9/12">
             <ul>
               <li>
                 <Link href="#" target="blank" className="link flex">
