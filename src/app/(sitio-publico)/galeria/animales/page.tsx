@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import ImageGallery from "@/app/components/Image-gallery";
+import Title from "@/app/utility/title";
 
 interface GaleriaData {
   id: number;
@@ -11,7 +12,7 @@ interface GaleriaData {
   alt: string;
 }
 
-export default function GaleriaAnimales() {
+const GaleriaAnimales = () => {
   const [galeria, setGaleria] = useState<GaleriaData[]>([]);
   const [error, setError] = useState<string | null>(null);
 
@@ -70,3 +71,4 @@ export default function GaleriaAnimales() {
   );
 }
 
+export default Title(GaleriaAnimales);

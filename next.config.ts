@@ -4,7 +4,7 @@ const nextConfig = {
   output: 'export',
   distDir: 'prod',
   basePath: '',
-  assetPrefix: 'https://blog-fotografo.claudiosalazar.cl/',
+  assetPrefix: process.env.ASSET_PREFIX,
 };
 
 export default nextConfig;

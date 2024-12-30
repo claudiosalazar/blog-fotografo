@@ -4,13 +4,15 @@
 
 import Proyectos from "@/app/components/biografia/proyectos";
 import SobreMi from "@/app/components/biografia/sobre-mi";
+import Title from "@/app/utility/title";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+
 interface ImgBio {
   imgBio: string;
 }
 
-export default function Biografía() {
+const Biografia = () => {
   const [imgBio, setImgBio] = useState<ImgBio | null>(null);
 
   useEffect(() => {
@@ -21,7 +23,6 @@ export default function Biografía() {
         );
         if (response.ok) {
           const result = await response.json();
-          // console.log("Datos obtenidos del backend:", result);
           setImgBio(result[0]);
         } else {
           const errorData = await response.json();
@@ -119,3 +120,5 @@ export default function Biografía() {
     </>
   );
 }
+
+export default Title(Biografia);

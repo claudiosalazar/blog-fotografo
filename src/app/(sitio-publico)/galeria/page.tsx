@@ -3,8 +3,9 @@
 
 import Link from "next/link";
 import { StaticImage } from "../../ui/Images";
+import Title from "@/app/utility/title";
 
-export default function Galeria() {
+const Galeria = () => {
   return (
     <>
       <section className="galeria-secciones">
@@ -37,3 +38,5 @@ export default function Galeria() {
     </>
   );
 }
+
+export default Title(Galeria);

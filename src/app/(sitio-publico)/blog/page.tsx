@@ -4,6 +4,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import Title from "@/app/utility/title";
 
 interface PostData {
   id: string;
@@ -14,7 +15,7 @@ interface PostData {
   alt: string;
 }
 
-const Publicaciones = () => {
+const Blog = () => {
   const [posts, setPosts] = useState<PostData[]>([]);
   const [error, setError] = useState<string | null>(null);
 
@@ -108,4 +109,4 @@ const Publicaciones = () => {
   );
 };
 
-export default Publicaciones;
+export default Title(Blog);
