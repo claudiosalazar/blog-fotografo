@@ -49,7 +49,7 @@ function ImageGallery({ images }: ImageGalleryProps) {
                         {/* <div className="image-container">
                             <Image src={selectedImage} alt="Selected" fill className="img-fluid image-gallery" priority={true}/>
                         </div> */}
-                        <img src={selectedImage} alt="Selected" className="img-fluid image-gallery"/>
+                        <img src={selectedImage} alt="Selected" className="image-gallery-modal"/>
                     </div>
                 </div>
             )}

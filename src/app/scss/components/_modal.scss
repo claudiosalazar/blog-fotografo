@@ -64,10 +64,9 @@
     }
   }
 
-  .image-gallery {
+  .image-gallery-modal {
     border-radius: 8px;
-    border: 0 !important;
-    aspect-ratio: 16/9;
+    aspect-ratio: auto;
   }
 }
 
