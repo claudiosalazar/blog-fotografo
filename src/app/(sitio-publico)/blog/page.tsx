@@ -28,7 +28,6 @@ const Blog = () => {
         if (!response.ok) throw new Error((await response.json()).message);
 
         const result = await response.json();
-        // console.log("Datos de posts obtenidos del backend:", result);
         setPosts(result);
       } catch (error) {
         if (error instanceof Error) {
@@ -55,8 +54,23 @@ const Blog = () => {
       .replace(/\//g, " / ");
   };
 
-  const formatTitle = (title: string): string =>
-    title.toLowerCase().replace(/\s+/g, "-");
+  const formatUrlTitle = (title: string): string => {
+    const replacements: { [key: string]: string } = {
+      'ñ': 'n',
+      'á': 'a',
+      'é': 'e',
+      'í': 'i',
+      'ó': 'o',
+      'ú': 'u'
+    };
+
+    const formattedTitle = title
+      .toLowerCase()
+      .replace(/[ñáéíóú]/g, (match) => replacements[match])
+      .replace(/\s+/g, "-");
+
+    return formattedTitle;
+  };
 
   const getImageUrl = (imgPath: string): string => {
     if (!imgPath) return "";
@@ -83,14 +97,14 @@ const Blog = () => {
             >
               <div className="post-lista-item">
                 <img src={getImageUrl(post.imgPost)} alt={post.alt || "Imagen de la publicación"} />
-                <Link href={`/blog/${post.id}/${formatTitle(post.tituloPost)}`} className="link-blog" >
+                <Link href={`/blog/${formatUrlTitle(post.tituloPost)}`} className="link-blog" >
                   <span className="fecha-post">
                     {formatDate(post.fecha)}
                   </span>
                   <h3>{post.tituloPost}</h3>
                   <p>{post.contenido}</p>
                 </Link>
-                <Link href={`/post/${post.id}/${formatTitle(post.tituloPost)}`} className="link more" >
+                <Link href={`/post/${formatUrlTitle(post.tituloPost)}`} className="link more" >
                   <span className="d-block">Leer más</span>
                   <span className="d-block ico-more"></span>
                 </Link>
