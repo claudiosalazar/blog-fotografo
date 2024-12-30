@@ -1,14 +1,15 @@
 {
   "compilerOptions": {
-    "target": "ES2017",
+    "target": "ES2017", // Puedes mantener ES2017 si es compatible con tu proyecto
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
-    "strict": true,
+    "strict": true, // Mantén strict como true para una configuración más estricta
+    "forceConsistentCasingInFileNames": true,
     "noEmit": true,
     "esModuleInterop": true,
     "module": "esnext",
-    "moduleResolution": "bundler",
+    "moduleResolution": "bundler", // Puedes cambiar a "node" si prefieres esa resolución
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
@@ -22,6 +23,12 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "prod/types/**/*.ts" // Añade esta línea para incluir los tipos en la carpeta prod
+  ],
   "exclude": ["node_modules"]
 }

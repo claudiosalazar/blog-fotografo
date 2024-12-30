@@ -1,7 +1,8 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  distDir: 'build', // Configura la carpeta de salida a 'prod'
+  /* otras opciones de configuración aquí */
 };
 
 export default nextConfig;
