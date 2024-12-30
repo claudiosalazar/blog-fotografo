@@ -1,10 +1,10 @@
-/** @type {import('next').NextConfig} */
+import type { NextConfig } from "next";
 
-const nextConfig: import('next').NextConfig = {
-  output: 'export',
-  distDir: 'prod',
-  basePath: '',
-  assetPrefix: 'https://blog-fotografo.claudiosalazar.cl/',
+const nextConfig: NextConfig = {
+  // output: 'export',
+  // distDir: 'prod',
+  // basePath: '',
+  // assetPrefix: 'https://blog-fotografo.claudiosalazar.cl/',
 };
 
 export default nextConfig;
