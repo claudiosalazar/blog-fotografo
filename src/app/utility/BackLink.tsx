@@ -2,15 +2,20 @@
 
 import React from "react";
 
-const BackLink = () => {
+interface ButtonProps {
+  children: React.ReactNode;
+  className?: string;
+}
+
+const BackLink: React.FC<ButtonProps> = ({ children, className = '' }) => {
   const handleBackClick = (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
     event.preventDefault();
     window.history.back();
   };
 
   return (
-    <a href="#" className="post-header-volver" onClick={handleBackClick}>
-      <div className="icono"></div>
+    <a href="#" className={`${className}`} onClick={handleBackClick}>
+      {children}
     </a>
   );
 };

@@ -1,29 +1,57 @@
+@use '../variables' as *;
+
 .login {
-  background-color: rgb(255, 255, 255, .3);
-  padding: 36px;
+  background-color: rgb(255, 255, 255, 0.3);
+  padding: 20px 28px;
   border-radius: 6px;
-
-  h2 {
-      text-transform: uppercase;
+  @media (min-width: $md) {
+    padding: 30px 36px;
   }
 
-  label {
-      color: white;
-      text-transform: uppercase;
-  }
+  .titulo-login {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    margin-bottom: 16px;
+    @media (min-width: $md) {
+      margin-bottom: 32px;
+    }
 
-  .logo-login {
+    h2 {
+      text-transform: uppercase;
+      line-height: 2.2rem;
+      font-size: 1.2rem;
+      margin: 0;
+      padding: 0;
+      letter-spacing: inherit;
+      @media (min-width: $md) {
+        font-size: 1.6rem;
+      }
+    }
+    .logo-login {
       background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='42' height='24'%3E%3Cg fill='%23DF0' fill-rule='nonzero'%3E%3Cpath d='M.006 24H7.96V12.926L16.875 24h7.131V0h-7.954v10.594L7.515 0H.006z'/%3E%3Cpath d='M17.006 24h8.24v-5.109l2.112-2.502L32.182 24h9.824l-8.768-13.577L41.83 0h-9.578l-7.007 8.983V0h-8.239z'/%3E%3C/g%3E%3C/svg%3E");
       background-repeat: no-repeat;
       background-position: top left;
       margin-top: 5px;
-      width: 58px;
+      width: 54px;
       height: 24px;
-      margin-right: 16px;
-      border-right: 1px solid rgb(255, 255, 255, .4);
+      margin-right: 12px;
+      border-right: 0;
+      border-right: 1px solid rgb(255, 255, 255, 0.4);
       @media (min-width: 992px) {
-        display: none;
         margin-bottom: 0;
+        margin-right: 16px;
+        
       }
     }
+  }
+
+  
+
+  label {
+    color: white;
+    text-transform: uppercase;
+  }
+
+  
 }

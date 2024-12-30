@@ -9,4 +9,5 @@
   RewriteRule ^galeria/personas$ /galeria/personas.html [L]
   RewriteRule ^galeria/animales$ /galeria/animales.html [L]
   RewriteRule ^blog$ /blog.html [L]
+  RewriteRule ^login$ /login.html [L]
 </IfModule>

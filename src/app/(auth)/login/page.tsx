@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import BackLink from "@/app/utility/BackLink";
 
 export default function Login() {
   const [userName, setUser] = useState("");
@@ -46,55 +47,28 @@ export default function Login() {
   return (
     <div className="flex justify-center items-center h-screen">
       <div className="login">
-        <div className="d-flex justify-content-start">
+        <div className="flex titulo-login">
           <div className="logo-login d-block"></div>
-          <h2 className="d-block">Login Dashboard</h2>
+          <h2 className="d-block pb-5">Ingresar al Dashboard</h2>
         </div>
-        <form
-          className="space-y-6"
-          action="#"
-          method="POST"
-          onSubmit={handleSubmit}
-        >
-          <div>
-            <label
-              htmlFor="userName"
-              className="block text-sm/6 font-medium text-gray-900"
-            >
+        <form className="space-y-6" action="#" method="POST" onSubmit={handleSubmit} >
+          <div className="campo-formulario">
+            <label htmlFor="userName" className="block text-sm/6 font-medium text-gray-900">
               Usuario
             </label>
             <div className="mt-2">
-              <input
-                type="text"
-                name="userName"
-                id="userName"
-                value={userName}
-                onChange={(e) => setUser(e.target.value)}
-                required
-                className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
-              />
+              <input type="text" name="userName" id="userName" value={userName} onChange={(e) => setUser(e.target.value)} required />
             </div>
           </div>
 
-          <div>
+          <div className="campo-formulario">
             <div className="flex items-center justify-between">
-              <label
-                htmlFor="password"
-                className="block text-sm/6 font-medium text-gray-900"
-              >
+              <label htmlFor="password" className="block text-sm/6 font-medium text-gray-900" >
                 Password
               </label>
             </div>
             <div className="mt-2">
-              <input
-                type="password"
-                name="password"
-                id="password"
-                value={password}
-                onChange={(e) => setPass(e.target.value)}
-                required
-                className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
-              />
+              <input type="password" name="password" id="password" value={password} onChange={(e) => setPass(e.target.value)} required />
             </div>
           </div>
 
@@ -104,8 +78,11 @@ export default function Login() {
             </div>
           )}
 
-          <div>
-            <button type="submit" className="btn primario">
+          <div className="w-full flex justify-between">
+            <BackLink className="btn secundario">
+              Volver
+            </BackLink >
+            <button type="submit" className="btn primario w-full">
               Ingresar
             </button>
           </div>

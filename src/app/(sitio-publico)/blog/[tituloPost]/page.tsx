@@ -87,7 +87,9 @@ export default async function PostPage(props: Props) {
     <>
       <section className="post-detalle w-10/12 md:w-4/5">
         <div className="post-header">
-          <BackLink /> {/* Usa el nuevo componente */}
+          <BackLink className="post-header-volver">
+            <div className="icono"></div>
+          </BackLink> {/* Usa el nuevo componente */}
           <div className="post-header-datos">
             <small>{new Date(post.fecha).toLocaleDateString("es-ES")}</small>
             <h2>{post.tituloPost}</h2>
