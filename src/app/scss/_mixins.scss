@@ -2,21 +2,11 @@
 
 @mixin ellipsis($lines: 3) {
   display: -webkit-box;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
   -webkit-box-orient: vertical;
-  -moz-box-orient: vertical;
-  -ms-flex-orient: vertical;
-  -webkit-flex-orient: vertical;
-  flex-orient: vertical;
   -webkit-line-clamp: $lines;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: normal;
-  width: 100%;
-  max-height: calc(1.2em * $lines); // Ajusta la altura máxima basada en el número de líneas y la altura de línea
 }
 
 @mixin ellipsis-link ($lines: 2) {

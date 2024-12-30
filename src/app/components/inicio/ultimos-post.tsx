@@ -87,7 +87,7 @@ export default function UltimosPost() {
                 </h3>
                 <p className="text-gray-700 mt-2">{post.contenido}</p>
               </Link>
-              <Link href={`/post/${post.id}/${formatTitle(post.tituloPost)}`} className="link more">
+              <Link href={`/publicaciones/${post.id}/${formatTitle(post.tituloPost)}`} className="link more">
                 <span className="d-block">Leer más</span>
                 <span className="d-block ico-more"></span>
               </Link>

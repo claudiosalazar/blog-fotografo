@@ -220,3 +220,39 @@
     }
   }
 }
+
+.post-inicio {
+  margin-bottom: 36px;
+  &:last-child {
+    margin-bottom: 0;
+    @media (min-width: $md) {
+      margin-bottom: inherit;
+    }
+  }
+  @media (min-width: $md) {
+    margin-bottom: inherit;
+  }
+
+  img {
+    border-radius: 6px;
+    min-height: fit-content;
+    margin-bottom: 16px;
+    aspect-ratio: 16/8;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+
+  .fecha-post-home {
+    display: block;
+    font-size: .8rem;
+    color: $blanco !important;
+    margin-bottom: 8px;
+  }
+
+  p{
+    margin-right: 12px;
+    color: $gris-parrafo;
+    @include ellipsis();
+  }
+}
