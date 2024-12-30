@@ -104,7 +104,7 @@ const Blog = () => {
                   <h3>{post.tituloPost}</h3>
                   <p>{post.contenido}</p>
                 </Link>
-                <Link href={`/post/${formatUrlTitle(post.tituloPost)}`} className="link more" >
+                <Link href={`/blog/${formatUrlTitle(post.tituloPost)}`} className="link more" >
                   <span className="d-block">Leer más</span>
                   <span className="d-block ico-more"></span>
                 </Link>

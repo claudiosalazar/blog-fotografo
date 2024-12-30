@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
-import Link from "next/link";
+import BackLink from "@/app/utility/BackLink"; // Importa el nuevo componente
 
 type PostData = {
   id: string;
@@ -87,9 +87,7 @@ export default async function PostPage(props: Props) {
     <>
       <section className="post-detalle w-4/5">
         <div className="post-header">
-          <Link href="/blog" className="post-header-volver">
-            <div className="icono"></div>
-          </Link>
+          <BackLink /> {/* Usa el nuevo componente */}
           <div className="post-header-datos">
             <small>{new Date(post.fecha).toLocaleDateString("es-ES")}</small>
             <h2>{post.tituloPost}</h2>

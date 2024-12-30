@@ -52,9 +52,23 @@ export default function UltimosPost() {
       .replace(/\//g, " / ");
   }
 
-  function formatTitle(title: string): string {
-    return title.toLowerCase().replace(/\s+/g, "-");
-  }
+  const formatUrlTitle = (title: string): string => {
+    const replacements: { [key: string]: string } = {
+      'ñ': 'n',
+      'á': 'a',
+      'é': 'e',
+      'í': 'i',
+      'ó': 'o',
+      'ú': 'u'
+    };
+
+    const formattedTitle = title
+      .toLowerCase()
+      .replace(/[ñáéíóú]/g, (match) => replacements[match])
+      .replace(/\s+/g, "-");
+
+    return formattedTitle;
+  };
 
   const getImageUrl = (imgPath: string): string => {
     if (!imgPath) return "";
@@ -78,7 +92,7 @@ export default function UltimosPost() {
         {posts.map((post) => (
           <div key={post.id}>
             <div className="post-inicio shadow-md rounded-lg overflow-hidden">
-              <Link href={`/blog/${post.id}/${formatTitle(post.tituloPost)}`} className="link-blog">
+              <Link href={`/blog/${formatUrlTitle(post.tituloPost)}`} className="link-blog">
                 <img src={getImageUrl(post.imgPost)} alt={post.alt || "Imagen de la publicación"} className="w-full h-48 object-cover" />
                 <span className="fecha-post">
                   {formatDate(post.fecha)}
@@ -88,7 +102,7 @@ export default function UltimosPost() {
                 </h3>
                 <p className="text-gray-700 mt-2">{post.contenido}</p>
               </Link>
-              <Link href={`/blog/${post.id}/${formatTitle(post.tituloPost)}`} className="link more">
+              <Link href={`/blog/${formatUrlTitle(post.tituloPost)}`} className="link more">
                 <span className="d-block">Leer más</span>
                 <span className="d-block ico-more"></span>
               </Link>
