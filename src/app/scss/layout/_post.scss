@@ -1,6 +1,72 @@
 @use "../variables" as *;
 @use "../mixins" as *;
 
+.fecha-post {
+  display: block;
+  font-size: 0.8rem;
+  color: $blanco-50 !important;
+  margin-bottom: 8px;
+}
+
+a.link-blog {
+  display: block;
+
+  &:hover {
+    h3 {
+      opacity: 1;
+    }
+
+    p {
+      color: $blanco;
+    }
+  }
+
+  h3 {
+    transition: all 0.3s ease;
+    opacity: 0.7;
+  }
+
+  p {
+    transition: all 0.3s ease;
+  }
+}
+
+.post-inicio {
+  margin-bottom: 36px;
+  &:last-child {
+    margin-bottom: 0;
+    @media (min-width: $md) {
+      margin-bottom: inherit;
+    }
+  }
+  @media (min-width: $md) {
+    margin-bottom: inherit;
+  }
+
+  img {
+    border-radius: 6px;
+    min-height: fit-content;
+    margin-bottom: 16px;
+    aspect-ratio: 16/8;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+
+  .fecha-post-home {
+    display: block;
+    font-size: .8rem;
+    color: $blanco !important;
+    margin-bottom: 8px;
+  }
+
+  p {
+    margin-right: 12px;
+    color: $gris-parrafo;
+    @include ellipsis();
+  }
+}
+
 .post-lista {
   h1 {
     padding-bottom: 66px;
@@ -15,13 +81,6 @@
       object-fit: cover;
       aspect-ratio: 16/7;
       margin-bottom: 16px;
-    }
-
-    .fecha-post-item {
-      display: block;
-      font-size: 0.8rem;
-      color: $blanco !important;
-      margin-bottom: 8px;
     }
 
     p {
@@ -76,10 +135,6 @@
       @media (min-width: $md) {
         bottom: 24px;
         left: 36px;
-      }
-
-      small {
-        color: $blanco;
       }
 
       h2 {
@@ -221,38 +276,3 @@
   }
 }
 
-.post-inicio {
-  margin-bottom: 36px;
-  &:last-child {
-    margin-bottom: 0;
-    @media (min-width: $md) {
-      margin-bottom: inherit;
-    }
-  }
-  @media (min-width: $md) {
-    margin-bottom: inherit;
-  }
-
-  img {
-    border-radius: 6px;
-    min-height: fit-content;
-    margin-bottom: 16px;
-    aspect-ratio: 16/8;
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-  }
-
-  .fecha-post-home {
-    display: block;
-    font-size: .8rem;
-    color: $blanco !important;
-    margin-bottom: 8px;
-  }
-
-  p{
-    margin-right: 12px;
-    color: $gris-parrafo;
-    @include ellipsis();
-  }
-}

@@ -69,7 +69,7 @@ const Publicaciones = () => {
     <>
       <section className="post-lista">
         <div className="grid grid-cols-1 gap-1">
-          <h1 className="text-center">Publicaciones</h1>
+          <h1 className="text-center">Blog</h1>
         </div>
         <div className="grid grid-cols-3 gap-5 mx-12 ">
 
@@ -80,8 +80,8 @@ const Publicaciones = () => {
             >
               <div className="post-lista-item">
                 <img src={getImageUrl(post.imgPost)} alt={post.alt || "Imagen de la publicación"} />
-                <Link href={`/publicaciones/${post.id}/${formatTitle(post.tituloPost)}`} className="link" >
-                  <span className="fecha-post-home">
+                <Link href={`/blog/${post.id}/${formatTitle(post.tituloPost)}`} className="link-blog" >
+                  <span className="fecha-post">
                     {formatDate(post.fecha)}
                   </span>
                   <h3>{post.tituloPost}</h3>

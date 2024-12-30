@@ -77,17 +77,17 @@ export default function UltimosPost() {
         {posts.map((post) => (
           <div key={post.id}>
             <div className="post-inicio shadow-md rounded-lg overflow-hidden">
-              <Link href={`/post/${post.id}/${formatTitle(post.tituloPost)}`}>
+              <Link href={`/blog/${post.id}/${formatTitle(post.tituloPost)}`} className="link-blog">
                 <img src={getImageUrl(post.imgPost)} alt={post.alt || "Imagen de la publicación"} className="w-full h-48 object-cover" />
-                <span className="block text-gray-500 text-sm mt-2">
+                <span className="fecha-post">
                   {formatDate(post.fecha)}
                 </span>
-                <h3 className="text-lg font-semibold mt-2">
+                <h3>
                   {post.tituloPost}
                 </h3>
                 <p className="text-gray-700 mt-2">{post.contenido}</p>
               </Link>
-              <Link href={`/publicaciones/${post.id}/${formatTitle(post.tituloPost)}`} className="link more">
+              <Link href={`/blog/${post.id}/${formatTitle(post.tituloPost)}`} className="link more">
                 <span className="d-block">Leer más</span>
                 <span className="d-block ico-more"></span>
               </Link>
@@ -97,7 +97,7 @@ export default function UltimosPost() {
       </div>
 
       <div className="w-full px-4 flex justify-center">
-        <Link href="/publicaciones" className="btn primario">
+        <Link href="/blog" className="btn primario">
           Ver mas
         </Link>
       </div>

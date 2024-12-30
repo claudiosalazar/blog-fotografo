@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
 
 interface PostData {
@@ -19,6 +19,7 @@ export default function PostDetalle() {
   const [nextPost, setNextPost] = useState<PostData | null>(null);
   const [error, setError] = useState<string | null>(null);
   const params = useParams();
+  const router = useRouter();
   const { id } = params;
 
   const BASE_URL = "http://localhost:3001";
@@ -90,12 +91,17 @@ export default function PostDetalle() {
   const prevPostImg = prevPost ? `${BASE_URL}${prevPost.imgPost || ""}` : "";
   const nextPostImg = nextPost ? `${BASE_URL}${nextPost.imgPost || ""}` : "";
 
+  const handleBackClick = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+    e.preventDefault();
+    router.back();
+  };
+
   return (
     <>
       <section className="post-detalle w-4/5">
         <div className="grid grid-cols-1">
           <div className="post-header">
-            <Link href="/publicaciones" className="post-header-volver">
+            <Link href="#" className="post-header-volver" onClick={handleBackClick}>
               <div className="icono"></div>
             </Link>
             <div className="post-header-datos">
@@ -122,9 +128,9 @@ export default function PostDetalle() {
             <div className="flex justify-between">
               {prevPost ? (
                 <div className="post-anterior">
-                  <Link href={`/publicaciones/${prevPost.id}/${formatTitle( prevPost.tituloPost )}`} className="link" >
+                  <Link href={`/publicaciones/${prevPost.id}/${formatTitle(prevPost.tituloPost)}`} className="link">
                     <div className="flex flex-row">
-                    <img src={prevPostImg} />
+                      <img src={prevPostImg} />
                       <div className="info-post-siguiente">
                         <span className="ico-anterior mb-2"></span>
                         <span className="fecha-post-anterior">
@@ -140,7 +146,7 @@ export default function PostDetalle() {
               )}
               {nextPost ? (
                 <div className="post-siguiente">
-                  <Link href={`/publicaciones/${nextPost.id}/${formatTitle( nextPost.tituloPost )}`} className="link" >
+                  <Link href={`/publicaciones/${nextPost.id}/${formatTitle(nextPost.tituloPost)}`} className="link">
                     <div className="flex flex-row-reverse">
                       <img src={nextPostImg} />
                       <div className="info-post-siguiente">

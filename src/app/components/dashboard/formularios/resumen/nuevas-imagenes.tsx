@@ -172,7 +172,7 @@ const NuevasImagenes = () => {
           </div>
 
           <div className="flex justify-end botonera">
-            <Link href="/publicaciones" className="btn primario dashboard">
+            <Link href="/galeria" className="btn primario dashboard">
               Ver todas las imágenes
             </Link>
           </div>

@@ -95,7 +95,7 @@ export default function NuevasPublicaciones() {
         </div>
 
         <div className="flex justify-end botonera">
-          <Link href="/panel-de-administracion/publicaciones" className="btn primario dashboard">
+          <Link href="/panel-de-administracion/blog" className="btn primario dashboard">
             Ver todas las publicaciones
           </Link>
         </div>

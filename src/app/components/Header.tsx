@@ -9,7 +9,7 @@ export default function Header() {
     { href: "/", label: "Inicio" },
     { href: "/biografia/", label: "Biografia" },
     { href: "/galeria/", label: "Galeria" },
-    { href: "/publicaciones/", label: "Publicaciones" },
+    { href: "/blog/", label: "Blog" },
   ];
 
   const pathname = usePathname();
