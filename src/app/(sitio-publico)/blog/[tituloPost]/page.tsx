@@ -12,8 +12,13 @@ type PostData = {
   alt: string;
 };
 
-export const generateMetadata = async ({ params }: { params: { tituloPost: string } }): Promise<Metadata> => {
-  const post = await getPostDataByTitulo(params.tituloPost);
+interface Props {
+  params: Promise<{ tituloPost: string }>;
+}
+
+export const generateMetadata = async ({ params }: Props): Promise<Metadata> => {
+  const { tituloPost } = await params;
+  const post = await getPostDataByTitulo(tituloPost);
   if (!post) {
     return {
       title: "Post no encontrado",
@@ -65,8 +70,9 @@ export const generateStaticParams = async () => {
   }));
 };
 
-const PostPage = async ({ params }: { params: { tituloPost: string } }) => {
-  const post = await getPostDataByTitulo(params.tituloPost);
+export default async function PostPage(props: Props) {
+  const { tituloPost } = await props.params;
+  const post = await getPostDataByTitulo(tituloPost);
   if (!post) {
     notFound();
   }
@@ -100,6 +106,4 @@ const PostPage = async ({ params }: { params: { tituloPost: string } }) => {
       </section>
     </>
   );
-};
-
-export default PostPage;
+}
