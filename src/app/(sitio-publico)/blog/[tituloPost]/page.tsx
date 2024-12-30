@@ -19,7 +19,7 @@ interface Props {
 
 export const generateMetadata = async ({ params }: Props): Promise<Metadata> => {
   const { tituloPost } = await params;
-  const post = await getPostDataByTitulo(tituloPost);
+  const { post } = await getPostDataByTitulo(tituloPost);
   if (!post) {
     return {
       title: "Post no encontrado",
@@ -32,14 +32,17 @@ export const generateMetadata = async ({ params }: Props): Promise<Metadata> => 
   };
 };
 
-const getPostDataByTitulo = async (tituloPost: string): Promise<PostData | null> => {
+const getPostDataByTitulo = async (tituloPost: string): Promise<{ post: PostData | null, prevPost: PostData | null, nextPost: PostData | null }> => {
   const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}post`);
   if (!response.ok) {
-    return null;
+    return { post: null, prevPost: null, nextPost: null };
   }
   const posts: PostData[] = await response.json();
-  const post = posts.find((p) => formatUrlTitle(p.tituloPost) === tituloPost);
-  return post || null;
+  const index = posts.findIndex((p) => formatUrlTitle(p.tituloPost) === tituloPost);
+  const post = index !== -1 ? posts[index] : null;
+  const prevPost = index > 0 ? posts[index - 1] : null;
+  const nextPost = index < posts.length - 1 ? posts[index + 1] : null;
+  return { post, prevPost, nextPost };
 };
 
 const formatUrlTitle = (title: string): string => {
@@ -72,8 +75,9 @@ export const generateStaticParams = async () => {
 };
 
 export default async function PostPage(props: Props) {
-  const { tituloPost } = await props.params;
-  const post = await getPostDataByTitulo(tituloPost);
+  const params = await props.params;
+  const { tituloPost } = params;
+  const { post, prevPost, nextPost } = await getPostDataByTitulo(tituloPost);
   if (!post) {
     notFound();
   }
@@ -111,32 +115,36 @@ export default async function PostPage(props: Props) {
       <section className="post-nav w-10/12 md:w-4/5">
         <div className="flex justify-between">
           <div className="post-anterior">
-            <Link href="#" className="link">
-              <div className="flex flex-row">
-                {/* <img src={prevPostImg} /> */}
-                <div className="info-post-siguiente">
-                  <span className="ico-anterior mb-2"></span>
-                  <span className="fecha-post-anterior">
-                    fecha
-                  </span>
-                  <p className="d-block">asdad</p>
+            {prevPost && (
+              <Link href={`/blog/${formatUrlTitle(prevPost.tituloPost)}`} className="link">
+                <div className="flex flex-row">
+                  <img src={getImageUrl(prevPost.imgPost)} alt={prevPost.alt} />
+                  <div className="info-post-siguiente">
+                    <span className="ico-anterior mb-2"></span>
+                    <span className="fecha-post-anterior">
+                      {new Date(prevPost.fecha).toLocaleDateString("es-ES")}
+                    </span>
+                    <p className="d-block">{prevPost.tituloPost}</p>
+                  </div>
                 </div>
-              </div>
-            </Link>
+              </Link>
+            )}
           </div>
           <div className="post-siguiente">
-            <Link href="#" className="link">
-              <div className="flex flex-row-reverse">
-                {/* <img src={nextPostImg} /> */}
-                <div className="info-post-siguiente">
-                  <span className="ico-siguiente mb-2"></span>
-                  <span className="fecha-post-siguiente">
-                    fecha
-                  </span>
-                  <p className="d-block">asdsa</p>
+            {nextPost && (
+              <Link href={`/blog/${formatUrlTitle(nextPost.tituloPost)}`} className="link">
+                <div className="flex flex-row-reverse">
+                  <img src={getImageUrl(nextPost.imgPost)} alt={nextPost.alt} />
+                  <div className="info-post-siguiente">
+                    <span className="ico-siguiente mb-2"></span>
+                    <span className="fecha-post-siguiente">
+                      {new Date(nextPost.fecha).toLocaleDateString("es-ES")}
+                    </span>
+                    <p className="d-block">{nextPost.tituloPost}</p>
+                  </div>
                 </div>
-              </div>
-            </Link>
+              </Link>
+            )}
           </div>
         </div>
       </section>
