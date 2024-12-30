@@ -28,7 +28,7 @@ export default function Carousel() {
         const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}carousel`);
         if (response.ok) {
           const result = await response.json();
-          console.log("Datos obtenidos del backend:", result);
+          // console.log("Datos obtenidos del backend:", result);
           setCarousel(result[0]); // Asegúrate de que el resultado sea un objeto con las propiedades imgCarousel1, imgCarousel2, imgCarousel3
         } else {
           const errorData = await response.json();

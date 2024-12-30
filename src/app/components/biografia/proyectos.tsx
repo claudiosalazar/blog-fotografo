@@ -21,7 +21,7 @@ export default function Proyectos() {
         const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}proyectos`);
         if (response.ok) {
           const result = await response.json();
-          console.log('Datos obtenidos del backend:', result);
+          // console.log('Datos obtenidos del backend:', result);
           setProyectos(result);
         } else {
           const errorData = await response.json();

@@ -15,7 +15,7 @@ export default function SobreMi() {
         const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}biografia`);
         if (response.ok) {
           const result = await response.json();
-          console.log('Datos obtenidos del backend:', result);
+          // console.log('Datos obtenidos del backend:', result);
           setBio(result[0]);
         } else {
           const errorData = await response.json();

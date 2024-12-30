@@ -25,7 +25,7 @@ const Publicaciones = () => {
         if (!response.ok) throw new Error((await response.json()).message);
 
         const result = await response.json();
-        console.log("Datos de posts obtenidos del backend:", result);
+        // console.log("Datos de posts obtenidos del backend:", result);
         setPosts(result);
       } catch (error) {
         if (error instanceof Error) {

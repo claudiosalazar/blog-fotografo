@@ -19,7 +19,7 @@ export default function Biografía() {
         );
         if (response.ok) {
           const result = await response.json();
-          console.log("Datos obtenidos del backend:", result);
+          // console.log("Datos obtenidos del backend:", result);
           setImgBio(result[0]);
         } else {
           const errorData = await response.json();

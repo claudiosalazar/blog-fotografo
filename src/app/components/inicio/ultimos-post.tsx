@@ -24,7 +24,7 @@ export default function UltimosPost() {
         );
         if (response.ok) {
           const result = await response.json();
-          console.log("Datos de posts obtenidos del backend:", result);
+          // console.log("Datos de posts obtenidos del backend:", result);
           setPosts(result);
         } else {
           const errorData = await response.json();

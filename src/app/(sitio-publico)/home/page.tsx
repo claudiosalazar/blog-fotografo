@@ -5,19 +5,17 @@ import UltimosPost from "../../components/inicio/ultimos-post";
 export default function Inicio() {
   return (
     <>
-      <main className="relative mx-auto">
-        <div className="container p-0">
-          <Carousel />
-        </div>
+      <div className="container p-0">
+        <Carousel />
+      </div>
 
-        <section className="container inicio">
-          <GaleriaHome />
-        </section>
+      <section className="container inicio">
+        <GaleriaHome />
+      </section>
 
-        <section className="container inicio">
-          <UltimosPost />
-        </section>
-      </main>
+      <section className="container inicio">
+        <UltimosPost />
+      </section>
     </>
   );
 }

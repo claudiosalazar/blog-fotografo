@@ -15,11 +15,7 @@ export default function Galeria() {
             <li className="btn-galeria">
               <Link href="/galeria/paisajes" className="link-galeria-inicio">
                 <span>Paisajes</span>
-                <img
-                  src={StaticImage.gPaisajes}
-                  alt="paisajes"
-                  className="paisajes"
-                />
+                <img src={StaticImage.gPaisajes} alt="paisajes" className="paisajes" />
               </Link>
             </li>
             <li className="btn-galeria">
@@ -31,11 +27,7 @@ export default function Galeria() {
             <li className="btn-galeria">
               <Link href="/galeria/animales" className="link-galeria-inicio">
                 <span>Animales</span>
-                <img
-                  src={StaticImage.gAnimales}
-                  alt="animales"
-                  className="animales"
-                />
+                <img src={StaticImage.gAnimales} alt="animales" className="animales" />
               </Link>
             </li>
           </ul>

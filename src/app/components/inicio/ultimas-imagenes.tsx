@@ -23,7 +23,7 @@ export default function GaleriaHome() {
         );
         if (response.ok) {
           const result = await response.json();
-          console.log("Datos de galeria obtenidos del backend:", result);
+          // console.log("Datos de galeria obtenidos del backend:", result);
           setGaleria(result);
         } else {
           const errorData = await response.json();
@@ -46,7 +46,7 @@ export default function GaleriaHome() {
     function lazyLoad() {
         lazyImages.forEach(image => {
             if (image.offsetTop < window.innerHeight + window.pageYOffset + inAdvance) {
-                console.log('Cargando imagen:', image.dataset.src);
+                // console.log('Cargando imagen:', image.dataset.src);
                 image.src = image.dataset.src || '';
                 image.onload = () => image.classList.add('loaded');
             }
