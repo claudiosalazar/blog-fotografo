@@ -3,6 +3,9 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import formatoFecha from "@/app/utility/FormatoFecha";
+import formatoUrlTitulo from "@/app/utility/FormatoUrlTitulo";
+import ImagenUrl from "@/app/utility/ImagenUrl";
 
 interface PostData {
   id: string;
@@ -41,41 +44,6 @@ export default function UltimosPost() {
     fetchPosts();
   }, []);
 
-  function formatDate(dateString: string): string {
-    const options: Intl.DateTimeFormatOptions = {
-      day: "2-digit",
-      month: "2-digit",
-      year: "numeric",
-    };
-    return new Date(dateString)
-      .toLocaleDateString("es-ES", options)
-      .replace(/\//g, " / ");
-  }
-
-  const formatUrlTitle = (title: string): string => {
-    const replacements: { [key: string]: string } = {
-      'ñ': 'n',
-      'á': 'a',
-      'é': 'e',
-      'í': 'i',
-      'ó': 'o',
-      'ú': 'u'
-    };
-
-    const formattedTitle = title
-      .toLowerCase()
-      .replace(/[ñáéíóú]/g, (match) => replacements[match])
-      .replace(/\s+/g, "-");
-
-    return formattedTitle;
-  };
-
-  const getImageUrl = (imgPath: string): string => {
-    if (!imgPath) return "";
-    const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL || "";
-    return `${backendUrl.replace(/\/$/, "")}/${imgPath.replace(/^\//, "")}`;
-  };
-
   return (
     <>
       <div className="grid grid-cols-1">
@@ -92,17 +60,17 @@ export default function UltimosPost() {
         {posts.map((post) => (
           <div key={post.id}>
             <div className="post-inicio shadow-md rounded-lg overflow-hidden">
-              <Link href={`/blog/${formatUrlTitle(post.tituloPost)}`} className="link-blog">
-                <img src={getImageUrl(post.imgPost)} alt={post.alt || "Imagen de la publicación"} className="w-full h-48 object-cover" />
+              <Link href={`/blog/${formatoUrlTitulo(post.tituloPost)}`} className="link-blog">
+                <img src={ImagenUrl(post.imgPost)} alt={post.alt || "Imagen de la publicación"} className="w-full h-48 object-cover" />
                 <span className="fecha-post">
-                  {formatDate(post.fecha)}
+                  {formatoFecha(post.fecha)}
                 </span>
                 <h3>
                   {post.tituloPost}
                 </h3>
                 <p className="text-gray-700 mt-2">{post.contenido}</p>
               </Link>
-              <Link href={`/blog/${formatUrlTitle(post.tituloPost)}`} className="link more mb-10 md:mb-0">
+              <Link href={`/blog/${formatoUrlTitulo(post.tituloPost)}`} className="link more mb-10 md:mb-0">
                 <span className="d-block">Leer más</span>
                 <span className="d-block ico-more"></span>
               </Link>
