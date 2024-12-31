@@ -1,6 +1,6 @@
-/* eslint-disable @next/next/no-img-element */
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 interface ImageGalleryProps {
     images: { id: number; foto: string; alt: string }[];
@@ -50,7 +50,7 @@ function ImageGallery({ images }: ImageGalleryProps) {
                                     <span className='texto'>Ver imagen</span>
                                 </span>
                             </span>
-                            <img src={item.foto} alt={item.alt} />
+                            <Image src={item.foto} alt={item.alt} width={800} height={800}  priority={true} />
                         </Link>
                     </li>
                 ))}
@@ -62,10 +62,7 @@ function ImageGallery({ images }: ImageGalleryProps) {
                         <button type="button" className="close" onClick={handleCloseModal}>
                             <div className='icono'></div>
                         </button>
-                        {/* <div className="image-container">
-                            <Image src={selectedImage} alt="Selected" fill className="img-fluid image-gallery" priority={true}/>
-                        </div> */}
-                        <img src={selectedImage} alt="Selected" className="image-gallery-modal"/>
+                        <Image src={selectedImage} alt={selectedImage} width={1200} height={1200} className='image-gallery-modal'  priority={true} />
                     </div>
                 </div>
             )}

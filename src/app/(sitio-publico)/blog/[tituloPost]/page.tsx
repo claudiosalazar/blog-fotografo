@@ -62,7 +62,7 @@ const PostPage = async ({ params }: { params: { tituloPost: string } }) => {
             {prevPost && (
             <Link href={`/blog/${formatoUrlTitulo(prevPost.tituloPost)}`} className="link">
               <div className="post-anterior">
-              <Image src={getImageUrl(prevPost.imgPost)} alt={prevPost.alt} width={800} height={800} className="size-image" priority={true} />
+                <Image src={getImageUrl(prevPost.imgPost)} alt={prevPost.alt} width={800} height={800} className="size-image" priority={true} />
                 <div className="info">
                   <span className="ico-anterior mb-2"></span>
                   <span className="fecha-post-anterior">
@@ -77,7 +77,7 @@ const PostPage = async ({ params }: { params: { tituloPost: string } }) => {
             {nextPost && (
               <Link href={`/blog/${formatoUrlTitulo(nextPost.tituloPost)}`} className="link">
                 <div className="post-siguiente">
-                <Image src={getImageUrl(nextPost.imgPost)} alt={nextPost.alt} width={800} height={800} className="size-image" priority={true} />
+                  <Image src={getImageUrl(nextPost.imgPost)} alt={nextPost.alt} width={800} height={800} className="size-image" priority={true} />
                   <div className="info">
                     <span className="ico-siguiente mb-2"></span>
                     <span className="fecha-post-siguiente">

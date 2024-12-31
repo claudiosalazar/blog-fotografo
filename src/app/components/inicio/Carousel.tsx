@@ -1,8 +1,8 @@
-/* eslint-disable @next/next/no-img-element */
 'use client';
 
 import { useState, useEffect } from "react";
 import TextoBienvenida from "./texto-bienvenida";
+import Image from "next/image";
 
 interface CarouselData {
   imgCarousel1: string;
@@ -80,7 +80,7 @@ export default function Carousel() {
         {slides.map((slide, index) => (
           <div key={slide.id} className={`absolute inset-0 transition-opacity duration-1000 ${ index === currentSlide ? "opacity-100" : "opacity-0" }`}>
             <div className="relative w-full h-full">
-              <img src={slide.image} className="img-fluid" alt={`Slide ${slide.id}`} />
+              <Image src={slide.image} alt={slide.image} width={1920} height={1200}  priority={true} />
             </div>
           </div>
         ))}
