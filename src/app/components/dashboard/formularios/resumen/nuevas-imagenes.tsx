@@ -1,8 +1,8 @@
-/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import Loading from "../../../Loading";
 
 interface AlbumPaisajes {
@@ -119,12 +119,7 @@ const NuevasImagenes = () => {
               {paisajes.map((item) => (
                 <div key={item.id} className="relative contenedor-imagenes-dashboard formato-1">
                   {!imagesLoaded[item.id] && <Loading isLoading={true} onLoaded={() => {}} />}
-                  <img
-                    src={item.foto}
-                    className={`rounded-md formato-1 ${!imagesLoaded[item.id] ? 'hidden' : ''}`}
-                    alt={item.alt}
-                    onLoad={() => handleImageLoad(item.id)}
-                  />
+                  <Image src={item.foto} alt={item.alt} width={1920} height={1200}  priority={true} className={`rounded-md formato-1 ${!imagesLoaded[item.id] ? 'hidden' : ''}`} onLoad={() => handleImageLoad(item.id)}/>
                 </div>
               ))}
             </div>
@@ -140,12 +135,7 @@ const NuevasImagenes = () => {
               {personas.map((item) => (
                 <div key={item.id} className="relative contenedor-imagenes-dashboard formato-1">
                   {!imagesLoaded[item.id] && <Loading isLoading={true} onLoaded={() => {}} />}
-                  <img
-                    src={item.foto}
-                    className={`rounded-md formato-1 ${!imagesLoaded[item.id] ? 'hidden' : ''}`}
-                    alt={item.alt}
-                    onLoad={() => handleImageLoad(item.id)}
-                  />
+                  <Image src={item.foto} alt={item.alt} width={1920} height={1200}  priority={true} className={`rounded-md formato-1 ${!imagesLoaded[item.id] ? 'hidden' : ''}`} onLoad={() => handleImageLoad(item.id)}/>
                 </div>
               ))}
             </div>
@@ -161,12 +151,7 @@ const NuevasImagenes = () => {
               {animales.map((item) => (
                 <div key={item.id} className="relative contenedor-imagenes-dashboard formato-1">
                   {!imagesLoaded[item.id] && <Loading isLoading={true} onLoaded={() => {}} />}
-                  <img
-                    src={item.foto}
-                    className={`rounded-md formato-1 ${!imagesLoaded[item.id] ? 'hidden' : ''}`}
-                    alt={item.alt}
-                    onLoad={() => handleImageLoad(item.id)}
-                  />
+                  <Image src={item.foto} alt={item.alt} width={1920} height={1200}  priority={true} className={`rounded-md formato-1 ${!imagesLoaded[item.id] ? 'hidden' : ''}`} onLoad={() => handleImageLoad(item.id)}/>
                 </div>
               ))}
             </div>

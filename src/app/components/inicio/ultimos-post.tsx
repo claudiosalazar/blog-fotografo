@@ -1,7 +1,7 @@
-/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import formatoFecha from "@/app/utility/FormatoFecha";
 import formatoUrlTitulo from "@/app/utility/FormatoUrlTitulo";
@@ -61,7 +61,7 @@ export default function UltimosPost() {
           <div key={post.id}>
             <div className="post-inicio shadow-md rounded-lg overflow-hidden">
               <Link href={`/blog/${formatoUrlTitulo(post.tituloPost)}`} className="link-blog">
-                <img src={ImagenUrl(post.imgPost)} alt={post.alt || "Imagen de la publicación"} className="w-full h-48 object-cover" />
+                <Image src={ImagenUrl(post.imgPost)} alt={`${post.tituloPost}`}  width={800} height={800} layout="responsive" unoptimized/>
                 <span className="fecha-post">
                   {formatoFecha(post.fecha)}
                 </span>

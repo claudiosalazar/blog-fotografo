@@ -1,8 +1,8 @@
-/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import throttle from "lodash.throttle";
 
 interface GaleriaData {
@@ -41,34 +41,39 @@ export default function GaleriaHome() {
   }, []);
 
   useEffect(() => {
-    const lazyImages = Array.from(document.querySelectorAll('.lazy-image')) as HTMLImageElement[];
+    const lazyImages = Array.from(
+      document.querySelectorAll(".lazy-image")
+    ) as HTMLImageElement[];
     const inAdvance = 300;
 
     function lazyLoad() {
-        lazyImages.forEach(image => {
-            if (image.offsetTop < window.innerHeight + window.pageYOffset + inAdvance) {
-                // console.log('Cargando imagen:', image.dataset.src);
-                image.src = image.dataset.src || '';
-                image.onload = () => image.classList.add('loaded');
-            }
-        });
-
-        // Remove event listeners if all images are loaded
-        if (lazyImages.every(image => image.classList.contains('loaded'))) {
-            window.removeEventListener('scroll', throttledLazyLoad);
-            window.removeEventListener('resize', throttledLazyLoad);
+      lazyImages.forEach((image) => {
+        if (
+          image.offsetTop <
+          window.innerHeight + window.pageYOffset + inAdvance
+        ) {
+          // console.log('Cargando imagen:', image.dataset.src);
+          image.src = image.dataset.src || "";
+          image.onload = () => image.classList.add("loaded");
         }
+      });
+
+      // Remove event listeners if all images are loaded
+      if (lazyImages.every((image) => image.classList.contains("loaded"))) {
+        window.removeEventListener("scroll", throttledLazyLoad);
+        window.removeEventListener("resize", throttledLazyLoad);
+      }
     }
 
     const throttledLazyLoad = throttle(lazyLoad, 16);
 
     lazyLoad();
-    window.addEventListener('scroll', throttledLazyLoad);
-    window.addEventListener('resize', throttledLazyLoad);
+    window.addEventListener("scroll", throttledLazyLoad);
+    window.addEventListener("resize", throttledLazyLoad);
 
     return () => {
-        window.removeEventListener('scroll', throttledLazyLoad);
-        window.removeEventListener('resize', throttledLazyLoad);
+      window.removeEventListener("scroll", throttledLazyLoad);
+      window.removeEventListener("resize", throttledLazyLoad);
     };
   }, []);
 
@@ -112,7 +117,7 @@ export default function GaleriaHome() {
                   : ""
               }`}
             >
-              <img className={`lazy-image ${additionalClass}`} src={item.foto} alt={item.alt} ></img>
+              <Image src={item.foto} alt={`${item.alt}`} width={800} height={800} unoptimized className={`lazy-image ${additionalClass}`} />
             </div>
           );
         })}

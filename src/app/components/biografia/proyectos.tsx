@@ -1,7 +1,7 @@
-/* eslint-disable @next/next/no-img-element */
 'use client';
 
 import Link from "next/link";
+import Image from "next/image";
 import { StaticImage } from "../../ui/Images";
 import { useEffect, useState } from 'react';
 
@@ -44,7 +44,7 @@ export default function Proyectos() {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
       <div className="w-full flex justify-center ">
-        <img src={StaticImage.camera2} alt="conocimientos" className="camera hidden md:block" />
+        <Image src={StaticImage.camera2} alt={StaticImage?.camera2} width={1920} height={1200}  priority={true} className="camera hidden md:block"/>
       </div>
 
       <div className="md:w-9/12 mx-5 md:mx-0">

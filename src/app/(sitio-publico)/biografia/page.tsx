@@ -1,12 +1,12 @@
-/* eslint-disable @next/next/no-img-element */
-
 "use client";
 
 import Proyectos from "@/app/components/biografia/proyectos";
 import SobreMi from "@/app/components/biografia/sobre-mi";
 import Title from "@/app/utility/title";
 import Link from "next/link";
+import Image from "next/image";
 import { useEffect, useState } from "react";
+import ImagenUrl from "@/app/utility/ImagenUrl";
 
 interface ImgBio {
   imgBio: string;
@@ -51,12 +51,14 @@ const Biografia = () => {
                 </div>
               </div>
             </div>
-            <img src={imgBio?.imgBio} className="img-fluid" alt="Biografía" />
+            {imgBio && (
+              <Image src={ImagenUrl(imgBio.imgBio.replace(`${process.env.NEXT_PUBLIC_BACKEND_URL}`, ""))} alt="Biografía" width={1200} height={800} />
+            )}
           </div>
         </div>
       </section>
 
-      <section className="container sobre-mi">
+      <section className="sobre-mi">
         <SobreMi />
       </section>
 

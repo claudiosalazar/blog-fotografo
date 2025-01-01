@@ -32,9 +32,8 @@ export default function SobreMi() {
 
 
   return (
-    // <div className="w-full md:w-96 flex justify-center md:justify-start">
-    <div className="grid grid-cols-1 gap-4">
-      <div className=" md:w-3/5 mx-5 md:mx-0">
+    <div className="grid grid-cols-1">
+      <div className="mx-8 md:mx-32">
         <h2 className='tit-bio'>Sobre mi</h2>
         <p>{bio?.infoBio}</p>
       </div>
