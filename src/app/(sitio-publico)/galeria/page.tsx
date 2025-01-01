@@ -39,4 +39,4 @@ const Galeria = () => {
   );
 }
 
-export default Title(Galeria);
+export default Title(Galeria, 'Galería');

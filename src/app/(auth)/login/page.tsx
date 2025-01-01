@@ -93,4 +93,4 @@ const Login = () => {
   );
 }
 
-export default Title(Login);
+export default Title(Login, "Login");

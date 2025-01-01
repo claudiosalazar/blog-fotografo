@@ -1,10 +1,8 @@
-/* eslint-disable @next/next/no-img-element */
-"use client";
-
-import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
 import Link from "next/link";
-import Loading from "../../../Loading";
+import Image from "next/image";
+import formatoFecha from "@/app/utility/FormatoFecha";
+import formatoUrlTitulo from "@/app/utility/FormatoUrlTitulo";
+import ImagenUrl from "@/app/utility/ImagenUrl";
 
 interface PostData {
   id: string;
@@ -15,92 +13,64 @@ interface PostData {
   alt: string;
 }
 
-export default function NuevasPublicaciones() {
-  const router = useRouter();
-  const [posts, setPosts] = useState<PostData[]>([]);
-  const [imagesLoaded, setImagesLoaded] = useState<{ [key: string]: boolean }>({});
+const UltimosPost = async () => {
+  const BASE_URL = process.env.NEXT_PUBLIC_BACKEND_URL || "https://blog-fotografo.claudiosalazar.cl/backend/public/";
+  const url = `${BASE_URL}postInicio`;
+  let posts: PostData[] = [];
 
-  const BASE_URL = "http://localhost:3001";
+  try {
+    const response = await fetch(url);
 
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (!token) {
-      // Eliminar todos los archivos CSS cargados en el navegador
-      const stylesheets = document.querySelectorAll('link[rel="stylesheet"]');
-      stylesheets.forEach((sheet) => {
-        if ((sheet as HTMLLinkElement).href.includes("dashboard/layout.css")) {
-          sheet.remove();
-        }
-      });
-
-      // Asegurarse de que globals.scss esté cargado
-      const globalStyle = document.querySelector('link[rel="stylesheet"]');
-      if (!globalStyle) {
-        const link = document.createElement("link");
-        link.rel = "stylesheet";
-        link.href = "/layout.css";
-        document.head.appendChild(link);
-      }
-
-      // Redirigir al path '/' y recargar la página
-      router.push("/");
-    } else {
-      fetchPosts();
+    if (!response.ok) {
+      throw new Error("Failed to fetch posts data");
     }
-  }, [router]);
 
-  const fetchPosts = async () => {
-    try {
-      const response = await fetch("http://localhost:3001/post");
-      if (response.ok) {
-        const result = await response.json();
-        console.log("Datos de posts obtenidos del backend:", result);
-        setPosts(result || []);
-      } else {
-        const errorData = await response.json();
-        console.error("Failed to fetch posts data:", errorData.message);
-      }
-    } catch (error) {
-      console.error("Error fetching posts data:", error);
-    }
-  };
-
-  const handleImageLoad = (id: string) => {
-    setImagesLoaded((prev) => ({ ...prev, [id]: true }));
-  };
+    posts = await response.json();
+  } catch (error) {
+    console.error("Error fetching posts data:", error);
+    return (
+      <div className="w-full px-4">
+        <p className="text-red-500">Failed to fetch posts data</p>
+      </div>
+    );
+  }
 
   return (
     <>
-      <div className="grid grid-cols-1 card">
-        <h2 className="flex items-center">
-          <span className="ico-tit-txt"></span>
-          <span className="titulo-seccion">Últimas publicaciones</span>
-        </h2>
+      <div className="grid grid-cols-1">
+        <h2>Últimas publicaciones</h2>
+      </div>
 
-        <div className="grid grid-cols-3 gap-4">
-          {posts.slice(0, 3).map((post) => (
-            <div key={post.id} className="h-fit">
-              <div className="card-post-resumen">
-                <div className="contenedor-imagenes-dashboard card-img-top">
-                  {!imagesLoaded[post.id] && <Loading isLoading={true} onLoaded={() => {}} />}
-                  <img src={post.imgPost ? `${BASE_URL}${post.imgPost}` : ""} alt={post.alt || "Imagen de la publicación"} className={`card-img-top ${!imagesLoaded[post.id] ? 'hidden' : ''}`} onLoad={() => handleImageLoad(post.id)} />
-                </div>
-                <div className="card-body">
-                  <small>Publicado el {post.fecha}</small>
-                  <h5 className="resumen-post">{post.tituloPost}</h5>
-                  <p>{post.contenido}</p>
-                </div>
-              </div>
+      <div className="grid grid-cols-1 gap-1 md:grid-cols-3 md:gap-6 mx-5 md:mx-0">
+        {posts.map((post) => (
+          <div key={post.id}>
+            <div className="post-inicio shadow-md rounded-lg overflow-hidden">
+              <Link href={`/blog/${formatoUrlTitulo(post.tituloPost)}`} className="link-blog">
+                <Image src={ImagenUrl(post.imgPost)} alt={`${post.tituloPost}`} width={800} height={800} unoptimized />
+                <span className="fecha-post">
+                  {formatoFecha(post.fecha)}
+                </span>
+                <h3>
+                  {post.tituloPost}
+                </h3>
+                <p className="text-gray-700 mt-2">{post.contenido}</p>
+              </Link>
+              <Link href={`/blog/${formatoUrlTitulo(post.tituloPost)}`} className="link more mb-10 md:mb-0">
+                <span className="d-block">Leer más</span>
+                <span className="d-block ico-more"></span>
+              </Link>
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
+      </div>
 
-        <div className="flex justify-end botonera">
-          <Link href="/panel-de-administracion/blog" className="btn primario dashboard">
-            Ver todas las publicaciones
-          </Link>
-        </div>
+      <div className="w-full px-4 flex justify-center">
+        <Link href="/blog" className="btn primario">
+          Ver mas
+        </Link>
       </div>
     </>
   );
 }
+
+export default UltimosPost;

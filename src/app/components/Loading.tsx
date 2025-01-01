@@ -1,20 +1,6 @@
-import { useEffect, useState } from "react";
-
-const Loading = ({ isLoading, onLoaded }: { isLoading: boolean, onLoaded: () => void }) => {
-  const [visible, setVisible] = useState(true);
-
-  useEffect(() => {
-    if (!isLoading) {
-      const timer = setTimeout(() => {
-        setVisible(false);
-        onLoaded();
-      }, 100); // Duración de la transición
-      return () => clearTimeout(timer);
-    }
-  }, [isLoading, onLoaded]);
-
+const Loading = () => {
   return (
-    <div className={`loading-container ${!isLoading ? 'fade-out' : ''}`} style={{ display: visible ? 'block' : 'none' }}>
+    <div className="loading-container">
       <div className="flex justify-center items-center h-full">
         <div role="status">
           <svg

@@ -1,9 +1,5 @@
-"use client";
-
-import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import throttle from "lodash.throttle";
 
 interface GaleriaData {
   id: number;
@@ -12,82 +8,27 @@ interface GaleriaData {
   alt: string;
 }
 
-export default function GaleriaHome() {
-  const [galeria, setGaleria] = useState<GaleriaData[]>([]);
-  const [error, setError] = useState<string | null>(null);
+const GaleriaHome = async () => {
+  const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}galeria`;
+  const response = await fetch(url);
+  const galeria: GaleriaData[] = await response.json();
 
-  useEffect(() => {
-    const fetchGaleria = async () => {
-      try {
-        const response = await fetch(
-          `${process.env.NEXT_PUBLIC_BACKEND_URL}galeria`
-        );
-        if (response.ok) {
-          const result = await response.json();
-          // console.log("Datos de galeria obtenidos del backend:", result);
-          setGaleria(result);
-        } else {
-          const errorData = await response.json();
-          setError(errorData.message);
-          console.error("Failed to fetch galeria data:", errorData.message);
-        }
-      } catch (error) {
-        setError("Error fetching galeria data");
-        console.error("Error fetching galeria data:", error);
-      }
-    };
-
-    fetchGaleria();
-  }, []);
-
-  useEffect(() => {
-    const lazyImages = Array.from(
-      document.querySelectorAll(".lazy-image")
-    ) as HTMLImageElement[];
-    const inAdvance = 300;
-
-    function lazyLoad() {
-      lazyImages.forEach((image) => {
-        if (
-          image.offsetTop <
-          window.innerHeight + window.pageYOffset + inAdvance
-        ) {
-          // console.log('Cargando imagen:', image.dataset.src);
-          image.src = image.dataset.src || "";
-          image.onload = () => image.classList.add("loaded");
-        }
-      });
-
-      // Remove event listeners if all images are loaded
-      if (lazyImages.every((image) => image.classList.contains("loaded"))) {
-        window.removeEventListener("scroll", throttledLazyLoad);
-        window.removeEventListener("resize", throttledLazyLoad);
-      }
-    }
-
-    const throttledLazyLoad = throttle(lazyLoad, 16);
-
-    lazyLoad();
-    window.addEventListener("scroll", throttledLazyLoad);
-    window.addEventListener("resize", throttledLazyLoad);
-
-    return () => {
-      window.removeEventListener("scroll", throttledLazyLoad);
-      window.removeEventListener("resize", throttledLazyLoad);
-    };
-  }, []);
+  if (!response.ok) {
+    return (
+      <div className="row">
+        <div className="column-10 px-4">
+          <h2>Ultimas fotografías</h2>
+          <p className="text-red-500">Failed to fetch galeria data</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="row">
       <div className="column-10 px-4">
         <h2>Ultimas fotografías</h2>
       </div>
-
-      {error && (
-        <div className="col-10">
-          <p className="text-red-500">{error}</p>
-        </div>
-      )}
 
       <div className="gallery mx-5 md:mx-0">
         {galeria.slice(0, 6).map((item, index) => {
@@ -131,3 +72,5 @@ export default function GaleriaHome() {
     </div>
   );
 }
+
+export default GaleriaHome;

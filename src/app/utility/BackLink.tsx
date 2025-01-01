@@ -1,22 +1,17 @@
-"use client";
-
+import Link from "next/link";
 import React from "react";
 
 interface ButtonProps {
   children: React.ReactNode;
   className?: string;
+  href?: string;
 }
 
-const BackLink: React.FC<ButtonProps> = ({ children, className = '' }) => {
-  const handleBackClick = (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
-    event.preventDefault();
-    window.history.back();
-  };
-
+const BackLink: React.FC<ButtonProps> = ({ children, className = '', href = '#' }) => {
   return (
-    <a href="#" className={`${className}`} onClick={handleBackClick}>
+    <Link href={href} className={`${className}`}>
       {children}
-    </a>
+    </Link>
   );
 };
 

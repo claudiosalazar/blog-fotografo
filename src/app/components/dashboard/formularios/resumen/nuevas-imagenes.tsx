@@ -1,170 +1,86 @@
-"use client";
-
-import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import Loading from "../../../Loading";
+import ImagenUrl from "@/app/utility/ImagenUrl";
 
-interface AlbumPaisajes {
+interface GaleriaData {
   id: number;
   album: string;
   foto: string;
   alt: string;
 }
 
-interface AlbumPersonas {
-  id: number;
-  album: string;
-  foto: string;
-  alt: string;
-}
+const GaleriaHome = async () => {
+  const BASE_URL = process.env.NEXT_PUBLIC_BACKEND_URL || "https://blog-fotografo.claudiosalazar.cl/backend/public/";
+  const url = `${BASE_URL}galeria`;
+  let galeria: GaleriaData[] = [];
 
-interface AlbumAnimales {
-  id: number;
-  album: string;
-  foto: string;
-  alt: string;
-}
+  try {
+    const response = await fetch(url);
 
-const NuevasImagenes = () => {
-  const [paisajes, setPaisajes] = useState<AlbumPaisajes[]>([]);
-  const [personas, setPersonas] = useState<AlbumPersonas[]>([]);
-  const [animales, setAnimales] = useState<AlbumAnimales[]>([]);
-  const [imagesLoaded, setImagesLoaded] = useState<{ [key: number]: boolean }>({});
+    if (!response.ok) {
+      throw new Error("Failed to fetch galeria data");
+    }
 
-  useEffect(() => {
-    const fetchGaleriaPaisajes = async () => {
-      try {
-        const response = await fetch("http://localhost:3001/galeriaPaisajes");
-        if (response.ok) {
-          const result = await response.json();
-          setPaisajes(result.slice(0, 4)); // Limita a 4 elementos
-        } else {
-          const errorData = await response.json();
-          console.error(
-            "Error fetching galeriaPaisajes data:",
-            errorData.message
-          );
-        }
-      } catch (error) {
-        console.error("Error fetching galeriaPaisajes data:", error);
-      }
-    };
-
-    const fetchGaleriaPersonas = async () => {
-      try {
-        const response = await fetch("http://localhost:3001/galeriaPersonas");
-        if (response.ok) {
-          const result = await response.json();
-          setPersonas(result.slice(0, 4)); // Limita a 4 elementos
-        } else {
-          const errorData = await response.json();
-          console.error(
-            "Error fetching galeriaPersonas data:",
-            errorData.message
-          );
-        }
-      } catch (error) {
-        console.error("Error fetching galeriaPersonas data:", error);
-      }
-    };
-
-    const fetchGaleriaAnimales = async () => {
-      try {
-        const response = await fetch("http://localhost:3001/galeriaAnimales");
-        if (response.ok) {
-          const result = await response.json();
-          setAnimales(result.slice(0, 4)); // Limita a 4 elementos
-        } else {
-          const errorData = await response.json();
-          console.error(
-            "Error fetching galeriaAnimales data:",
-            errorData.message
-          );
-        }
-      } catch (error) {
-        console.error("Error fetching galeriaAnimales data:", error);
-      }
-    };
-
-    const fetchData = async () => {
-      await Promise.all([
-        fetchGaleriaPaisajes(),
-        fetchGaleriaPersonas(),
-        fetchGaleriaAnimales(),
-      ]);
-    };
-
-    fetchData();
-  }, []);
-
-  const handleImageLoad = (id: number) => {
-    setImagesLoaded((prev) => ({ ...prev, [id]: true }));
-  };
+    galeria = await response.json();
+  } catch (error) {
+    console.error("Error fetching galeria data:", error);
+    return (
+      <div className="row">
+        <div className="column-10 px-4">
+          <h2>Ultimas fotografías</h2>
+          <p className="text-red-500">Failed to fetch galeria data</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
-    <>
-      <div className="grid grid-cols-1 card relative">
-        <h2 className="flex items-center">
-          <span className="ico-tit-gallery"></span>
-          <span className="titulo-seccion">Últimas imágenes publicadas</span>
-        </h2>
-        <div className="card gris mb-5">
-            <h3>
-              <span>Album Paisajes</span>
-              <span>|</span>
-              <Link href="#">Ver album</Link>
-            </h3>
-            <div className="grid grid-cols-4 gap-4">
-              {paisajes.map((item) => (
-                <div key={item.id} className="relative contenedor-imagenes-dashboard formato-1">
-                  {!imagesLoaded[item.id] && <Loading isLoading={true} onLoaded={() => {}} />}
-                  <Image src={item.foto} alt={item.alt} width={1920} height={1200}  priority={true} className={`rounded-md formato-1 ${!imagesLoaded[item.id] ? 'hidden' : ''}`} onLoad={() => handleImageLoad(item.id)}/>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div className="card gris mb-5">
-            <h3>
-              <span>Album Personas</span>
-              <span>|</span>
-              <Link href="#">Ver album</Link>
-            </h3>
-            <div className="grid grid-cols-4 gap-4">
-              {personas.map((item) => (
-                <div key={item.id} className="relative contenedor-imagenes-dashboard formato-1">
-                  {!imagesLoaded[item.id] && <Loading isLoading={true} onLoaded={() => {}} />}
-                  <Image src={item.foto} alt={item.alt} width={1920} height={1200}  priority={true} className={`rounded-md formato-1 ${!imagesLoaded[item.id] ? 'hidden' : ''}`} onLoad={() => handleImageLoad(item.id)}/>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div className="card gris">
-            <h3>
-              <span>Album Animales</span>
-              <span>|</span>
-              <Link href="#">Ver album</Link>
-            </h3>
-            <div className="grid grid-cols-4 gap-4">
-              {animales.map((item) => (
-                <div key={item.id} className="relative contenedor-imagenes-dashboard formato-1">
-                  {!imagesLoaded[item.id] && <Loading isLoading={true} onLoaded={() => {}} />}
-                  <Image src={item.foto} alt={item.alt} width={1920} height={1200}  priority={true} className={`rounded-md formato-1 ${!imagesLoaded[item.id] ? 'hidden' : ''}`} onLoad={() => handleImageLoad(item.id)}/>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div className="flex justify-end botonera">
-            <Link href="/galeria" className="btn primario dashboard">
-              Ver todas las imágenes
-            </Link>
-          </div>
+    <div className="row">
+      <div className="column-10 px-4">
+        <h2>Ultimas fotografías</h2>
       </div>
-    </>
-  );
-};
 
-export default NuevasImagenes;
+      <div className="gallery mx-5 md:mx-0">
+        {galeria.slice(0, 6).map((item, index) => {
+          let additionalClass = "";
+          if (index === 0) {
+            additionalClass = "inicio";
+          } else if (index === 2) {
+            additionalClass = "medio";
+          } else if (index === 4) {
+            additionalClass = "final";
+          }
+
+          return (
+            <div
+              key={index}
+              className={`image ${
+                index === 0
+                  ? "vertical"
+                  : index === 1 || index === 2
+                  ? "big"
+                  : index === 3
+                  ? "medio"
+                  : index === 4
+                  ? "horizontal"
+                  : index === 5
+                  ? "small"
+                  : ""
+              }`}
+            >
+              <Image src={ImagenUrl(item.foto)} alt={`${item.alt}`} width={800} height={800} unoptimized className={`lazy-image ${additionalClass}`} />
+            </div>
+          );
+        })}
+      </div>
+
+      <div className="w-full px-4 flex justify-center">
+        <Link href="/galeria" className="btn primario">
+          Ir a galeria
+        </Link>
+      </div>
+    </div>
+  );
+}
+
+export default GaleriaHome;

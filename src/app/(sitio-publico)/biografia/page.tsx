@@ -1,40 +1,24 @@
-"use client";
-
 import Proyectos from "@/app/components/biografia/proyectos";
 import SobreMi from "@/app/components/biografia/sobre-mi";
 import Title from "@/app/utility/title";
 import Link from "next/link";
 import Image from "next/image";
-import { useEffect, useState } from "react";
 import ImagenUrl from "@/app/utility/ImagenUrl";
 
 interface ImgBio {
   imgBio: string;
 }
 
-const Biografia = () => {
-  const [imgBio, setImgBio] = useState<ImgBio | null>(null);
+const Biografia = async () => {
+  const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}imagenBiografia`;
+  const response = await fetch(url);
+  const data: ImgBio[] = await response.json();
 
-  useEffect(() => {
-    const fetchImgBio = async () => {
-      try {
-        const response = await fetch(
-          `${process.env.NEXT_PUBLIC_BACKEND_URL}imagenBiografia`
-        );
-        if (response.ok) {
-          const result = await response.json();
-          setImgBio(result[0]);
-        } else {
-          const errorData = await response.json();
-          console.error("Failed to fetch data:", errorData.message);
-        }
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
+  if (!response.ok) {
+    return <div>Error: Failed to fetch imagenBiografia data</div>;
+  }
 
-    fetchImgBio();
-  }, []);
+  const imgBio = data[0];
 
   return (
     <>
@@ -123,4 +107,4 @@ const Biografia = () => {
   );
 }
 
-export default Title(Biografia);
+export default Title(Biografia, "Biografía");
