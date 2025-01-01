@@ -66,35 +66,39 @@ const PostPage = async ({ params }: { params: { tituloPost: string } }) => {
       <hr className="hidden md:block mb-20" />
 
       <section className="post-nav w-10/12 md:w-4/5">
-        {prevPost && (
-          <Link href={`/blog/${formatoUrlTitulo(prevPost.tituloPost)}`} className="link">
-            <div className="post-anterior">
-              <Image src={ImagenUrl(prevPost.imgPost)} alt={prevPost.alt} width={800} height={800} className="size-image" priority={true} />
-              <div className="info">
-                <span className="ico-anterior mb-2"></span>
-                <span className="fecha-post-anterior">
-                  {formatoFecha(prevPost.fecha)}
-                </span>
-                <p className="d-block">{prevPost.tituloPost}</p>
+        <div className="contenedor-post-anterior">
+          {prevPost && (
+            <Link href={`/blog/${formatoUrlTitulo(prevPost.tituloPost)}`}>
+              <div className="post-anterior">
+                <Image src={ImagenUrl(prevPost.imgPost)} alt={prevPost.alt} width={800} height={800} className="size-image" priority={true} />
+                <div className="info">
+                  <span className="ico-anterior mb-2"></span>
+                  <span className="fecha-post-anterior">
+                    {formatoFecha(prevPost.fecha)}
+                  </span>
+                  <p className="d-block">{prevPost.tituloPost}</p>
+                </div>
               </div>
-            </div>
-          </Link>
-        )}
+            </Link>
+          )}
+        </div>
 
-        {nextPost && (
-          <Link href={`/blog/${formatoUrlTitulo(nextPost.tituloPost)}`} className="link">
-            <div className="post-siguiente">
-              <Image src={ImagenUrl(nextPost.imgPost)} alt={nextPost.alt} width={800} height={800} className="size-image" priority={true} />
-              <div className="info">
-                <span className="ico-siguiente mb-2"></span>
-                <span className="fecha-post-siguiente">
-                  {formatoFecha(nextPost.fecha)}
-                </span>
-                <p className="d-block text-end">{nextPost.tituloPost}</p>
+        <div className="contenedor-post-siguiente">
+          {nextPost && (
+            <Link href={`/blog/${formatoUrlTitulo(nextPost.tituloPost)}`}>
+              <div className="post-siguiente">
+                <Image src={ImagenUrl(nextPost.imgPost)} alt={nextPost.alt} width={800} height={800} className="size-image" priority={true} />
+                <div className="info">
+                  <span className="ico-siguiente mb-2"></span>
+                  <span className="fecha-post-siguiente">
+                    {formatoFecha(nextPost.fecha)}
+                  </span>
+                  <p className="d-block text-end">{nextPost.tituloPost}</p>
+                </div>
               </div>
-            </div>
-          </Link>
-        )}
+            </Link>
+          )}
+        </div>
       </section>
     </>
   );
