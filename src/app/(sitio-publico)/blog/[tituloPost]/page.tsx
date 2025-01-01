@@ -37,23 +37,15 @@ const PostPage = async ({ params }: { params: { tituloPost: string } }) => {
         className="post-detalle w-10/12 md:w-4/5 d-block"
       >
         <div className="post-header">
-          <BackLink className="post-header-volver">
+        <BackLink className="post-header-volver">
             <div className="icono"></div>
-          </BackLink>{" "}
-          {/* Usa el nuevo componente */}
+          </BackLink>
           <div className="post-header-datos">
             <small>{formatoFecha(postItem.fecha)}</small>
             <h2>{postItem.tituloPost}</h2>
           </div>
           <div className="post-header-image">
-            <Image
-              src={ImagenUrl(postItem.imgPost)}
-              alt={postItem.alt || "Imagen de la publicación"}
-              fill
-              sizes={"100%, auto"}
-              className="size-image"
-              priority={true}
-            />
+            <Image src={ImagenUrl(postItem.imgPost)} alt={postItem.alt || "Imagen de la publicación"} width={800} height={800} className="imagen-detalle-post" priority={true} />
           </div>
         </div>
         <div className="post-body">
@@ -70,7 +62,7 @@ const PostPage = async ({ params }: { params: { tituloPost: string } }) => {
           {prevPost && (
             <Link href={`/blog/${formatoUrlTitulo(prevPost.tituloPost)}`}>
               <div className="post-anterior">
-                <Image src={ImagenUrl(prevPost.imgPost)} alt={prevPost.alt} width={800} height={800} className="size-image" priority={true} />
+                <Image src={ImagenUrl(prevPost.imgPost)} alt={prevPost.alt} width={800} height={800} priority={true} />
                 <div className="info">
                   <span className="ico-anterior mb-2"></span>
                   <span className="fecha-post-anterior">
@@ -87,7 +79,7 @@ const PostPage = async ({ params }: { params: { tituloPost: string } }) => {
           {nextPost && (
             <Link href={`/blog/${formatoUrlTitulo(nextPost.tituloPost)}`}>
               <div className="post-siguiente">
-                <Image src={ImagenUrl(nextPost.imgPost)} alt={nextPost.alt} width={800} height={800} className="size-image" priority={true} />
+                <Image src={ImagenUrl(nextPost.imgPost)} alt={nextPost.alt} width={800} height={800} priority={true} />
                 <div className="info">
                   <span className="ico-siguiente mb-2"></span>
                   <span className="fecha-post-siguiente">

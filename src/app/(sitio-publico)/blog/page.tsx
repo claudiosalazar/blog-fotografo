@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import formatoUrlTitulo from "@/app/utility/FormatoUrlTitulo";
 import formatoFecha from "@/app/utility/FormatoFecha";
+import ImagenUrl from "@/app/utility/ImagenUrl";
 
 interface Post {
   id: string;
@@ -16,12 +17,6 @@ const Blog = async () => {
   const response = await fetch(url);
   const posts: Post[] = await response.json();
 
-  const getImageUrl = (imgPath: string): string => {
-    if (!imgPath) return "";
-    const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL || "";
-    return `${backendUrl.replace(/\/$/, "")}/${imgPath.replace(/^\//, "")}`;
-  };
-
   return (
     <>
       <section className="post-lista">
@@ -32,7 +27,7 @@ const Blog = async () => {
           {posts.map((post) => (
             <div key={post.id} className="col-10 offset-1 col-md-6 offset-md-0 col-lg-4" >
               <div className="post-lista-item">
-              <Image src={getImageUrl(post.imgPost)} alt={`${post.tituloPost}`}  width={800} height={800} layout="responsive" unoptimized/>
+              <Image src={ImagenUrl(post.imgPost)} alt={`${post.tituloPost}`}  width={800} height={800} layout="responsive" unoptimized className="imagen-lista"/>
                 <Link href={`/blog/${formatoUrlTitulo(post.tituloPost)}`} className="link-blog" >
                   <span className="fecha-post">
                     {formatoFecha(post.fecha)}
