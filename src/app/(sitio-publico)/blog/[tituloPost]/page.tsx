@@ -14,28 +14,42 @@ interface Post {
   alt: string;
 }
 
-const PostPage = async ({ params }: { params: { tituloPost: string } }) => {
+export const generateStaticParams = async () => {
+  const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}post`;
+  const response = await fetch(url);
+  const posts: Post[] = await response.json();
+
+  return posts.map((post) => ({
+    tituloPost: formatoUrlTitulo(post.tituloPost),
+  }));
+};
+
+export type ParamsType = Promise<{ tituloPost: string }>;
+
+const PostPage = async ({ params }: { params: ParamsType }) => {
   const { tituloPost } = await params;
   const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}post`;
   const response = await fetch(url);
   const posts: Post[] = await response.json();
-  const postIndex = posts.findIndex(
-    (post) => formatoUrlTitulo(post.tituloPost) === tituloPost
-  );
-  const postItem = posts[postIndex];
+  const postItem = posts.find(post => formatoUrlTitulo(post.tituloPost) === tituloPost);
+  const postIndex = posts.findIndex(post => formatoUrlTitulo(post.tituloPost) === tituloPost);
   const prevPost = postIndex > 0 ? posts[postIndex - 1] : null;
   const nextPost = postIndex < posts.length - 1 ? posts[postIndex + 1] : null;
 
   if (!postItem) {
-    return <p>Post no encontrado</p>;
+    return (
+      <div className="post-no-encontrado">
+        <p>Post no encontrado</p>
+        <Link href="/blog" className="btn primario">
+          Volver al Blog
+        </Link>
+      </div>
+    );
   }
 
   return (
     <>
-      <section
-        key={postItem.id}
-        className="post-detalle w-10/12 md:w-4/5 d-block"
-      >
+      <section key={postItem.id} className="post-detalle w-10/12 md:w-4/5 d-block">
         <div className="post-header">
         <BackLink className="post-header-volver">
             <div className="icono"></div>
