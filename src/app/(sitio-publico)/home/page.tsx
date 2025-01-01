@@ -7,7 +7,7 @@ const Inicio = async () => {
   return (
     <>
       <div className="container p-0">
-        {/* <Carousel /> */}
+        <Carousel />
       </div>
 
       <section className="container inicio">
