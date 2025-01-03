@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { StaticImage } from "../../ui/Images";
 import fetchData from "@/app/utility/fetchData";
-import ListaProyectos from "./ListaProyectos";
+import ListaProyectos from "../biografia/ListaProyectos";
 
 interface Proyecto {
   id: string;
