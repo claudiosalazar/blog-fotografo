@@ -3,7 +3,7 @@ import Link from "next/link";
 import formatoUrlTitulo from "@/app/utility/FormatoUrlTitulo";
 import formatoFecha from "@/app/utility/FormatoFecha";
 import BackLink from "@/app/utility/BackLink";
-import ImagenUrl from "@/app/utility/ImagenUrl";
+import getImagenUrl from "@/app/utility/UseImagenUrl";
 // import fetchData from "@/app/utility/fetchData";
 
 interface Post {
@@ -87,7 +87,7 @@ const PostPage = async ({ params }: { params: ParamsType }) => {
             <h2>{postItem.tituloPost}</h2>
           </div>
           <div className="post-header-image">
-            <Image src={ImagenUrl(postItem.imgPost)} alt={postItem.alt || "Imagen de la publicación"} width={800} height={800} className="imagen-detalle-post" unoptimized />
+            <Image src={getImagenUrl(postItem.imgPost)} alt={postItem.alt || "Imagen de la publicación"} width={800} height={800} className="imagen-detalle-post" unoptimized />
           </div>
         </div>
         <div className="post-body">
@@ -104,7 +104,7 @@ const PostPage = async ({ params }: { params: ParamsType }) => {
           {prevPost && (
             <Link href={`/blog/${formatoUrlTitulo(prevPost.tituloPost)}`}>
               <div className="post-anterior">
-                <Image src={ImagenUrl(prevPost.imgPost)} alt={prevPost.alt} width={800} height={800} unoptimized />
+                <Image src={getImagenUrl(prevPost.imgPost)} alt={prevPost.alt} width={800} height={800} unoptimized />
                 <div className="info">
                   <span className="ico-anterior mb-2"></span>
                   <span className="fecha-post-anterior">
@@ -121,7 +121,7 @@ const PostPage = async ({ params }: { params: ParamsType }) => {
           {nextPost && (
             <Link href={`/blog/${formatoUrlTitulo(nextPost.tituloPost)}`}>
               <div className="post-siguiente">
-                <Image src={ImagenUrl(nextPost.imgPost)} alt={nextPost.alt} width={800} height={800} unoptimized />
+                <Image src={getImagenUrl(nextPost.imgPost)} alt={nextPost.alt} width={800} height={800} unoptimized />
                 <div className="info">
                   <span className="ico-siguiente mb-2"></span>
                   <span className="fecha-post-siguiente">

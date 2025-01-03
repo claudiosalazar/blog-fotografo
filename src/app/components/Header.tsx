@@ -153,9 +153,9 @@ export default function Header() {
             ))}
           </div>
           <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-            <Link href="/login" className="btn dashboard-header" onClick={handleLinkClick}>
+            {/* <Link href="/login" className="btn dashboard-header" onClick={handleLinkClick}>
               Dashboard
-            </Link>
+            </Link> */}
           </div>
         </nav>
 
@@ -174,11 +174,11 @@ export default function Header() {
                   </span>
                 ))}
               </div>
-              <div className="py-6 w-full px-4 flex justify-center">
-              <Link href="/login" className="btn dashboard-header" onClick={handleLinkClick}>
-                Dashboard
-              </Link>
-              </div>
+              {/* <div className="py-6 w-full px-4 flex justify-center">
+                <Link href="/login" className="btn dashboard-header" onClick={handleLinkClick}>
+                  Dashboard
+                </Link>
+              </div> */}
             </div>
           </div>
         </div>
