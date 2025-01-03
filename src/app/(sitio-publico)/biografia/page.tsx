@@ -1,4 +1,4 @@
-import Proyectos from "@/app/components/inicio/Proyectos";
+import Proyectos from "@/app/components/biografia/Proyectos";
 import SobreMi from "@/app/components/biografia/SobreMi";
 import Title from "@/app/utility/title";
 import Link from "next/link";
