@@ -1,11 +1,11 @@
+// filepath: /Users/claudiosv/Sites/Next/blog-fotografo/v3/src/app/utility/fetchData.tsx
 const fetchData = async (endpoint: string) => {
-  const BASE_URL = process.env.BASE_URL;
-  console.log('BASE_URL:', BASE_URL);
-  if (!BASE_URL) {
+  const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL;
+  if (!BACKEND_URL) {
     throw new Error('NEXT_PUBLIC_BACKEND_URL is not defined');
   }
 
-  const url = `${BASE_URL}${endpoint}`;
+  const url = `${BACKEND_URL}${endpoint}`;
   const response = await fetch(url);
 
   if (!response.ok) {

@@ -1,5 +1,5 @@
 import Image from "next/image";
-import TextoBienvenida from "./texto-bienvenida";
+import TextoBienvenida from "./TextoBienvenida";
 import fetchData from "@/app/utility/fetchData";
 import ImagenUrl from "@/app/utility/ImagenUrl";
 
@@ -16,8 +16,6 @@ const Carousel = async () => {
   } catch {
     return <div>Error al obtener los datos</div>;
   }
-
-  const [firstImage, secondImage, thirdImage] = imagenes;
 
   // let img1 = true;
   // let img2 = false;
@@ -49,13 +47,13 @@ const Carousel = async () => {
       <TextoBienvenida />
       <div className="carousel-contenido">
         <div className="carousel-item">
-          <Image src={ImagenUrl(firstImage.imgCarousel)} alt="Carousel image 1" width={1920} height={1080} unoptimized />
+          <Image src={ImagenUrl(imagenes[0]?.imgCarousel)} alt="Carousel image 1" width={1920} height={1080} unoptimized />
         </div>
         <div className="carousel-item">
-          <Image src={ImagenUrl(secondImage.imgCarousel)} alt="Carousel image 2" width={1920} height={1080} unoptimized />
+          <Image src={ImagenUrl(imagenes[1]?.imgCarousel)} alt="Carousel image 2" width={1920} height={1080} unoptimized />
         </div>
         <div className="carousel-item">
-          <Image src={ImagenUrl(thirdImage.imgCarousel)} alt="Carousel image 3" width={1920} height={1080} unoptimized />
+          <Image src={ImagenUrl(imagenes[2]?.imgCarousel)} alt="Carousel image 3" width={1920} height={1080} unoptimized />
         </div>
       </div>
     </div>

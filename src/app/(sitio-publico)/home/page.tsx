@@ -1,7 +1,7 @@
 import Carousel from "@/app/components/inicio/Carousel";
-import GaleriaHome from "../../components/inicio/ultimas-imagenes";
-import UltimosPost from "../../components/inicio/ultimos-post";
 import Title from "@/app/utility/title";
+import GaleriaHome from "@/app/components/inicio/UltimasImagenes";
+import UltimosPost from "@/app/components/inicio/UltimosPost";
 
 const Inicio = async () => {
   return (

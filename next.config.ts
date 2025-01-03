@@ -1,8 +1,7 @@
-/** @type {import('next').NextConfig} */
-const nextConfig: import('next').NextConfig = {
+import type { NextConfig } from "next";
+
+const nextConfig: NextConfig = {
   distDir: 'prod',
-  reactStrictMode: true,
-  trailingSlash: true,
   output: 'export',
 };
 
