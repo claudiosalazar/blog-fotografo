@@ -1,27 +1,22 @@
 import Link from "next/link";
 import Image from "next/image";
+import fetchData from "@/app/utility/fetchData";
+import ImagenUrl from "@/app/utility/ImagenUrl";
 
 interface GaleriaData {
-  id: number;
+  id: string;
   album: string;
   foto: string;
   alt: string;
 }
 
 const GaleriaHome = async () => {
-  const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}galeria`;
-  const response = await fetch(url);
-  const galeria: GaleriaData[] = await response.json();
+  let galeria: GaleriaData[] = [];
 
-  if (!response.ok) {
-    return (
-      <div className="row">
-        <div className="column-10 px-4">
-          <h2>Ultimas fotografías</h2>
-          <p className="text-red-500">Failed to fetch galeria data</p>
-        </div>
-      </div>
-    );
+  try {
+    galeria = await fetchData("galeria");
+  } catch {
+    return <div>Error al obtener los datos</div>;
   }
 
   return (
@@ -58,7 +53,7 @@ const GaleriaHome = async () => {
                   : ""
               }`}
             >
-              <Image src={item.foto} alt={`${item.alt}`} width={800} height={800} unoptimized className={`lazy-image ${additionalClass}`} />
+              <Image src={ImagenUrl(item.foto)} alt={item.alt} width={800} height={800} unoptimized className={`lazy-image ${additionalClass}`} />
             </div>
           );
         })}

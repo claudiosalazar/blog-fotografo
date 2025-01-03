@@ -1,5 +1,6 @@
 import Link from "next/link";
-import ImageGallery from "@/app/components/Image-gallery";
+import ImageGallery from "@/app/components/galerias/ImageGallery";
+import fetchData from "@/app/utility/fetchData";
 import Title from "@/app/utility/title";
 
 interface GaleriaData {
@@ -10,17 +11,14 @@ interface GaleriaData {
 }
 
 const GaleriaPaisajes = async () => {
-  const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}galeriaPaisajes`;
-  const response = await fetch(url);
-  const galeria: GaleriaData[] = await response.json();
+  let data: GaleriaData[] = [];
 
-  if (!response.ok) {
-    return <div>Error: Failed to fetch galeriaPaisajes data</div>;
+  try {
+    data = await fetchData("galeriaPaisajes");
+  } catch {
+    return <div>Error al obtener los datos</div>;
   }
 
-  if (galeria.length === 0) {
-    return null;
-  }
 
   return (
     <>
@@ -32,7 +30,7 @@ const GaleriaPaisajes = async () => {
           </h1>
         </div>
         <div className="mx-6 md:mx-12">
-          <ImageGallery images={galeria} />
+          <ImageGallery images={data} />
         </div>
       </section>
     </>

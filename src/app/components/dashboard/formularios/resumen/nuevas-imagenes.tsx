@@ -10,7 +10,7 @@ interface GaleriaData {
 }
 
 const GaleriaHome = async () => {
-  const BASE_URL = process.env.NEXT_PUBLIC_BACKEND_URL || "https://blog-fotografo.claudiosalazar.cl/backend/public/";
+  const BASE_URL = process.env.NEXT_PUBLIC_BACKEND_URL || "https://blog-fotografo.claudiosalazar.cl/";
   const url = `${BASE_URL}galeria`;
   let galeria: GaleriaData[] = [];
 

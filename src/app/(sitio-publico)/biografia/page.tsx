@@ -1,21 +1,22 @@
-import Proyectos from "@/app/components/biografia/proyectos";
-import SobreMi from "@/app/components/biografia/sobre-mi";
+import Proyectos from "@/app/components/biografia/Proyectos";
+import SobreMi from "@/app/components/biografia/SobreMi";
 import Title from "@/app/utility/title";
 import Link from "next/link";
 import Image from "next/image";
 import ImagenUrl from "@/app/utility/ImagenUrl";
+import fetchData from "@/app/utility/fetchData";
 
 interface ImgBio {
   imgBio: string;
 }
 
 const Biografia = async () => {
-  const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}imagenBiografia`;
-  const response = await fetch(url);
-  const data: ImgBio[] = await response.json();
+  let data: ImgBio[] = [];
 
-  if (!response.ok) {
-    return <div>Error: Failed to fetch imagenBiografia data</div>;
+  try {
+    data = await fetchData("imagenBiografia");
+  } catch {
+    return <div>Error al obtener los datos</div>;
   }
 
   const imgBio = data[0];
@@ -36,7 +37,7 @@ const Biografia = async () => {
               </div>
             </div>
             {imgBio && (
-              <Image src={ImagenUrl(imgBio.imgBio.replace(`${process.env.NEXT_PUBLIC_BACKEND_URL}`, ""))} alt="Biografía" width={1200} height={800} />
+              <Image src={ImagenUrl(imgBio.imgBio.replace(`${process.env.NEXT_PUBLIC_BACKEND_URL}`, ""))} alt="Biografía" width={1200} height={800} unoptimized/>
             )}
           </div>
         </div>

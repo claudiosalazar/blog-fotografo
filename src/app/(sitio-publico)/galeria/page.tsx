@@ -17,19 +17,19 @@ const Galeria = () => {
             <li className="btn-galeria">
               <Link href="/galeria/paisajes" className="link-galeria-inicio">
                 <span>Paisajes</span>
-                <Image src={StaticImage.gPaisajes} alt={StaticImage?.gPaisajes || "default image"} width={1920} height={1200}  priority={true} />
+                <Image src={StaticImage.gPaisajes} alt={StaticImage?.gPaisajes || "default image"} width={1920} height={1200}  unoptimized />
               </Link>
             </li>
             <li className="btn-galeria">
               <Link href="/galeria/personas" className="link-galeria-inicio">
                 <span>Personas</span>
-                <Image src={StaticImage.gPersonas} alt={StaticImage?.gPersonas || "default image"} width={1920} height={1200}  priority={true} />
+                <Image src={StaticImage.gPersonas} alt={StaticImage?.gPersonas || "default image"} width={1920} height={1200}  unoptimized />
               </Link>
             </li>
             <li className="btn-galeria">
               <Link href="/galeria/animales" className="link-galeria-inicio">
                 <span>Animales</span>
-                <Image src={StaticImage.gAnimales} alt={StaticImage?.gAnimales || "default image"} width={1920} height={1200}  priority={true} />
+                <Image src={StaticImage.gAnimales} alt={StaticImage?.gAnimales || "default image"} width={1920} height={1200}  unoptimized />
               </Link>
             </li>
           </ul>

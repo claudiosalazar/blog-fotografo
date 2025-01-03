@@ -3,6 +3,7 @@ import Image from "next/image";
 import formatoUrlTitulo from "@/app/utility/FormatoUrlTitulo";
 import formatoFecha from "@/app/utility/FormatoFecha";
 import ImagenUrl from "@/app/utility/ImagenUrl";
+import fetchData from "@/app/utility/fetchData";
 
 interface Post {
   id: string;
@@ -13,9 +14,15 @@ interface Post {
 }
 
 const Blog = async () => {
-  const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}post`;
-  const response = await fetch(url);
-  const posts: Post[] = await response.json();
+  let data: Post[] = [];
+
+  try {
+    data = await fetchData("post");
+  } catch {
+    return <div>Error al obtener los datos</div>;
+  }
+
+  const posts = data;
 
   return (
     <>
@@ -27,7 +34,7 @@ const Blog = async () => {
           {posts.map((post) => (
             <div key={post.id} className="col-10 offset-1 col-md-6 offset-md-0 col-lg-4" >
               <div className="post-lista-item">
-              <Image src={ImagenUrl(post.imgPost)} alt={`${post.tituloPost}`}  width={800} height={800} unoptimized className="imagen-lista"/>
+                <Image src={ImagenUrl(post.imgPost)} alt={`${post.tituloPost}`} width={800} height={800} className="imagen-lista" unoptimized />
                 <Link href={`/blog/${formatoUrlTitulo(post.tituloPost)}`} className="link-blog" >
                   <span className="fecha-post">
                     {formatoFecha(post.fecha)}
@@ -48,7 +55,7 @@ const Blog = async () => {
           <Link href="/post" className="btn primario">
             Cargar más
           </Link>
-        </div> 
+        </div>
       </section>
     </>
   );

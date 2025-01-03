@@ -2,27 +2,25 @@ import Link from "next/link";
 import Image from "next/image";
 import formatoFecha from "@/app/utility/FormatoFecha";
 import formatoUrlTitulo from "@/app/utility/FormatoUrlTitulo";
+import fetchData from "@/app/utility/fetchData";
+import ImagenUrl from "@/app/utility/ImagenUrl";
 
 interface PostData {
   id: string;
   fecha: string;
   tituloPost: string;
   contenido: string;
-  imgPost: string; // Asume que es una cadena con la ruta de la imagen
+  imgPost: string;
   alt: string;
 }
 
 const UltimosPost = async () => {
-  const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}postInicio`;
-  const response = await fetch(url);
-  const posts: PostData[] = await response.json();
+  let posts: PostData[] = [];
 
-  if (!response.ok) {
-    return (
-      <div className="w-full px-4">
-        <p className="text-red-500">Failed to fetch posts data</p>
-      </div>
-    );
+  try {
+    posts = await fetchData("postInicio");
+  } catch {
+    return <div>Error al obtener los datos</div>;
   }
 
   return (
@@ -36,7 +34,7 @@ const UltimosPost = async () => {
           <div key={post.id}>
             <div className="post-inicio shadow-md rounded-lg overflow-hidden">
               <Link href={`/blog/${formatoUrlTitulo(post.tituloPost)}`} className="link-blog">
-                <Image src={post.imgPost} alt={`${post.tituloPost}`} width={800} height={800} unoptimized />
+                <Image src={ImagenUrl(post.imgPost)} alt={`${post.tituloPost}`} width={800} height={800} unoptimized />
                 <span className="fecha-post">
                   {formatoFecha(post.fecha)}
                 </span>

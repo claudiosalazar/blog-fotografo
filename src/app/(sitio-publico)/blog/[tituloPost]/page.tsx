@@ -4,6 +4,7 @@ import formatoUrlTitulo from "@/app/utility/FormatoUrlTitulo";
 import formatoFecha from "@/app/utility/FormatoFecha";
 import BackLink from "@/app/utility/BackLink";
 import ImagenUrl from "@/app/utility/ImagenUrl";
+import fetchData from "@/app/utility/fetchData";
 
 interface Post {
   id: string;
@@ -14,23 +15,39 @@ interface Post {
   alt: string;
 }
 
-export const generateStaticParams = async () => {
-  const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}post`;
-  const response = await fetch(url);
-  const posts: Post[] = await response.json();
+export async function generateStaticParams() {
+  let data: Post[] = [];
+
+  try {
+    data = await fetchData("post");
+  } catch {
+    return <div>Error al obtener los datos</div>;
+  }
+
+  const posts = data;
 
   return posts.map((post) => ({
     tituloPost: formatoUrlTitulo(post.tituloPost),
   }));
-};
+}
 
 export type ParamsType = Promise<{ tituloPost: string }>;
 
 const PostPage = async ({ params }: { params: ParamsType }) => {
   const { tituloPost } = await params;
   const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}post`;
-  const response = await fetch(url);
-  const posts: Post[] = await response.json();
+  let posts: Post[] = [];
+
+  try {
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error('Failed to fetch posts');
+    }
+    posts = await response.json();
+  } catch (error) {
+    console.error('Error fetching posts:', error);
+  }
+
   const postItem = posts.find(post => formatoUrlTitulo(post.tituloPost) === tituloPost);
   const postIndex = posts.findIndex(post => formatoUrlTitulo(post.tituloPost) === tituloPost);
   const prevPost = postIndex > 0 ? posts[postIndex - 1] : null;
@@ -51,7 +68,7 @@ const PostPage = async ({ params }: { params: ParamsType }) => {
     <>
       <section key={postItem.id} className="post-detalle w-10/12 md:w-4/5 d-block">
         <div className="post-header">
-        <BackLink className="post-header-volver">
+          <BackLink className="post-header-volver">
             <div className="icono"></div>
           </BackLink>
           <div className="post-header-datos">
@@ -59,7 +76,7 @@ const PostPage = async ({ params }: { params: ParamsType }) => {
             <h2>{postItem.tituloPost}</h2>
           </div>
           <div className="post-header-image">
-            <Image src={ImagenUrl(postItem.imgPost)} alt={postItem.alt || "Imagen de la publicación"} width={800} height={800} className="imagen-detalle-post" priority={true} />
+            <Image src={ImagenUrl(postItem.imgPost)} alt={postItem.alt || "Imagen de la publicación"} width={800} height={800} className="imagen-detalle-post" unoptimized />
           </div>
         </div>
         <div className="post-body">
@@ -76,7 +93,7 @@ const PostPage = async ({ params }: { params: ParamsType }) => {
           {prevPost && (
             <Link href={`/blog/${formatoUrlTitulo(prevPost.tituloPost)}`}>
               <div className="post-anterior">
-                <Image src={ImagenUrl(prevPost.imgPost)} alt={prevPost.alt} width={800} height={800} priority={true} />
+                <Image src={ImagenUrl(prevPost.imgPost)} alt={prevPost.alt} width={800} height={800} unoptimized />
                 <div className="info">
                   <span className="ico-anterior mb-2"></span>
                   <span className="fecha-post-anterior">
@@ -93,7 +110,7 @@ const PostPage = async ({ params }: { params: ParamsType }) => {
           {nextPost && (
             <Link href={`/blog/${formatoUrlTitulo(nextPost.tituloPost)}`}>
               <div className="post-siguiente">
-                <Image src={ImagenUrl(nextPost.imgPost)} alt={nextPost.alt} width={800} height={800} priority={true} />
+                <Image src={ImagenUrl(nextPost.imgPost)} alt={nextPost.alt} width={800} height={800} unoptimized />
                 <div className="info">
                   <span className="ico-siguiente mb-2"></span>
                   <span className="fecha-post-siguiente">

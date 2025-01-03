@@ -151,6 +151,20 @@ h2.tit-bio {
       height: fit-content !important;
     }
   }
+
+  ul {
+    &.inicio {
+      li:nth-child(n+4) {
+        display: none;
+      }
+    }
+
+    &.todo {
+      li {
+        display: block;
+      }
+    }
+  }
 }
 
 .hablemos {
