@@ -1,80 +1,63 @@
-/* eslint-disable @next/next/no-img-element */
-'use client';
-
-import { useState, useEffect } from "react";
-import TextoBienvenida from "./texto-bienvenida";
+import Image from "next/image";
+import TextoBienvenida from "./TextoBienvenida";
+import fetchData from "@/app/utility/fetchData";
+import getImagenUrl from "@/app/utility/UseImagenUrl";
 
 interface CarouselData {
   id: string;
   imgCarousel: string;
 }
 
-export default function Carousel() {
-  const [carousel, setCarousel] = useState<CarouselData[] | null>(null);
-  const [error, setError] = useState<string | null>(null);
-  const [currentSlide, setCurrentSlide] = useState(0);
+const Carousel = async () => {
+  let imagenes: CarouselData[] = [];
 
-  const nextSlide = useCallback(() => {
-    setCurrentSlide((prev) => (prev === (carousel?.length || 1) - 1 ? 0 : prev + 1));
-  }, [carousel]);
-
-  const prevSlide = useCallback(() => {
-    setCurrentSlide((prev) => (prev === 0 ? (carousel?.length || 1) - 1 : prev - 1));
-  }, [carousel]);
-
-  useEffect(() => {
-    const fetchCarousel = async () => {
-      try {
-        const response = await fetch("http://localhost:3001/carousel"); // Define la URL directamente aquí
-        if (response.ok) {
-          const result = await response.json();
-          setCarousel(result); // Asegúrate de que el resultado sea un array de objetos con las propiedades id y imgCarousel
-        } else {
-          const errorData = await response.json();
-          setError(errorData.message);
-          console.error("Failed to fetch data:", errorData.message);
-        }
-      } catch (error) {
-        setError("Error fetching data");
-        console.error("Error fetching data:", error);
-      }
-    };
-
-    fetchCarousel();
-  }, []);
-
-  useEffect(() => {
-    const interval = setInterval(nextSlide, 4000); // Cambia de imagen cada 4 segundos
-    return () => clearInterval(interval); // Limpia el intervalo cuando el componente se desmonta
-  }, [carousel, nextSlide]);
-
-  if (error) {
-    return <div className="carousel"><p className="text-red-500">{error}</p></div>;
+  try {
+    imagenes = await fetchData("carousel");
+  } catch {
+    return <div>Error al obtener los datos</div>;
   }
 
-  if (!carousel) {
-    return <div className="carousel"><p>Loading...</p></div>;
-  }
+  // let img1 = true;
+  // let img2 = false;
+  // let img3 = false;
+
+  // const changeImages = () => {
+  //   setTimeout(() => {
+  //     img1 = false;
+  //     img2 = true;
+  //     img3 = false;
+  //     setTimeout(() => {
+  //       img1 = false;
+  //       img2 = false;
+  //       img3 = true;
+  //       setTimeout(() => {
+  //         img1 = true;
+  //         img2 = false;
+  //         img3 = false;
+  //         changeImages();
+  //       }, 300);
+  //     }, 300);
+  //   }, 300);
+  // };
+
+  // changeImages();
 
   return (
-    <div className="carousel">
+    <div className="carousel relative">
       <TextoBienvenida />
-      <div className="relative overflow-hidden carousel-contenido">
-        {carousel.map((slide, index) => (
-          <div key={slide.id} className={`absolute inset-0 transition-opacity duration-1000 ${ index === currentSlide ? "opacity-100" : "opacity-0" }`}>
-            <div className="relative w-full h-full">
-              <img src={slide.imgCarousel} className="img-fluid" alt={`Slide ${slide.id}`} />
-            </div>
-          </div>
-        ))}
+      <div className="carousel-contenido">
+        <div className="carousel-item">
+          <Image src={getImagenUrl(imagenes[0]?.imgCarousel)} alt="Carousel image 1" width={1920} height={1080} unoptimized />
+        </div>
+        <div className="carousel-item">
+          <Image src={getImagenUrl(imagenes[1]?.imgCarousel)} alt="Carousel image 2" width={1920} height={1080} unoptimized />
+        </div>
+        <div className="carousel-item">
+          <Image src={getImagenUrl(imagenes[2]?.imgCarousel)} alt="Carousel image 3" width={1920} height={1080} unoptimized />
+        </div>
       </div>
-      <button className="absolute top-1/2 left-0 transform -translate-y-1/2 p-2 ms-4 hidden md:block" onClick={prevSlide} >
-        <div className="ico-anterior-carousel d-block"></div>
-      </button>
-      <button className="absolute top-1/2 right-0 transform -translate-y-1/2 p-2 me-4 hidden md:block" onClick={nextSlide} >
-        <div className="ico-siguiente-carousel d-block"></div>
-      </button>
     </div>
   );
-}
-import { useCallback } from "react";
+};
+
+export default Carousel;
