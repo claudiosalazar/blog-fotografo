@@ -3,7 +3,7 @@ import Image from "next/image";
 import formatoFecha from "@/app/utility/FormatoFecha";
 import formatoUrlTitulo from "@/app/utility/FormatoUrlTitulo";
 import fetchData from "@/app/utility/fetchData";
-import ImagenUrl from "@/app/utility/ImagenUrl";
+import ImagenUrlProduction from "@/app/utility/ImagenUrlProduction";
 
 interface PostData {
   id: string;
@@ -34,7 +34,7 @@ const UltimosPost = async () => {
           <div key={post.id}>
             <div className="post-inicio shadow-md rounded-lg overflow-hidden">
               <Link href={`/blog/${formatoUrlTitulo(post.tituloPost)}`} className="link-blog">
-                <Image src={ImagenUrl(post.imgPost)} alt={`${post.tituloPost}`} width={800} height={800} unoptimized />
+                <Image src={ImagenUrlProduction(post.imgPost)} alt={`${post.tituloPost}`} width={800} height={800} unoptimized />
                 <span className="fecha-post">
                   {formatoFecha(post.fecha)}
                 </span>

@@ -3,7 +3,8 @@ import SobreMi from "@/app/components/biografia/SobreMi";
 import Title from "@/app/utility/title";
 import Link from "next/link";
 import Image from "next/image";
-import getImagenUrl from "@/app/utility/UseImagenUrl";
+// import getImagenUrl from "@/app/utility/UseImagenUrl";
+import ImagenUrlProduction from "@/app/utility/ImagenUrlProduction";
 import fetchData from "@/app/utility/fetchData";
 
 interface ImgBio {
@@ -37,7 +38,7 @@ const Biografia = async () => {
               </div>
             </div>
             {imgBio && (
-              <Image src={getImagenUrl(imgBio.imgBio.replace(`${process.env.NEXT_PUBLIC_BACKEND_URL}`, ""))} alt="Biografía" width={1200} height={800} unoptimized/>
+              <Image src={ImagenUrlProduction(imgBio.imgBio.replace(`${process.env.NEXT_PUBLIC_BACKEND_URL}`, ""))} alt="Biografía" width={1200} height={800} unoptimized/>
             )}
           </div>
         </div>

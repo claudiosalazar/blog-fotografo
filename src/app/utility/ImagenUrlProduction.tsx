@@ -9,7 +9,7 @@ const ImagenUrlProduction = (imgPath: string | undefined | null): string => {
   }
 
   // Devolver la URL proporcionada por el backend sin modificarla
-  console.log(`Generated URL: ${imgPathStr}`);
+  // console.log(`Generated URL: ${imgPathStr}`);
   return imgPathStr;
 };
 

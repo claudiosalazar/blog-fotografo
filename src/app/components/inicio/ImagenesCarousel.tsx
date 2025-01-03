@@ -1,7 +1,8 @@
 'use client';
 
 import { useState, useEffect, useCallback } from "react";
-import getImagenUrl from "@/app/utility/UseImagenUrl";
+// import getImagenUrl from "@/app/utility/UseImagenUrl";
+import ImagenUrlProduction from "@/app/utility/ImagenUrlProduction";
 import Image from "next/image";
 
 interface CarouselData {
@@ -35,7 +36,7 @@ export default function ImagenesCarousel({ initialData }: ImagenesCarouselProps)
       {carousel.map((slide, index) => (
         <div key={slide.id} className={`absolute inset-0 transition-opacity duration-1000 ${ index === currentSlide ? "opacity-100" : "opacity-0" }`}>
           <div className="relative w-full h-full">
-            <Image src={getImagenUrl(slide.imgCarousel)} className="img-fluid" alt={`Slide ${slide.id}`} width={1920} height={1080} unoptimized />
+            <Image src={ImagenUrlProduction(slide.imgCarousel)} className="img-fluid" alt={`Slide ${slide.id}`} width={1920} height={1080} unoptimized />
           </div>
         </div>
       ))}
