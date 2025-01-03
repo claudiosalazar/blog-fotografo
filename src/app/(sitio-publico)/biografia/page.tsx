@@ -1,40 +1,25 @@
-/* eslint-disable @next/next/no-img-element */
-
-"use client";
-
-import Proyectos from "@/app/components/biografia/proyectos";
-import SobreMi from "@/app/components/biografia/sobre-mi";
+import Proyectos from "@/app/components/biografia/Proyectos";
+import SobreMi from "@/app/components/biografia/SobreMi";
 import Title from "@/app/utility/title";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import Image from "next/image";
+import getImagenUrl from "@/app/utility/UseImagenUrl";
+import fetchData from "@/app/utility/fetchData";
 
 interface ImgBio {
   imgBio: string;
 }
 
-const Biografia = () => {
-  const [imgBio, setImgBio] = useState<ImgBio | null>(null);
+const Biografia = async () => {
+  let data: ImgBio[] = [];
 
-  useEffect(() => {
-    const fetchImgBio = async () => {
-      try {
-        const response = await fetch(
-          `${process.env.NEXT_PUBLIC_BACKEND_URL}imagenBiografia`
-        );
-        if (response.ok) {
-          const result = await response.json();
-          setImgBio(result[0]);
-        } else {
-          const errorData = await response.json();
-          console.error("Failed to fetch data:", errorData.message);
-        }
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
+  try {
+    data = await fetchData("imagenBiografia");
+  } catch {
+    return <div>Error al obtener los datos</div>;
+  }
 
-    fetchImgBio();
-  }, []);
+  const imgBio = data[0];
 
   return (
     <>
@@ -51,12 +36,14 @@ const Biografia = () => {
                 </div>
               </div>
             </div>
-            <img src={imgBio?.imgBio} className="img-fluid" alt="Biografía" />
+            {imgBio && (
+              <Image src={getImagenUrl(imgBio.imgBio.replace(`${process.env.NEXT_PUBLIC_BACKEND_URL}`, ""))} alt="Biografía" width={1200} height={800} unoptimized/>
+            )}
           </div>
         </div>
       </section>
 
-      <section className="container sobre-mi">
+      <section className="sobre-mi">
         <SobreMi />
       </section>
 
@@ -121,4 +108,4 @@ const Biografia = () => {
   );
 }
 
-export default Title(Biografia);
+export default Title(Biografia, "Biografía");

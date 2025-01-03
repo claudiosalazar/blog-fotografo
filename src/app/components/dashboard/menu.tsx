@@ -22,7 +22,7 @@ function MenuDashboard() {
 
   useEffect(() => {
     const positions: { [key: string]: number } = {
-      "/panel-de-administracion": resumenRef.current?.offsetTop || 0,
+      "/panel-de-administracion/resumen": resumenRef.current?.offsetTop || 0,
       "/panel-de-administracion/inicio": inicioRef.current?.offsetTop || 0,
       "/panel-de-administracion/biografia": biografiaRef.current?.offsetTop || 0,
       "/panel-de-administracion/galeria": galeriaRef.current?.offsetTop || 0,

@@ -1,4 +1,4 @@
-"use client";
+
 
 import FormImgCarousel from "@/app/components/dashboard/formularios/inicio/Imgs-carousel";
 import FormInfoCarousel from "@/app/components/dashboard/formularios/inicio/Info-carousel";

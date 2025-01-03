@@ -1,8 +1,6 @@
-"use client";
-
-import { useEffect, useState } from "react";
 import Link from "next/link";
-import ImageGallery from "@/app/components/Image-gallery";
+import ImageGallery from "@/app/components/galerias/ImageGallery";
+import fetchData from "@/app/utility/fetchData";
 import Title from "@/app/utility/title";
 
 interface GaleriaData {
@@ -12,47 +10,15 @@ interface GaleriaData {
   alt: string;
 }
 
-const GaleriaPaisajes = () => {
-  const [galeria, setGaleria] = useState<GaleriaData[]>([]);
-  const [error, setError] = useState<string | null>(null);
+const GaleriaPaisajes = async () => {
+  let data: GaleriaData[] = [];
 
-  useEffect(() => {
-    const fetchGaleriaPaisajes = async () => {
-      try {
-        const response = await fetch(
-          `${process.env.NEXT_PUBLIC_BACKEND_URL}galeriaPaisajes`
-        );
-        if (response.ok) {
-          const result = await response.json();
-          console.log(
-            "Datos de galeriaPaisajes obtenidos del backend:",
-            result
-          );
-          setGaleria(result);
-        } else {
-          const errorData = await response.json();
-          setError(errorData.message);
-          console.error(
-            "Failed to fetch galeriaPaisajes data:",
-            errorData.message
-          );
-        }
-      } catch (error) {
-        setError("Error fetching galeriaPaisajes data");
-        console.error("Error fetching galeriaPaisajes data:", error);
-      }
-    };
-
-    fetchGaleriaPaisajes();
-  }, []);
-
-  if (error) {
-    return <div>Error: {error}</div>;
+  try {
+    data = await fetchData("galeriaPaisajes");
+  } catch {
+    return <div>Error al obtener los datos</div>;
   }
 
-  if (galeria.length === 0) {
-    return null;
-  }
 
   return (
     <>
@@ -64,10 +30,11 @@ const GaleriaPaisajes = () => {
           </h1>
         </div>
         <div className="mx-6 md:mx-12">
-            <ImageGallery images={galeria} />
+          <ImageGallery images={data} />
         </div>
       </section>
     </>
   );
 }
-export default Title(GaleriaPaisajes);
+
+export default Title(GaleriaPaisajes, "Galeria Paisajes");

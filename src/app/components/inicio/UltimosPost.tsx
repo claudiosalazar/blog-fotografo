@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import formatoFecha from "@/app/utility/FormatoFecha";
 import formatoUrlTitulo from "@/app/utility/FormatoUrlTitulo";
+import fetchData from "@/app/utility/fetchData";
 import ImagenUrl from "@/app/utility/ImagenUrl";
 
 interface PostData {
@@ -9,30 +10,17 @@ interface PostData {
   fecha: string;
   tituloPost: string;
   contenido: string;
-  imgPost: string; // Asume que es una cadena con la ruta de la imagen
+  imgPost: string;
   alt: string;
 }
 
 const UltimosPost = async () => {
-  const BASE_URL = process.env.NEXT_PUBLIC_BACKEND_URL || "https://blog-fotografo.claudiosalazar.cl/";
-  const url = `${BASE_URL}postInicio`;
   let posts: PostData[] = [];
 
   try {
-    const response = await fetch(url);
-
-    if (!response.ok) {
-      throw new Error("Failed to fetch posts data");
-    }
-
-    posts = await response.json();
-  } catch (error) {
-    console.error("Error fetching posts data:", error);
-    return (
-      <div className="w-full px-4">
-        <p className="text-red-500">Failed to fetch posts data</p>
-      </div>
-    );
+    posts = await fetchData("postInicio");
+  } catch {
+    return <div>Error al obtener los datos</div>;
   }
 
   return (

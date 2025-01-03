@@ -1,10 +1,8 @@
+import type { NextConfig } from "next";
 
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-  output: 'export',
+const nextConfig: NextConfig = {
   distDir: 'prod',
-  basePath: '',
-  assetPrefix: process.env.ASSET_PREFIX,
+  output: 'export',
 };
 
 export default nextConfig;

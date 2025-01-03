@@ -1,7 +1,7 @@
-/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { StaticImage } from "../../ui/Images";
 import Title from "@/app/utility/title";
 
@@ -17,19 +17,19 @@ const Galeria = () => {
             <li className="btn-galeria">
               <Link href="/galeria/paisajes" className="link-galeria-inicio">
                 <span>Paisajes</span>
-                <img src={StaticImage.gPaisajes} alt="paisajes" className="paisajes" />
+                <Image src={StaticImage.gPaisajes} alt={StaticImage?.gPaisajes || "default image"} width={1920} height={1200}  unoptimized />
               </Link>
             </li>
             <li className="btn-galeria">
               <Link href="/galeria/personas" className="link-galeria-inicio">
                 <span>Personas</span>
-                <img src={StaticImage.gPersonas} alt="personas" />
+                <Image src={StaticImage.gPersonas} alt={StaticImage?.gPersonas || "default image"} width={1920} height={1200}  unoptimized />
               </Link>
             </li>
             <li className="btn-galeria">
               <Link href="/galeria/animales" className="link-galeria-inicio">
                 <span>Animales</span>
-                <img src={StaticImage.gAnimales} alt="animales" className="animales" />
+                <Image src={StaticImage.gAnimales} alt={StaticImage?.gAnimales || "default image"} width={1920} height={1200}  unoptimized />
               </Link>
             </li>
           </ul>
@@ -39,4 +39,4 @@ const Galeria = () => {
   );
 }
 
-export default Title(Galeria);
+export default Title(Galeria, 'Galería');

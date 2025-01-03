@@ -1,9 +1,7 @@
-/* eslint-disable @next/next/no-img-element */
-'use client';
-
-import Link from "next/link";
+import Image from "next/image";
 import { StaticImage } from "../../ui/Images";
-import { useEffect, useState } from 'react';
+import fetchData from "@/app/utility/fetchData";
+import ListaProyectos from "./ListaProyectos";
 
 interface Proyecto {
   id: string;
@@ -12,56 +10,29 @@ interface Proyecto {
   infoProyecto: string;
 }
 
-export default function Proyectos() {
-  const [proyectos, setProyectos] = useState<Proyecto[]>([]);
-  const [visibleProyectos, setVisibleProyectos] = useState<number>(3);
+const Proyectos = async () => {
+  let data: Proyecto[] = [];
 
-  useEffect(() => {
-    const fetchProyectos = async () => {
-      try {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}proyectos`);
-        if (response.ok) {
-          const result = await response.json();
-          // console.log('Datos obtenidos del backend:', result);
-          setProyectos(result);
-        } else {
-          const errorData = await response.json();
-          console.error('Failed to fetch data:', errorData.message);
-        }
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
+  try {
+    data = await fetchData("proyectos");
+  } catch {
+    return <div>Error al obtener los datos</div>;
+  }
 
-    fetchProyectos();
-  }, []);
-
-  const handleShowMore = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault();
-    setVisibleProyectos(proyectos.length); // Mostrar todos los proyectos
-  };
+  const proyectosIniciales = data.slice(0);
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 proyectos">
       <div className="w-full flex justify-center ">
-        <img src={StaticImage.camera2} alt="conocimientos" className="camera hidden md:block" />
+        <Image src={StaticImage.camera2} alt={StaticImage?.camera2} width={1920} height={1200} unoptimized className="camera hidden md:block"/>
       </div>
 
       <div className="md:w-9/12 mx-5 md:mx-0">
         <h2 className="tit-bio">Proyectos</h2>
-        {proyectos.slice(0, visibleProyectos).map((proyecto) => (
-          <div key={proyecto.id}>
-            <h5>{proyecto.anoProyecto}</h5>
-            <h4>{proyecto.tituloProyecto}</h4>
-            <p className="txt-proyecto">{proyecto.infoProyecto}</p>
-          </div>
-        ))}
-        {visibleProyectos < proyectos.length && (
-          <Link href="proyectos" className='btn primario' onClick={handleShowMore}>
-            Ver mas
-          </Link>
-        )}
+        <ListaProyectos proyectos={proyectosIniciales} />
       </div>
     </div>
   );
 }
+
+export default Proyectos;

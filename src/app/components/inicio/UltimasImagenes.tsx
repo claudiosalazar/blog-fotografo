@@ -1,37 +1,22 @@
 import Link from "next/link";
 import Image from "next/image";
-import ImagenUrl from "@/app/utility/ImagenUrl";
+import fetchData from "@/app/utility/fetchData";
+import getImagenUrl from "@/app/utility/UseImagenUrl";
 
 interface GaleriaData {
-  id: number;
+  id: string;
   album: string;
   foto: string;
   alt: string;
 }
 
 const GaleriaHome = async () => {
-  const BASE_URL = process.env.NEXT_PUBLIC_BACKEND_URL || "https://blog-fotografo.claudiosalazar.cl/";
-  const url = `${BASE_URL}galeria`;
   let galeria: GaleriaData[] = [];
 
   try {
-    const response = await fetch(url);
-
-    if (!response.ok) {
-      throw new Error("Failed to fetch galeria data");
-    }
-
-    galeria = await response.json();
-  } catch (error) {
-    console.error("Error fetching galeria data:", error);
-    return (
-      <div className="row">
-        <div className="column-10 px-4">
-          <h2>Ultimas fotografías</h2>
-          <p className="text-red-500">Failed to fetch galeria data</p>
-        </div>
-      </div>
-    );
+    galeria = await fetchData("galeria");
+  } catch {
+    return <div>Error al obtener los datos</div>;
   }
 
   return (
@@ -68,7 +53,7 @@ const GaleriaHome = async () => {
                   : ""
               }`}
             >
-              <Image src={ImagenUrl(item.foto)} alt={`${item.alt}`} width={800} height={800} unoptimized className={`lazy-image ${additionalClass}`} />
+              <Image src={getImagenUrl(item.foto)} alt={item.alt} width={800} height={800} unoptimized className={`lazy-image ${additionalClass}`} />
             </div>
           );
         })}
