@@ -1,19 +1,20 @@
 // local
-// const ImagenUrl = (imgPath: string | undefined | null): string => {
-//   if (!imgPath) return "";
+/*const ImagenUrl = (imgPath: string | undefined | null): string => {
+  if (!imgPath) return "";
 
-//   const BASE_URL = process.env.NEXT_PUBLIC_BACKEND_URL || "";
-//   const imgPathStr = String(imgPath);
+  const BASE_URL = process.env.NEXT_PUBLIC_BACKEND_URL || "";
+  const imgPathStr = String(imgPath);
 
-//   if (imgPathStr.startsWith("http")) {
-//     return imgPathStr;
-//   }
+  if (imgPathStr.startsWith("http")) {
+    return imgPathStr;
+  }
 
-//   const finalUrl = `${BASE_URL.replace(/\/$/, "")}/${imgPathStr.replace(/^\//, "")}`;
-//   return finalUrl;
-// };
-
-// export default ImagenUrl;
+  const finalUrl = `${BASE_URL.replace(/\/$/, "")}/${imgPathStr.replace(
+    /^\//,
+    ""
+  )}`;
+  return finalUrl;
+};*/
 
 // Production
 const ImagenUrl = (imgPath: string | undefined | null): string => {
@@ -21,10 +22,10 @@ const ImagenUrl = (imgPath: string | undefined | null): string => {
 
   const imgPathStr = String(imgPath);
 
- if (imgPathStr.startsWith("http")) {
+  if (imgPathStr.startsWith("http")) {
     return imgPathStr;
   }
   return imgPathStr;
- };
+};
 
 export default ImagenUrl;
