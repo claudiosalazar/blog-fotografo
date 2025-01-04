@@ -3,7 +3,7 @@ import Image from "next/image";
 import formatoUrlTitulo from "@/app/utility/FormatoUrlTitulo";
 import formatoFecha from "@/app/utility/FormatoFecha";
 // import getImagenUrl from "@/app/utility/UseImagenUrl";
-import ImagenUrlProduction from "@/app/utility/ImagenUrlProduction";
+import ImagenUrl from "@/app/utility/ImagenUrl";
 import fetchData from "@/app/utility/fetchData";
 
 interface Post {
@@ -35,7 +35,7 @@ const Blog = async () => {
           {posts.map((post) => (
             <div key={post.id} className="col-10 offset-1 col-md-6 offset-md-0 col-lg-4" >
               <div className="post-lista-item">
-                <Image src={ImagenUrlProduction(post.imgPost)} alt={`${post.tituloPost}`} width={800} height={800} className="imagen-lista" unoptimized />
+                <Image src={ImagenUrl(post.imgPost)} alt={`${post.tituloPost}`} width={800} height={800} className="imagen-lista" unoptimized />
                 <Link href={`/blog/${formatoUrlTitulo(post.tituloPost)}`} className="link-blog" >
                   <span className="fecha-post">
                     {formatoFecha(post.fecha)}

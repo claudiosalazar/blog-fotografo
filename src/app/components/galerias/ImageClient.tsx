@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import ImagenUrlProduction from "@/app/utility/ImagenUrlProduction";
+import ImagenUrl from "@/app/utility/ImagenUrl";
 import ImageModal from './ImageModal';
 
 interface ImageGalleryClientProps {
@@ -33,14 +33,14 @@ const ImageGalleryClient = ({ images }: ImageGalleryClientProps) => {
       <ul className="grid grid-cols-2 gap-0 md:grid-cols-4 ">
         {images.map((item) => (
           <li key={item.id}>
-            <Link href="#" onClick={() => handleImageClick(ImagenUrlProduction(item.foto), item.alt)} className='image-link'>
+            <Link href="#" onClick={() => handleImageClick(ImagenUrl(item.foto), item.alt)} className='image-link'>
               <span className='hover'>
                 <span>
                   <span className='icono ico-tit-img'></span>
                   <span className='texto'>Ver imagen</span>
                 </span>
               </span>
-              <Image src={ImagenUrlProduction(item.foto)} alt={item.alt} width={800} height={800} unoptimized/>
+              <Image src={ImagenUrl(item.foto)} alt={item.alt} width={800} height={800} unoptimized/>
             </Link>
           </li>
         ))}

@@ -32,8 +32,8 @@ const ImageModal = ({ selectedImage, alt, isClosing, handleCloseModal }: ImageMo
         <button type="button" className="close" onClick={handleCloseModal}>
           <div className='icono'></div>
         </button>
-        <div className="image-gallery-moda">
-          <Image src={selectedImage} alt={alt} width={1920} height={1200} unoptimized className="img-fluid image-gallery"  />
+        <div className="image-gallery-modal">
+          <Image src={selectedImage} alt={alt} width={1920} height={1200} unoptimized className="image-gallery"  />
         </div>
       </div>
     </div>

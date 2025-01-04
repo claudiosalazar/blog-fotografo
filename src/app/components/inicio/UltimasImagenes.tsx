@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import fetchData from "@/app/utility/fetchData";
 // // import getImagenUrl from "@/app/utility/UseImagenUrl";
-import ImagenUrlProduction from "@/app/utility/ImagenUrlProduction";
+import ImagenUrl from "@/app/utility/ImagenUrl";
 
 interface GaleriaData {
   id: string;
@@ -54,7 +54,7 @@ const GaleriaHome = async () => {
                   : ""
               }`}
             >
-              <Image src={ImagenUrlProduction(item.foto)} alt={item.alt} width={800} height={800} unoptimized className={`lazy-image ${additionalClass}`} />
+              <Image src={ImagenUrl(item.foto)} alt={item.alt} width={800} height={800} unoptimized className={`lazy-image ${additionalClass}`} />
             </div>
           );
         })}

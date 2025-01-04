@@ -117,11 +117,10 @@ export default function Footer() {
 
   return (
     <footer className={!isForceBottom ? 'force-bottom' : ''}>
-      <small className='flex-column flex-md-row d-flex align-items-center'>
-        <span className='d-block'>
+      <small className='flex justify-center flex-col md:flex-row align-items-center'>
+        <span className='d-block pe-0 md:pe-2'>
           Nikonlas Canons © 2024 - V.1 
         </span>
-        <span className='d-none d-md-block'>- </span>
         <span className='d-block'>
           Desarrollo por <Link href='https://www.claudiosalazar.cl' className="link" target='_blank' rel='noopener noreferrer'>Claudio Salazar</Link>
         </span>

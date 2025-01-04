@@ -17,7 +17,7 @@ const ListaProyectos = ({ proyectos }: ListaProyectosProps) => {
   const [mostrarTodos, setMostrarTodos] = useState(false);
 
   return (
-    <div>
+    <div className="flex flex-col items-center md:items-start">
       <ul className={mostrarTodos ? "todo" : "inicio"}>
         {proyectos.map((proyecto: Proyecto) => (
           <li key={proyecto.id}>

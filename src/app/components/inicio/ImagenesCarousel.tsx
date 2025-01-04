@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 // import getImagenUrl from "@/app/utility/UseImagenUrl";
-import ImagenUrlProduction from "@/app/utility/ImagenUrlProduction";
+import ImagenUrl from "@/app/utility/ImagenUrl";
 import Image from "next/image";
 
 interface CarouselData {
@@ -35,9 +35,7 @@ export default function ImagenesCarousel({ initialData }: ImagenesCarouselProps)
     <div className="relative overflow-hidden carousel-contenido">
       {carousel.map((slide, index) => (
         <div key={slide.id} className={`absolute inset-0 transition-opacity duration-1000 ${ index === currentSlide ? "opacity-100" : "opacity-0" }`}>
-          <div className="relative w-full h-full">
-            <Image src={ImagenUrlProduction(slide.imgCarousel)} className="img-fluid" alt={`Slide ${slide.id}`} width={1920} height={1080} unoptimized />
-          </div>
+          <Image src={ImagenUrl(slide.imgCarousel)} alt={`Slide ${slide.id}`} width={1080} height={1080} unoptimized />
         </div>
       ))}
       <button className="absolute top-1/2 left-0 transform -translate-y-1/2 p-2 ms-4 hidden md:block" onClick={prevSlide} >
