@@ -3,9 +3,7 @@ import Link from "next/link";
 import formatoUrlTitulo from "@/app/utility/FormatoUrlTitulo";
 import formatoFecha from "@/app/utility/FormatoFecha";
 import BackLink from "@/app/utility/BackLink";
-// import getImagenUrl from "@/app/utility/UseImagenUrl";
 import ImagenUrl from "@/app/utility/ImagenUrl";
-// import fetchData from "@/app/utility/fetchData";
 
 interface Post {
   id: string;
@@ -15,22 +13,6 @@ interface Post {
   imgPost: string;
   alt: string;
 }
-
-// export async function generateStaticParams() {
-//   let data: Post[] = [];
-
-//   try {
-//     data = await fetchData("post");
-//   } catch {
-//     return <div>Error al obtener los datos</div>;
-//   }
-
-//   const posts = data;
-
-//   return posts.map((post) => ({
-//     tituloPost: formatoUrlTitulo(post.tituloPost),
-//   }));
-// }
 
 export const generateStaticParams = async () => {
   const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}post`;

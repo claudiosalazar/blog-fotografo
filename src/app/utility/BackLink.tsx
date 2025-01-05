@@ -1,5 +1,7 @@
-import Link from "next/link";
+'use client';
+
 import React from "react";
+import { useRouter } from "next/navigation";
 
 interface ButtonProps {
   children: React.ReactNode;
@@ -7,11 +9,22 @@ interface ButtonProps {
   href?: string;
 }
 
-const BackLink: React.FC<ButtonProps> = ({ children, className = '', href = '#' }) => {
+const BackLink: React.FC<ButtonProps> = ({ children, className = '', href }) => {
+  const router = useRouter();
+
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+    e.preventDefault();
+    if (href) {
+      router.push(href);
+    } else {
+      router.back();
+    }
+  };
+
   return (
-    <Link href={href} className={`${className}`}>
+    <a href={href || '#'} className={className} onClick={handleClick}>
       {children}
-    </Link>
+    </a>
   );
 };
 
