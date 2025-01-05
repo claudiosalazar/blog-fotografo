@@ -168,9 +168,10 @@ h2.tit-bio {
 }
 
 .hablemos {
-  margin: 12px auto 24px auto !important;
+  margin: 12px auto 24px auto;
   @media (min-width: $md) {
-    margin: 36px auto !important;
+    margin: 36px auto;
+    padding-bottom: 66px;
   }
   ul {
     padding: 0;

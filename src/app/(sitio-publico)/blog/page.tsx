@@ -31,7 +31,7 @@ const Blog = async () => {
         <div className="grid grid-cols-1 gap-1">
           <h1 className="text-center">Blog</h1>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mx-8 md:mx-12 ">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mx-8 md:mx-32">
           {posts.map((post) => (
             <div key={post.id} className="col-10 offset-1 col-md-6 offset-md-0 col-lg-4" >
               <div className="post-lista-item">

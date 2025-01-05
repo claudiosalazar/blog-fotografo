@@ -31,19 +31,17 @@ const UltimosPost = async () => {
 
       <div className="grid grid-cols-1 gap-1 md:grid-cols-3 md:gap-6 mx-5 md:mx-0">
         {posts.map((post) => (
-          <div key={post.id}>
-            <div className="post-inicio shadow-md rounded-lg overflow-hidden">
-              <Link href={`/blog/${formatoUrlTitulo(post.tituloPost)}`} className="link-blog">
-                <Image src={ImagenUrl(post.imgPost)} alt={`${post.tituloPost}`} width={800} height={800} unoptimized />
+          <div key={post.id} className="col-10 offset-1 col-md-6 offset-md-0 col-lg-4" >
+            <div className="post-lista-item-inicio">
+              <Image src={ImagenUrl(post.imgPost)} alt={`${post.tituloPost}`} width={800} height={800} className="imagen-lista" unoptimized />
+              <Link href={`/blog/${formatoUrlTitulo(post.tituloPost)}`} className="link-blog" >
                 <span className="fecha-post">
                   {formatoFecha(post.fecha)}
                 </span>
-                <h3>
-                  {post.tituloPost}
-                </h3>
-                <p className="text-gray-700 mt-2">{post.contenido}</p>
+                <h3>{post.tituloPost}</h3>
+                <p>{post.contenido}</p>
               </Link>
-              <Link href={`/blog/${formatoUrlTitulo(post.tituloPost)}`} className="link more mb-10 md:mb-0">
+              <Link href={`/blog/${formatoUrlTitulo(post.tituloPost)}`} className="link more" >
                 <span className="d-block">Leer más</span>
                 <span className="d-block ico-more"></span>
               </Link>
