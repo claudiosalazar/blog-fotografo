@@ -146,16 +146,19 @@
         max-height: fit-content;
         width: 100% !important;
         .hover {
-          position: absolute;
-          top: 0;
-          left: 0;
-          background-color: black;
-          display: block;
-          aspect-ratio: 1/1;
-          opacity: 0;
-          z-index: 400;
-          width: 100%;
-          transition: all 0.8s ease;
+          display: none;
+          @media (min-width: $md) {
+            position: absolute;
+            top: 0;
+            left: 0;
+            background-color: black;
+            display: block;
+            aspect-ratio: 1/1;
+            opacity: 0;
+            z-index: 400;
+            width: 100%;
+            transition: all 0.8s ease;
+          }
     
           span {
             display: flex;

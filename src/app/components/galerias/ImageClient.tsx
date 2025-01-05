@@ -15,7 +15,8 @@ const ImageGalleryClient = ({ images }: ImageGalleryClientProps) => {
   const [isClosing, setIsClosing] = useState<boolean>(false);
   const [altText, setAltText] = useState<string>('');
 
-  const handleImageClick = (url: string, alt: string) => {
+  const handleImageClick = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>, url: string, alt: string) => {
+    e.preventDefault();
     setSelectedImage(url);
     setAltText(alt);
   };
@@ -33,7 +34,7 @@ const ImageGalleryClient = ({ images }: ImageGalleryClientProps) => {
       <ul className="grid grid-cols-2 gap-0 md:grid-cols-4 ">
         {images.map((item) => (
           <li key={item.id}>
-            <Link href="#" onClick={() => handleImageClick(ImagenUrl(item.foto), item.alt)} className='image-link'>
+            <Link href="#" onClick={(e) => handleImageClick(e, ImagenUrl(item.foto), item.alt)} className='image-link'>
               <span className='hover'>
                 <span>
                   <span className='icono ico-tit-img'></span>
