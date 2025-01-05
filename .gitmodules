@@ -1,0 +1,3 @@
+[submodule "blog-fotografo"]
+	path = blog-fotografo
+	url = https://github.com/claudiosalazar/blog-fotografo.git
